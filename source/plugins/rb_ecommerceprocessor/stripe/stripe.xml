@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
     <name>plg_rb_ecommerceprocessor_stripe</name>
-    <version>@build.version@</version>
+    <version>0.9.0.@build.number@</version>
     <creationDate>Nov 2012</creationDate>
     <author>Team JoomlaXi</author>
     <authorEmail>team@readybytes.in</authorEmail>
