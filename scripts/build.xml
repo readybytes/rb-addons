@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<project name="Package Builder" basedir="." default="build" description="Phing build script for package.">
+
+	<target name="get_build_number">
+		<exec command="git rev-parse --short HEAD" dir="${dir.root}" outputProperty="build.number"  />
+		<property name='build.number' value="${build.number}"  override="true" />
+	</target>
+
+	<target name="config" description="Load configuration file">
+	    <php expression="(PHP_OS == 'WINNT') ? 'win/' :'unix/'" returnProperty="IF_OS"/>
+		<property file="${IF_OS}build.prop" override="true" />
+		<phingcall target="get_build_number" />
+	</target>
+
+	
+	<target name="build" description="build installable package only" depends="config, get_build_number">
+		<delete dir="${dir.packages}" includeemptydirs="true" />
+		<mkdir dir="${dir.packages}" />
+		<mkdir dir="${dir.packages}/plugins" />
+
+		<phingcall target="export_sourcecode" />
+		
+		<php expression="plg" returnProperty="ext.prefix" />
+		<php expression="rb_ecommerceprocessor" returnProperty="ext.element" />
+		<mkdir dir="${dir.packages}/plugins/rb_ecommerceprocessor" />
+		<foreach param="dirname" absparam="absname" target="zip_plugin">
+		  <fileset dir="${dir.tmp}/plugins/${ext.element}">
+			<type type="dir" />
+			<depth max="0" min="0" />
+		  </fileset>
+		</foreach>
+	</target>
+
+
+	<target name="zip_plugin">
+		<echo msg="${dirname} ${absname}" />
+		<zip destfile="${dir.packages}/plugins/${ext.element}/${ext.prefix}_${ext.element}_${dirname}.zip" 
+		     basedir="${absname}" />		
+	</target>
+
+	<!-- Global Target -->
+	<target name="export_sourcecode" description="Export files from a local repository to package folder">		
+
+		<!-- Copy Source Code -->
+		<copy todir="${dir.tmp}" >
+		  <fileset dir="${dir.src}" />
+		</copy>		
+
+		<!-- Apply the version change to all files. -->
+		<reflexive>
+			<fileset dir="${dir.tmp}">
+			     <include name="**/*.*" />
+			</fileset>
+			 <filterchain>
+				<replacetokens>
+				    <token key="build.number"   value="${build.number}" />
+				</replacetokens>
+			</filterchain>
+		</reflexive>		
+	</target>
+</project>
