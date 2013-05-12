@@ -160,7 +160,7 @@ class Rb_EcommerceProcessorStripe extends Rb_EcommerceProcessor
 		$user_data 		= $object->user_data;
 	
 		$data = array();
-		$data['amount'] = number_format($payment_data->total, 2) * 100; // amount in cents
+		$data['amount'] = number_format($payment_data->total, 2, '.', '') * 100; // amount in cents
 		$data['currency'] = $payment_data->currency;
 		$data['customer'] = $processor_data->profileId;
 
@@ -229,13 +229,13 @@ class Rb_EcommerceProcessorStripe extends Rb_EcommerceProcessor
 				 ->set('params', $stripe_response->__toString());
 				 
 		if($stripe_response->paid === true){
-			$response->set('amount', number_format($stripe_response->amount / 100, 2))
+			$response->set('amount', ($stripe_response->amount / 100))
 					 ->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_STRIPE_TRANSACTION_STRIPE_PAYMENT_COMPLETED')
 					 ->set('payment_status', Rb_EcommerceResponse::PAYMENT_COMPLETE);
 		}
 		
 		if($stripe_response->refunded === true){
-			$response->set('amount', -number_format($stripe_response->amount_refunded / 100, 2))
+			$response->set('amount', -($stripe_response->amount_refunded / 100))
 					 ->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_STRIPE_TRANSACTION_STRIPE_PAYMENT_REFUNDED')
 					 ->set('payment_status', Rb_EcommerceResponse::PAYMENT_REFUND)
 					 ->set('parent_txn', isset($stripe_response->id) ? $stripe_response->id : 0)
