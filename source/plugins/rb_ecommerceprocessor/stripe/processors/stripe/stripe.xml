@@ -7,13 +7,13 @@
     <tags></tags>
 	<help>
     	<![CDATA[
-		Only supported currencies for each country:<BR />
-		United States -<BR />
-		United States dollars (USD)<BR />
+		<b>Only supported currencies for each country:</b><br><br>
+		United States -<br>
+		United States dollars (USD)<br>
 		Canada -<br>
-		Canadian dollars (CAD)<BR />
-		United States dollars (USD)<BR />
-		Please note that payment amount should be atleast integer 10$ for test account and minimum payment should be at least 50cents for live accounts.<BR />
+		Canadian dollars (CAD)<br>
+		United States dollars (USD)<br><br>
+		<b>Please note that payment amount should be atleast integer 10$ for test account and minimum payment should be at least 50cents for live accounts.<b>
 		]]>
    	 </help>
 
