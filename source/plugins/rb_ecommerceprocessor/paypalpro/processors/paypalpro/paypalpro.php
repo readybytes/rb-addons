@@ -198,7 +198,6 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 		$response->set('amount', 	 0);		
 		
 		if(empty($pro_response->data)){
-			$response->set('type', 'error');
 			$response->set('payment_status', Rb_EcommerceResponse::FAIL);					
 			$response->set('message', Rb_Text::_('PLG_XIPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_MESSAGE_FAILED'));
 			return $response;					
@@ -210,13 +209,15 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 			
 			if('FAILURE' == strtoupper($parsed_response["ACK"])){
 				$response->set('type', 'error');
-				$response->set('payment_status', 'error');
+				$response->set('payment_status', Rb_EcommerceResponse::PAYMENT_FAIL);
 				$response->set('message', $parsed_response["L_LONGMESSAGE0"]);				
 			}
-		
+			else{
+				$response->set('payment_status', Rb_EcommerceResponse::NOTIFICATION);
+				$response->set('message', Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_NOTIFICATION'));	
+			}
+
 			$response->set('params', $parsed_response);
-			$response->set('payment_status', Rb_EcommerceResponse::NOTIFICATION);
-			$response->set('message', Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_NOTIFICATION'));
 //			$response->set('txn_id', isset($parsed_response['TRANSACTIONID']) ? $parsed_response['TRANSACTIONID'] : 0);
 			return $response;
 		}
