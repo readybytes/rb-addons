@@ -104,7 +104,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 		}
 		else{
 			//non-recurring case
-			$amount   = urlencode(number_format($payment_data->total, 2));
+			$amount   = urlencode(number_format($payment_data->total, 2, '.', ''));
 			$nvpStr  .= "&AMT=$amount";	
 			$method = 'DoDirectPayment';
 		}
@@ -121,7 +121,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 		$now 			= new Rb_Date('now');
 		$startDate 		= urlencode($now->toFormat("Y-m-d\TH:i:s\Z", null, null, true));		
 		$billingCycle 	= urlencode($payment_data->recurrence_count);		
-		$amount 		= urlencode(number_format($all_prices[0], 2));
+		$amount 		= urlencode(number_format($all_prices[0], 2, '.', ''));
 		list($billingFreq, $billingPeriod) = $this->__get_recurrence_time($payment_data->time[0]);		
 	   	
 	   	$nvpStr = '';
@@ -131,7 +131,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 			$trialPeriod = $billingPeriod;
 			$trialFreq 	 = $billingFreq;
 			$trialCycle  = urlencode('1');			
-	   		$amount		 = urlencode(number_format($all_prices[1], 2)); // Regular Amount
+	   		$amount		 = urlencode(number_format($all_prices[1], 2, '.', '')); // Regular Amount
 			list($billingFreq, $billingPeriod) = $this->__get_recurrence_time($payment_data->time[1]);					
 			
 			$nvpStr .= "&TRIALBILLINGPERIOD=$trialPeriod&TRIALBILLINGFREQUENCY=$trialFreq&TRIALAMT=$trialAmount&TRIALTOTALBILLINGCYCLES=$trialCycle";

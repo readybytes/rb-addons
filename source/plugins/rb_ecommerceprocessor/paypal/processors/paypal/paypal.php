@@ -123,7 +123,7 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 	   		// Trial 1
 	   		if(count($all_prices) >= 2){
 	   			$form->loadFile($form_path.'trial1.xml', false, '//config');	   				   			
-	   			$form_data['a1'] = number_format($all_prices[0], 2);	   			
+	   			$form_data['a1'] = number_format($all_prices[0], 2, '.', '');	   			
 	   			list($form_data['p1'], $form_data['t1']) = $this->__get_recurrence_time($payment_data->time[0]);
 	   			$regular_index = 1;
 	   		}
@@ -131,20 +131,20 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 	   		// trial 2
 	   		if(count($all_prices) >= 3){	   			
 	   			$form->loadFile($form_path.'trial2.xml', false, '//config');
-	   			$form_data['a2'] = number_format($all_prices[1], 2);
+	   			$form_data['a2'] = number_format($all_prices[1], 2, '.', '');
 	   			list($form_data['p2'], $form_data['t2']) = $this->__get_recurrence_time($payment_data->time[1]);
 	   			$regular_index = 2;
 	   		}
 
 	   		// regular price
-	   		$form_data['a3'] = number_format($all_prices[$regular_index], 2);
+	   		$form_data['a3'] = number_format($all_prices[$regular_index], 2, '.', '');
 	   		list($form_data['p3'], $form_data['t3']) = $this->__get_recurrence_time($payment_data->time[$regular_index]);
 
 	   		$form_data['srt']		= $payment_data->recurrence_count;       		
        		$form_data['cmd']		= '_xclick-subscriptions';
 		}
 		else {
-			$form_data['amount'] 		= number_format($payment_data->total, 2);
+			$form_data['amount'] 		= number_format($payment_data->total, 2, '.', '');
 			$form_data['cmd'] 			= '_xclick';			
 			
 			$form = JForm::getInstance('rb_ecommerce.processor.paypal', $form_path.'fixed.xml');

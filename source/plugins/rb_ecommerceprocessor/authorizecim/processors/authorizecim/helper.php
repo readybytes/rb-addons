@@ -43,7 +43,7 @@ class Rb_EcommerceProcessorAuthorizecimHelper extends Rb_EcommerceHelper
 						</merchantAuthentication>
 						<transaction>
 							<profileTransRefund>
-								<amount>'.number_format($amount, 2).'</amount>					
+								<amount>'.number_format($amount, 2, '.', '').'</amount>					
 								<customerProfileId>'.$customerProfileId.'</customerProfileId>
 								<customerPaymentProfileId>'.$customerPaymentId.'</customerPaymentProfileId>					
 								<transId>'.$txnId.'</transId>
@@ -63,7 +63,7 @@ class Rb_EcommerceProcessorAuthorizecimHelper extends Rb_EcommerceHelper
                           </merchantAuthentication>
                           <transaction>
                               <profileTransAuthCapture>
-                                  <amount>'. number_format($object->payment_data->total, 2) .'</amount>';
+                                  <amount>'. number_format($object->payment_data->total, 2, '.', '') .'</amount>';
         
         $xml_req .= '
                                   <customerProfileId>'.$profileId.'</customerProfileId>
