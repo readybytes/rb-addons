@@ -20,6 +20,9 @@ if(!defined( '_JEXEC' )){
 class Rb_EcommerceProcessorAuthorizecim extends Rb_EcommerceProcessor
 {
 	protected $_location = __FILE__;
+
+	// If Payment method support for refund then set it true otherwise set flase
+	protected $_support_refund = true;
 	
 	/**
 	 * @var Rb_EcommerceProcessorAuthorizecimHelper

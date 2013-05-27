@@ -20,6 +20,9 @@ if(!defined( '_JEXEC' )){
 class Rb_EcommerceProcessorStripe extends Rb_EcommerceProcessor
 {
 	protected $_location = __FILE__;
+
+	// If Payment method support for refund then set it true otherwise set flase
+	protected $_support_refund = true;
 	
 	public function __construct($config = array())
 	{
