@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
-	<fieldset addfieldpath="/components/com_rb_ecommerce/rb_ecommerce/html/fields" name="form">
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="form">
 		<field 	name="invoice"
 				id="rb_ecommerce_processor_paypal_invoice" 
 				type="hidden"

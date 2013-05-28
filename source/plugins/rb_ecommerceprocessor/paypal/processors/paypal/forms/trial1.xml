@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<fieldset addfieldpath="/components/com_rb_ecommerce/rb_ecommerce/html/fields" name="trial1_parameter">				
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="trial1_parameter">				
 		<field 	name="a1" 
 				id="rb_ecommerce_processor_paypal_a1"
 				type="hidden"

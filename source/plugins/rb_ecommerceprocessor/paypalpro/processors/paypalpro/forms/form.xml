@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
 <fields name="payment_data">
-	<fieldset addfieldpath="/components/com_rb_ecommerce/rb_ecommerce/html/fields" name="plg_rb_ecommerceprocessor_paypalpro_form_paypalpro_fieldset_card_details">
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="plg_rb_ecommerceprocessor_paypalpro_form_paypalpro_fieldset_card_details">
 		<field 	name="cc_type"
 				id="rb_ecommerce_processor_paypalpro_cc_type"
 				type="list"
@@ -48,7 +48,7 @@
 				required="true"/>
 	</fieldset>
 		
-	<fieldset addfieldpath="/components/com_rb_ecommerce/rb_ecommerce/html/fields" name="plg_rb_ecommerceprocessor_paypalpro_form_paypalpro_fieldset_customer_details">		
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="plg_rb_ecommerceprocessor_paypalpro_form_paypalpro_fieldset_customer_details">		
 		
 		<field 	name="first_name" 
 				id="rb_ecommerce_processor_paypalpro_first_name"
