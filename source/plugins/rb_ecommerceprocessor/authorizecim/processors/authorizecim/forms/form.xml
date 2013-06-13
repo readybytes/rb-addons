@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
 <fields name="payment_data">
-	<fieldset name="plg_rb_ecommerceprocessor_authorizecim_form_authorizecim_fieldset_card_details">
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_authorizecim_form_authorizecim_fieldset_card_details">
 		<field 	name="card_number"
 				id="rb_ecommerce_processor_authorizecim_card_number"
 				type="text"
@@ -12,7 +12,7 @@
 		
 		<field 	name="expiration_month" 
 				id="rb_ecommerce_processor_authorizecim_expiration_month"
-				type="text"
+				type="rb_.month"
 				default=""
 				label="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_FORM_AUTHORIZECIM_EXPIRATION_MONTH_LABEL"
 				description="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_FORM_AUTHORIZECIM_EXPIRATION_MONTH_DESC"
@@ -20,7 +20,9 @@
 		
 		<field 	name="expiration_year" 
 				id="rb_ecommerce_processor_authorizecim_expiration_year"
-				type="text"
+				type="rb_.year"
+				from="now"
+				for="20"
 				default=""
 				label="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_FORM_AUTHORIZECIM_EXPIRATION_YEAR_LABEL"
 				description="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_FORM_AUTHORIZECIM_EXPIRATION_YEAR_DESC"
