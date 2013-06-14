@@ -8,9 +8,7 @@
 */
 
 // no direct access
-if(!defined( '_JEXEC' )){
-	die( 'Restricted access' );
-}
+defined( '_JEXEC' ) or die( 'Restricted access' );
 
 // Tested on PHP 5.2, 5.3
 
