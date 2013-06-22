@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
+	<name>Authorize CIM</name>
+	<help>
+    	<![CDATA[
+		<b>Note : </b>Amount must be no more than than $99,999.99.
+		]]>
+   	 </help>
+
 	<fields name="processor_config">
 		<fieldset name="parameters">
 			<field	name="api_login_id" 	
