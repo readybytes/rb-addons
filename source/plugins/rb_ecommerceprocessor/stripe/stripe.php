@@ -21,7 +21,7 @@ class  plgRb_ecommerceprocessorStripe extends RB_Plugin
 	{
 		parent::__construct($subject, $config);
 		
-		$fileName = __DIR__.'/processors/stripe/stripe.php';
+		$fileName = dirname(__FILE__).'/processors/stripe/stripe.php';
 		Rb_HelperLoader::addAutoLoadFile($fileName, 'Rb_EcommerceProcessorStripe');
 		
 		$helper = Rb_EcommerceFactory::getHelper();
