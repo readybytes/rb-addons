@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Netcash</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+	<help>
+    	<![CDATA[
+		<b>Put the URL www.yoursite.com/index.php to Your account of Netcash</b>
+	]]>
+   	 </help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="user_name" 	
+				default="" 		
+				type="text" 	
+				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_USER_NAME_LABEL"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_USER_NAME_DESC" 
+				class="required"
+				/>
+				
+			<field	name="password" 	
+				default="" 		
+				type="text" 	
+				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PASSWORD_LABEL"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PASSWORD_DESC" 
+				class="required"
+				/>
+				
+			<field	name="pin" 	
+				default="" 		
+				type="text" 	
+				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PIN_LABEL"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PIN_DESC" 
+				class="required"
+				/>
+				
+			<field	name="terminal_id" 	
+				default="" 		
+				type="text" 	
+				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_TERMINAL_ID_LABEL"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_TERMINAL_ID_DESC" 
+				class="required"
+				/>        						
+		</fieldset>
+	</fields>
+</config>
