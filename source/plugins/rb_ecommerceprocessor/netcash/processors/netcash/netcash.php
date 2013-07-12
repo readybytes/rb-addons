@@ -64,10 +64,11 @@ class Rb_EcommerceProcessorNetcash extends Rb_EcommerceProcessor
 		
 	}
 	
-	public function process($data)
+	public function process($net_response)
 	{
-		$response = new Rb_EcommerceResponse();
-		
+		$data 		= $net_response->data;
+		$response 	= new Rb_EcommerceResponse();
+
 		$response->set('txn_id', 			isset($data['RETC']) ? $data['RETC'] : 0)
 				 ->set('subscr_id', 		isset($data['RETC']) ? $data['RETC'] : 0)  
 				 ->set('parent_txn', 		0)
