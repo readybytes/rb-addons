@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
+    <name>plg_rb_ecommerceprocessor_eway</name>
+    <version>0.9.0.@build.number@</version>
+    <creationDate>Nov 2012</creationDate>
+    <author>Team PayPlans</author>
+    <authorEmail>team@readybytes.in</authorEmail>
+    <authorUrl>http://www.jpayplans.com</authorUrl>
+    <copyright>2009-13 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PLG_RB_ECOMMERCEPROCESSOR_EWAY_DESCRIPTION</description>
+	<files>
+		<filename plugin="eway">eway.php</filename>
+		<filename>index.html</filename>
+		<folder>processors</folder>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_eway.ini</language>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_eway.sys.ini</language>
+	</languages>
+	
+	<config>
+	</config>
+</extension>
+
