@@ -9,10 +9,10 @@
 				label="PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_FORM_PAYPALPRO_CC_TYPE_LABEL"
 				description="PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_FORM_PAYPALPRO_CC_TYPE_DESC"
 				required="true">
-				<option value="Visa">Visa</option>
-				<option value="MasterCard">MasterCard</option>
-				<option value="Discover">Discover</option>
-				<option value="Amex">American Express</option>
+				<option value="Visa">PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_FORM_CARD_TYPE_VISA</option>
+				<option value="MasterCard">PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_FORM_CARD_TYPE_MASTERCARD</option>
+				<option value="Discover">PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_FORM_CARD_TYPE_DISCOVER</option>
+				<option value="Amex">PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_FORM_CARD_TYPE_AMERICAN_EXPRESS</option>
 		</field>
 		
 		<field 	name="card_number"
