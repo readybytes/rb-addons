@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Ebs</name>
+   	<author></author>
+    <description>E-Billing Solutions (EBS) provides a consultative approach to Indian Merchants for facilitating suitable online payment solutions.<br/>
+    This App provide integration with EBS 2.5.</description>
+   	<icon></icon>
+    <tags></tags>
+     
+	<fields name="processor_config">
+		<fieldset name="parameters">
+				
+			<field	name="account_id" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_ACCOUNT_ID_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_ACCOUNT_ID_DESC" 
+					/>
+			<field	name="secret_key" 	
+					default="" 		
+					type="text" 	
+					size="50" 
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_SECRET_KEY_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_SECRET_KEY_DESC" 
+					/>		
+	        <field  name="sandbox" 
+	        		type="radio" 
+        			default="0" 
+        			class="btn-group"
+        			label="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_MODE_LABEL" 
+        			description="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_MODE_DESC">
+	         	 	<option value="0">PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_MODE_TEST</option>
+	          		<option value="1">PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_MODE_LIVE</option>
+        	</field>
+        						
+		</fieldset>
+	</fields>
+</config>

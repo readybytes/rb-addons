@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fields name="payment_data">
+		<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="plg_rb_ecommerceprocessor_ebs_form_ebs_personal_details">
+			<field 	name="name"
+					id="rb_ecommerce_processor_ebs_name"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_NAME_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_NAME_DESC"
+					required="true"/>
+					
+			<field 	name="address"
+					id="rb_ecommerce_processor_ebs_address"
+					type="textarea"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_ADDRESS_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_ADDRESS_DESC"
+					required="true"/>
+			
+			<field 	name="city" 
+					id="rb_ecommerce_processor_ebs_city"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_CITY_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_CITY_DESC"
+					required="true"/>
+			
+			<field 	name="state" 
+					id="rb_ecommerce_processor_ebs_state"
+					type="rb_ecommerce.countries"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_STATE_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_STATE_DESC"
+					required="true"/>	
+					
+			<field 	name="country"
+					id="rb_ecommerce_processor_ebs_country"
+					type="rb_.country"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_FORM_EBS_COUNTRY_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_COUNTRY_DESC"
+					required="true"/>
+					
+			<field 	name="postal_code"
+					id="rb_ecommerce_processor_ebs_postal_code"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_POSTAL_CODE_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_POSTAL_CODE_DESC"
+					required="true"/>
+					
+			<field 	name="phone"
+					id="rb_ecommerce_processor_ebs_phone"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_PHONE_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_PHONE_DESC"
+					required="true"/>
+					
+			<field 	name="email"
+					id="rb_ecommerce_processor_ebs_email"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_EMAIL_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_EMAIL_DESC"
+					required="true"/>
+	</fieldset>	
+	
+		<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="plg_rb_ecommerceprocessor_ebs_form_ebs_shipping_details">	
+			<field 	name="ship_name"
+					id="rb_ecommerce_processor_ebs_ship_name"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_NAME_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_NAME_DESC"
+					required="true"/>
+					
+			<field 	name="ship_address"
+					id="rb_ecommerce_processor_ebs_ship_address"
+					type="textarea"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_ADDRESS_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_ADDRESS_DESC"
+					required="true"/>
+			
+			<field 	name="ship_city" 
+					id="rb_ecommerce_processor_ebs_ship_city"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_CITY_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_CITY_DESC"
+					required="true"/>
+			
+			<field 	name="ship_state" 
+					id="rb_ecommerce_processor_ebs_ship_state"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_STATE_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_STATE_DESC"
+					required="true"/>	
+					
+			<field 	name="ship_country"
+					id="rb_ecommerce_processor_ebs_ship_country"
+					type="rb_ecommerce.countries"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_COUNTRY_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_COUNTRY_DESC"
+					required="true"/>
+					
+			<field 	name="ship_postal_code"
+					id="rb_ecommerce_processor_ebs_ship_postal_code"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_POSTAL_CODE_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_POSTAL_CODE_DESC"
+					required="true"/>
+					
+			<field 	name="ship_phone"
+					id="rb_ecommerce_processor_ebs_ship_phone"
+					type="text"
+					default=""
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_PHONE_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_FORM_EBS_SHIP_PHONE_DESC"
+					required="true"/>
+		</fieldset>	
+		
+			<field 	name="amount"
+					id="rb_ecommerce_processor_ebs_amount"
+					type="hidden"
+					default="" />
+					
+			<field 	name="mode"
+					id="rb_ecommerce_processor_ebs_mode"
+					type="hidden"
+					default="" />
+					
+			<field 	name="account_id"
+					id="rb_ecommerce_processor_ebs_account_id"
+					type="hidden"
+					default="" />
+					
+			<field 	name="reference_no"
+					id="rb_ecommerce_processor_ebs_reference_no"
+					type="hidden"
+					default="" />
+					
+			<field 	name="description"
+					id="rb_ecommerce_processor_ebs_description"
+					type="hidden"
+					default="" />
+					
+			<field 	name="return_url"
+					id="rb_ecommerce_processor_ebs_return_url"
+					type="hidden"
+					default="" />
+					
+			<field 	name="secure_hash"
+					id="rb_ecommerce_processor_ebs_secure_hash"
+					type="hidden"
+					default="" />
+			
+	</fields>
+</form>
