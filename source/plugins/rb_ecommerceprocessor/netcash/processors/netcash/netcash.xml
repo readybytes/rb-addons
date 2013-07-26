@@ -14,36 +14,52 @@
 	<fields name="processor_config">
 		<fieldset name="parameters">
 			<field	name="user_name" 	
-				default="" 		
-				type="text" 	
-				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_USER_NAME_LABEL"  
-				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_USER_NAME_DESC" 
-				class="required"
-				/>
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_USER_NAME_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_USER_NAME_DESC" 
+					class="required"
+					/>
 				
 			<field	name="password" 	
-				default="" 		
-				type="text" 	
-				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PASSWORD_LABEL"  
-				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PASSWORD_DESC" 
-				class="required"
-				/>
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PASSWORD_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PASSWORD_DESC" 
+					class="required"
+					/>
 				
 			<field	name="pin" 	
-				default="" 		
-				type="text" 	
-				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PIN_LABEL"  
-				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PIN_DESC" 
-				class="required"
-				/>
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PIN_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_PIN_DESC" 
+					class="required"
+					/>
 				
 			<field	name="terminal_id" 	
-				default="" 		
-				type="text" 	
-				label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_TERMINAL_ID_LABEL"  
-				description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_TERMINAL_ID_DESC" 
-				class="required"
-				/>        						
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_TERMINAL_ID_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_TERMINAL_ID_DESC" 
+					class="required"
+					/> 
+
+			<field	name="return_url" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_RETURN_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_RETURN_URL_DESC" 
+					class="required"
+					/>
+				
+			<field	name="cancel_url" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_CANCEL_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_CANCEL_URL_DESC" 
+					class="required"
+					/>        						
 		</fieldset>
 	</fields>
 </config>

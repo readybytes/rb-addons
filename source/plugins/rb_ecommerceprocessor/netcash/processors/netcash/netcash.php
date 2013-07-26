@@ -47,11 +47,11 @@ class Rb_EcommerceProcessorNetcash extends Rb_EcommerceProcessor
 		$binddata['p2']  			= $payment_data->invoice_number;
 		$binddata['p3']  			= $payment_data->item_name;
 		$binddata['p4']  			= number_format($payment_data->total, 2, '.', '');
-		$binddata['p10']  			= Rb_Route::_('index.php?option=com_payinvoice&view=invoice&task=cancel&processor=netcash');
+		$binddata['p10']  			= !empty($url_data->cancel_url) ? $url_data->cancel_url : $config->cancel_url;
 		$binddata['Budget']  		= "N";
 		$binddata['m_4']  			= $payment_data->invoice_number;
 		$binddata['m_5']  			= $payment_data->invoice_number;
-		$binddata['m_10']  			= Rb_Route::_('index.php?option=com_payinvoice&view=invoice&task=complete&processor=netcash');
+		$binddata['m_10']  			= !empty($url_data->return_url) ? $url_data->return_url : $config->return_url;
 		
 		$form->bind($binddata);
 		
