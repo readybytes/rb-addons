@@ -19,7 +19,6 @@
 			<field	name="secret_key" 	
 					default="" 		
 					type="text" 	
-					size="50" 
 					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_SECRET_KEY_LABEL"  
 					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_SECRET_KEY_DESC" 
 					/>		
@@ -32,6 +31,14 @@
 	         	 	<option value="0">PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_MODE_TEST</option>
 	          		<option value="1">PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_MODE_LIVE</option>
         	</field>
+
+			<field	name="return_url" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_RETURN_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_RETURN_URL_DESC" 
+					class="required"
+					/>
         						
 		</fieldset>
 	</fields>

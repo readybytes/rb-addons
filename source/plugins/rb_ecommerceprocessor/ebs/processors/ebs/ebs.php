@@ -43,7 +43,7 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
     		$mode		=	'LIVE';	
     	}
     	
-    	$return_url  	 							= Rb_Route::_('index.php?option=com_payinvoice&view=invoice&task=complete&processor=ebs&DR={DR}');
+    	$return_url  	 							= !empty($url_data->return_url) ? $url_data->return_url.'&DR={DR}' : $config->return_url.'&DR={DR}';
     	$hash         								= $this->getConfig()->secret_key."|".$this->getConfig()->account_id."|". number_format($payment_data->total, 2, '.', '')."|".$payment_data->invoice_number."|".$return_url."|".$mode;
 		$secure_hash  								= md5($hash);
 		
