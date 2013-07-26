@@ -30,6 +30,15 @@ class Rb_EcommerceProcessorNetcash extends Rb_EcommerceProcessor
 		$func = '_request_'.$type;
 		return $this->$func($request);
 	}
+
+	public function get_invoice_number($response)
+	{
+		if(isset($response->data['m_5'])){
+			return $response->data['m_5'];
+		}
+		
+		return 0;
+	}
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{

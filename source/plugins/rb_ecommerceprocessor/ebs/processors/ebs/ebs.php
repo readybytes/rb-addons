@@ -30,6 +30,15 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 		$func = '_request_'.$type;
 		return $this->$func($request);
 	}
+
+	public function get_invoice_number($response)
+	{
+		if(isset($response->data['MerchantRefNo'])){
+			return $response->data['MerchantRefNo'];
+		}
+		
+		return 0;
+	}
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{
