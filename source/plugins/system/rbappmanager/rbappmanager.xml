@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>PLG_SYSTEM_RBAPPMANAGER_NAME</name>
+	<version>0.9.0</version>
+	<creationDate>June 2013</creationDate>
+	<copyright>2009-13 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>team@readybytes.in</authorEmail>
+	<authorUrl>http://www.readybytes.in</authorUrl>
+	<description>PLG_SYSTEM_RBAPPMANAGER_DESC</description>
+	<files>
+		<filename plugin="rbappmanager">rbappmanager.php</filename>
+		<filename>index.html</filename>
+		<folder>rbappmanager</folder>
+	</files>
+
+	<languages>
+		<language tag="en-GB">en-GB.plg_system_rbappmanager.ini</language>
+		<language tag="en-GB">en-GB.plg_system_rbappmanager.sys.ini</language>
+	</languages>
+
+	<config>
+	</config>
+</extension>

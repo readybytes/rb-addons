@@ -1,0 +1,8 @@
+.rbappmanager-item-block{	
+    float: left !important;
+    margin-bottom: 10px !important;
+    margin-left: 0 !important;
+    margin-right: 1% !important;
+    max-width: 45% !important;
+    min-width: 180px !important;
+}
