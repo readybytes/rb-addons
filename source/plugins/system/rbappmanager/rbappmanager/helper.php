@@ -23,7 +23,7 @@ class RbappmanagerHelper extends Rb_Helper
 	public function set($data)
 	{
 		// $data should be like array('key' => 'any value');
-		$model = Rb_Factory::getInstance('appmanager', 'model');
+		$model = Rb_Factory::getInstance('rbappmanager', 'model');
 		return $model->save($data);
 	}
 	
@@ -31,7 +31,7 @@ class RbappmanagerHelper extends Rb_Helper
 	{
 		static $config = null;
 		if($config === null){			
-			$model 		= Rb_Factory::getInstance('appmanager', 'model');
+			$model 		= Rb_Factory::getInstance('rbappmanager', 'model');
 			$records 	= $model->loadRecords(array(), array(), false, 'key');
 			
 			$config = new stdClass();
