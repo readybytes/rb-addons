@@ -125,6 +125,9 @@ class RbappmanagerHelper extends Rb_Helper
 		$response	= json_decode($response->body, true);
 		
 		if($response['response_code'] != 200){
+			if ($response['response_code'] == 204){
+				$response['response_data'] = 'No Data to return'; // XITODO
+			}
 			  throw new Exception($response['response_data']);
 		}
 		

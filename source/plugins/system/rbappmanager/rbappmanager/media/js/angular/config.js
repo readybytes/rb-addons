@@ -8,5 +8,11 @@ rb_appmanager_app.config(function($routeProvider){
 					templateUrl:	'../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_list.html'
 				}
 		)
+		.when('/item/fullview',
+				{
+					controller: 	'DetailAppController',
+					templateUrl:	'../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_item_fullview.html'
+				}
+		)
 		.otherwise({redirectTo: '/app'});
 });
