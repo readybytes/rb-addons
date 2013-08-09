@@ -48,10 +48,11 @@ class PayInvoiceAdminViewRbappmanager extends PayInvoiceAdminBaseViewRbappmanage
 		 
 		$this->assign('helper', $this->_helper);
 //		$this->assign('added_items', 	 $added_items);
-		$this->assign('app_data', 		 $app_data);
+		$this->assign('data', 		 $app_data);
 		
 		// XITODO : get component name
-		$this->assign('default_tag', 	 'com_payinvoice');
+		// IMP : Tag will not contain "_" so use "-"
+		$this->assign('default_tag', 	 'com-payinvoice');
 		$this->assign('accessible_items',$accessible_items);
 		return true;
 	} 

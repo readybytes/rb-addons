@@ -1,0 +1,54 @@
+
+<style>
+	.clearfix:after,
+	.clearfix:before {
+	     visibility: hidden;
+	     display: block;
+	     font-size: 0;
+	     content: " ";
+	     clear: both;
+	     height: 0;
+	}
+     
+	.rbappmanager-item{
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		margin-left: 1.66%;
+		margin-right: 1.66%;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width:30%;  
+		float:left;
+		background: #FFFFFF;
+		box-shadow: 0px 0px 5px #AAAAAA;
+	}
+	
+	.rbappmanager-item-header{
+		padding: 10px 6px;		
+	}
+
+	.rbappmanager-item-content{		
+		border-top: 1px solid #CCCCCC;
+		border-bottom: 1px solid #CCCCCC;
+		text-align: center;
+	}
+	
+	.rbappmanager-item-footer{
+		padding: 10px 6px;
+	}
+</style>
+<div class="clearfix">
+	<div class="rbappmanager-item" data-ng-repeat="item_id in tag_items[default_tag]">
+		<div class="rbappmanager-item-header">
+			<h2>{{ items[item_id].title }}</h2>
+		</div>
+		
+		<div class="rbappmanager-item-content">
+			<img src="http://10.0.0.16/paymart1.png">
+		</div>
+		
+		<div class="rbappmanager-item-footer">
+			a
+		</div>
+	</div>
+</div>

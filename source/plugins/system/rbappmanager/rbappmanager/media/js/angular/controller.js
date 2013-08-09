@@ -1,13 +1,19 @@
 
 var controllers = {};
 	
-controllers.AppController = function($scope){
-	$scope.abc = [	
-	              	{name : 'Name1'},
-	              	{name : 'Name2'},
-	              	{name : 'Name3'}		
-			];
-};
+controllers.AppController = function($scope){	
+	$scope.items 		= rbappmanager_items;
+	$scope.tag_items 	= rbappmanager_tag_items;
+	$scope.default_tag 	= rbappmanager_default_tag;
+	
+	$scope.templates = { 
+			 				item: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_list_item.html',
+			 		
+		 					footer : {
+		 							buynow : '',
+		 							installed : ''
+	 							}
+	 };
 
 controllers.DetailAppController = function($scope){
 	$scope.items = [	

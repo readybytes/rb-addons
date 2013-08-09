@@ -17,8 +17,25 @@ Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/controlle
 Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/appmanager.js');
 Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.css');
 ?>
-<div data-ng-app="rb_appmanager_app">
+<style>
+	.rbappmanager-container{
+		max-width : 1200px;
+		margin: auto;
+		background: #EEEEEE;
+	}
+</style>
+
+<script>
+	var rbappmanager_data= <?php echo json_encode($data);?>;
+	var rbappmanager_items = <?php echo json_encode($data['items']);?>;
+	var rbappmanager_tag_items = <?php echo json_encode($data['tag_items']);?>;
+	var rbappmanager_default_tag = <?php echo $data['tags'][$default_tag]['id'];?>;	
+</script>
+
+<div data-ng-app="rb_appmanager_app" class="rbappmanager-container">
 	<div data-ng-view="app">
-		
+		<div class="rbappmanager-container">
+			
+		</div>
 	</div>
 </div>
