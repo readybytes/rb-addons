@@ -89,12 +89,48 @@ class RbappmanagerHelper extends Rb_Helper
 		return json_decode($response->body, true);
 	}
 	
-	public function get_items()
+	public function get_items($component_name, $user = null)
 	{
 		$this->json = $this->_copyFileFromServer();
 
-		// arrange app list according to tags
+		$installed_extenstions = $this->get_extensions();
 		
+		$component_version = $this->get_component_version($component_name);
+		$component_version = explode(".", $component_version);
+		$component_version = array_slice($component_version, 0, 3); //VVV IMP : consider only first three part of a version
+		$criterias 		   = $this->get_criteria($component_name);
+			
+		$purchased_item = array();
+		if(isset($user['buyer_id'])){
+			$purchased_item = $this->get_purchased_item($user['buyer_id']);
+		}
+			
+		foreach ($this->json['items'] as &$item){
+			
+			// find if this item is alread installed
+			$entension_name = $item['type'].'_'.$item['folder'].'_'.$item['element'].'_'.$item['client_id'];
+			
+			if(isset($installed_extenstions[$entension_name])){
+				$manifest_cache = json_decode($installed_extenstions[$entension_name]->manifest_cache, true);
+				$item['installed_version'] = $manifest_cache['version'];
+			}
+			else{
+				$item['installed_version'] = 0;
+			}
+			
+			// find if this item is compatible with component name or not			
+			if(isset($item['version'])){
+				$item['compatible_file_id'] = $this->get_compatible_file($component_version, $item['version'], $criterias);
+			}
+						
+			// set status of item, Like : active or expired or none
+			$item['subscription_status'] = 'none';		
+			if(isset($purchased_item[$item['item_id']])){
+				$item['subscription_status'] = $purchased_item[$item['item_id']]; 
+			}
+		}
+		
+		// arrange app list according to tags		
 		return $this->json;
 	}
 	
@@ -114,6 +150,96 @@ class RbappmanagerHelper extends Rb_Helper
 		return $response['response_data'];
 	}
 	
+	public function get_invoices($userid)
+	{
+		$url 		 = $this->_getServerUrl().'';
+		$url 		.= '&resource=invoice&filter=buyer&id='.$userid;
+		
+		$link 		= new JURI($url);		
+		$curl 		= new JHttpTransportCurl(new Rb_Registry());
+		$response 	= $curl->request('GET', $link);		
+		$response	= json_decode($response->body, true);
+		
+		if($response['response_code'] != 200){
+			if ($response['response_code'] == 204){
+				$response['response_data'] = 'No Data to return'; // XITODO
+			}
+			  throw new Exception($response['response_data']);
+		}
+		
+		return $response['response_data'];
+	}
+	
+	public function get_purchased_item($userid)
+	{
+		// XITODO : Domain name checking
+		$purchased_items = array();		
+		
+		try{
+			$invoices = $this->get_invoices($userid);			
+		}
+		catch(Exception $e){			
+			return $purchased_items;
+		}
+		
+		$now = new Rb_Date();
+		$now = $now->toUnix();
+		
+		foreach($invoices as $invoice_id => $invoice){
+			// if invoice is paid
+			if($invoice['status'] != 402){
+				continue;
+			}
+			
+			$paid_date  = $invoice['paid_date'];
+			$paid_date = new Rb_Date($paid_date);				
+			
+			if(!isset($invoice['invoiceitems'])){
+				continue;
+			}
+			
+			$items = $invoice['invoiceitems'];
+			
+			foreach($items as $item){
+				// if already active, then need not to do following
+				if(isset($purchased_items[$item['item_id']]) && $purchased_items[$item['item_id']] == 'active'){
+					continue;
+				}
+				
+				$params 	= json_decode($item['params'], true);
+				$item_data 	= $params['item'];
+				$time 		= $item_data['time'];
+
+				$date 	  = date_parse($paid_date->toString());
+				$exp_time = $this->_addExpiration($date, $time);
+
+				if($now <= $exp_time){
+					$purchased_items[$item_data['item_id']] = 'active';
+				}
+				else{
+					$purchased_items[$item_data['item_id']] = 'expired';
+				}
+			}
+		}
+		
+		return $purchased_items;
+	}
+	
+	protected function _addExpiration($date, $expirationTime)
+  	{   
+    	$timerElements = array('year', 'month', 'day', 'hour', 'minute', 'second');
+    	   
+
+    	$count = count($timerElements);
+    	if($expirationTime != 0){
+      		for($i=0; $i<$count ; $i++){
+				$date[$timerElements[$i]] +=   intval(JString::substr($expirationTime, $i*2, 2), 10);
+      		}
+    	}
+    	
+    	return mktime($date['hour'], $date['minute'], $date['second'], $date['month'], $date['day'], $date['year']);    	
+  	}
+  	 
 	public function get_accessible_items($userid)
 	{
 		$url 		 = $this->_getServerUrl().'';
@@ -209,16 +335,8 @@ class RbappmanagerHelper extends Rb_Helper
 		return $flag;
 	} 
 	
-	public function get_compatible_file($files, $component)
+	public function get_compatible_file($component_version, $files, $criterias)
 	{
-		$component_version = $this->get_component_version($component);
-		$component_version = explode(".", $component_version);
-		
-		// VVV IMP : consider only first three part of a version
-		$component_version = array_slice($component_version, 0, 3);
-		
-		$criterias = $this->get_criteria($component);
-	
 		// arrange file according to version
 		$arranged_files = array();
 		foreach($files as $file){
@@ -278,5 +396,16 @@ class RbappmanagerHelper extends Rb_Helper
 						
 		$manifest_cache = json_decode($record->manifest_cache);
 		return $manifest_cache->version;		
+	}
+	
+	public function get_extensions()
+	{
+		$sql = "SELECT concat( `type` , '_', `folder` , '_', `element` , '_', `client_id` ) as `extension`, `manifest_cache`
+				FROM `#__extensions`";
+		
+		$db = Rb_Factory::getDbo();
+		$db->setQuery($sql);
+		return $db->loadObjectList('extension');
+		
 	}
 }

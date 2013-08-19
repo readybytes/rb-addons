@@ -25,35 +25,39 @@ class PayInvoiceAdminViewRbappmanager extends PayInvoiceAdminBaseViewRbappmanage
 	
 	public function display($tpl = null)
 	{
-		$app_data 	 = $this->_helper->get_items();
-//		$added_items = $this->_helper->get('cart_items');
-		
 		$email = $this->_helper->get('email');
-		$accessible_items = array();
 		if(!empty($email)){
 			// get user from email
 			try{
 				$user 				= (array) $this->_helper->get_user($email);
 				$user 				= array_shift($user);				
-				$accessible_items 	= (array)$this->_helper->get_accessible_items($user['buyer_id']);											
 			}
 			catch (Exception $e){
-				$accessible_items = array();
-			}			
+				Rb_Error::assert(false, 'User Not found', Rb_Error::ERROR);
+				// XITODO : pop up registration window 
+				exit;
+			}
 		}
+		
+		
+		$component_name = "com_payinvoice";
+		
+		$app_data 	 = $this->_helper->get_items($component_name, $user);
+		$added_items = $this->_helper->get('cart_items');
+		
 		
 		if(!empty($added_items)){
 			$added_items = explode(",", $added_items);
+			$added_items = array_combine($added_items, $added_items);
 		}
 		 
 		$this->assign('helper', $this->_helper);
-//		$this->assign('added_items', 	 $added_items);
+		$this->assign('added_items', 	 $added_items);
 		$this->assign('data', 		 $app_data);
 		
 		// XITODO : get component name
 		// IMP : Tag will not contain "_" so use "-"
 		$this->assign('default_tag', 	 'com-payinvoice');
-		$this->assign('accessible_items',$accessible_items);
 		return true;
 	} 
 }

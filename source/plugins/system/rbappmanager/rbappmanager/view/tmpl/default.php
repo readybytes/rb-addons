@@ -26,10 +26,11 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 </style>
 
 <script>
-	var rbappmanager_data= <?php echo json_encode($data);?>;
-	var rbappmanager_items = <?php echo json_encode($data['items']);?>;
-	var rbappmanager_tag_items = <?php echo json_encode($data['tag_items']);?>;
-	var rbappmanager_default_tag = <?php echo $data['tags'][$default_tag]['id'];?>;	
+	var rbappmanager_data				= <?php echo json_encode($data);?>;
+	var rbappmanager_items	 			= <?php echo json_encode($data['items']);?>;
+	var rbappmanager_tag_items 			= <?php echo json_encode($data['tag_items']);?>;
+	var rbappmanager_default_tag 		= <?php echo $data['tags'][$default_tag]['id'];?>;	
+	var rbappmanager_added_items 		= <?php echo json_encode($added_items);?>;	
 </script>
 
 <div data-ng-app="rb_appmanager_app" class="rbappmanager-container">
