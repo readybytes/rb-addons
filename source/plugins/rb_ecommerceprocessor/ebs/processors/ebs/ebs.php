@@ -46,6 +46,7 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 
 		$object 		= $request->toObject();		
 		$payment_data	= $object->payment_data;
+		$url_data 		= $object->url_data;
 		
     	$mode			= 'TEST';
     	if($this->getConfig()->sandbox){
