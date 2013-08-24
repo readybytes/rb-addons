@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
     <name>plg_rb_ecommerceprocessor_ebs</name>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
     <creationDate>Jul 2013</creationDate>
     <author>Team PayPlans</author>
     <authorEmail>team@readybytes.in</authorEmail>

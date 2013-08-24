@@ -46,6 +46,7 @@ class Rb_EcommerceProcessorNetcash extends Rb_EcommerceProcessor
 
 		$object 					= $request->toObject();		
 		$user_data					= $object->user_data;
+		$url_data 					= $object->url_data;
 		$payment_data				= $object->payment_data;
 		$config 					= $this->getConfig(false);
 		
