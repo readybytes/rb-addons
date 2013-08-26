@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>PayFast</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+     <help>
+	    <![CDATA[
+	    	<ol>
+			 	<li>PayFast supports only <b>South African Rand (ZAR)</b> currency.</li>
+		 		<li> It does not send any notification for failed or canceled transactions.</li>
+			 </ol>
+		]]>
+	</help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="merchant_id" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_MERCHAT_ID_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_MERCHAT_ID_DESC" />
+				
+			<field	name="merchant_key" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_MERCHAT_KEY_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_MERCHAT_KEY_DESC" />
+									  		
+	     	<field  name="sandbox" 
+	        		type="radio" 
+	        		default="0"
+	        		class="btn-group" 
+	        		label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_SANDBOX_LABEL" 
+	        		description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_SANDBOX_DESC">
+		        	<option value="0">JNO</option>
+		        	<option value="1">JYES</option>
+	        </field>  
+	        		  
+			<field	name="return_url" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_RETURN_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_RETURN_URL_DESC" 
+					class="required" />
+					
+			<field	name="cancel_url" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_CANCEL_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_CANCEL_URL_DESC" 
+					class="required" />     	
+					
+			<field	name="notify_url" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_NOTIFY_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_NOTIFY_URL_DESC" 
+					class="required" />     		  											
+		</fieldset>
+	</fields>
+</config>

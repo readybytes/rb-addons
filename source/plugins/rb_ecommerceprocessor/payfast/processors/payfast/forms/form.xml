@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_payfast_form">
+		<field 	name="merchant_id"
+				id="rb_ecommerce_processor_payfast_merchant_id"
+				type="hidden"
+				default="" />
+				
+		<field 	name="merchant_key"
+				id="rb_ecommerce_processor_payfast_merchant_key"
+				type="hidden"
+				default="" />
+				
+		<field 	name="amount"
+				id="rb_ecommerce_processor_payfast_amount"
+				type="hidden"
+				default="" />
+				
+		<field 	name="item_name"
+				id="rb_ecommerce_processor_payfast_item_name"
+				type="hidden"
+				default="" />
+				
+		<field 	name="m_payment_id"
+				id="rb_ecommerce_processor_payfast_m_payment_id"
+				type="hidden"
+				default="" />
+				
+		<field 	name="return_url"
+				id="rb_ecommerce_processor_payfast_return_url"
+				type="hidden"
+				default="" />
+				
+		<field 	name="cancel_url"
+				id="rb_ecommerce_processor_payfast_cancel_url"
+				type="hidden"
+				default="" />
+				
+		<field 	name="notify_url"
+				id="rb_ecommerce_processor_payfast_notify_url"
+				type="hidden"
+				default="" />						
+	</fieldset>
+</form>
