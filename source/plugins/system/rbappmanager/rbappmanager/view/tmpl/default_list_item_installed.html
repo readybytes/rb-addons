@@ -1,5 +1,5 @@
 <div class="rbappmanager-item-header">
-	<h2>{{ items[item_id].title }}</h2>			
+	<h2>{{ item.title }}</h2>			
 </div>
 	
 <div class="rbappmanager-item-content">
@@ -11,7 +11,6 @@
     	default_list_item_footer_buynow
 	</div>
 	<div class="rbappmanager-item-footer-lower rbappmanager-item-footer-transition rbappmanager-item-footer-installed-lower">
-    	{{ items[item_id].title }}
+    	<a href="#/app/{{ counter }}" class="btn rbappmanager-item-viewdetail" ng-click="find_last_item_block(item.item_id);">Details</a>
 	</div>  		
 </div>
-	

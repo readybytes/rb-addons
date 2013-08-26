@@ -1,18 +1,29 @@
-var rb_appmanager_app = angular.module('rb_appmanager_app', []);
+var rb_appmanager_app = angular.module('rb_appmanager_app', ['ui.state']);
 
-rb_appmanager_app.config(function($routeProvider){
-	$routeProvider
-		.when('/app',
-				{
-					controller: 	'AppController',
-					templateUrl:	'../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_list.html'
-				}
-		)
-		.when('/item/fullview',
-				{
-					controller: 	'DetailAppController',
-					templateUrl:	'../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_item_fullview.html'
-				}
-		)
-		.otherwise({redirectTo: '/app'});
-});
+var $AnchorScrollProvider = function() {
+  this.$get = ['$window', '$location', '$rootScope', function($window, $location, $rootScope) {
+    function scroll() {
+    }
+    return scroll;
+  }];
+}
+
+rb_appmanager_app.provider('$anchorScroll', $AnchorScrollProvider);
+
+rb_appmanager_app.config(function($stateProvider, $urlRouterProvider){
+    
+    // For any unmatched url, send to /route1
+    $urlRouterProvider.otherwise("/app")
+    
+    $stateProvider
+      .state('app', {
+          url: "/app",
+          controller: 	'AppController',
+          templateUrl: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_list.html'
+      })
+        .state('app.list', {
+            url: "/{item_id}",
+            templateUrl: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_item_fullview.html',
+            controller: 	'DetailAppController'
+        })         
+  });

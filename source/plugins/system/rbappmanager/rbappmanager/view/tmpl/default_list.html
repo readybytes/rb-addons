@@ -1,5 +1,127 @@
-<div data-ng-controller="AppController">
+		<style>
+	.clearfix:after,
+	.clearfix:before {
+	     visibility: hidden;
+	     display: block;
+	     font-size: 0;
+	     content: " ";
+	     clear: both;
+	     height: 0;
+	}
+     
+	.rbappmanager-item{
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		margin-left: 1.66%;
+		margin-right: 1.66%;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		width:30%;  
+		float:left;
+		background: #FFFFFF;
+		box-shadow: 0px 0px 5px #AAAAAA;
+	}
+	
+	.rbappmanager-item-header{
+		padding: 10px 6px;		
+	}
+
+	.rbappmanager-item-content{		
+		border-top: 1px solid #CCCCCC;
+		border-bottom: 1px solid #CCCCCC;
+		text-align: center;
+	}
+	
+	.rbappmanager-item-footer{
+	    height:75px;
+	    overflow:hidden;
+	}
+	
+	.rbappmanager-item-footer-transition{
+		-moz-transition-duration: .5s;
+		-webkit-transition-duration: .5s;
+	}
+	
+	.rbappmanager-item:hover .rbappmanager-item-footer-upper{
+		margin-top:-75px;
+	}
+	
+	.rbappmanager-item:hover .rbappmanager-item-footer-lower{
+		
+	}
+	
+	.rbappmanager-item-footer-upper{
+    	margin-top:0px;
+    	height:100%;
+    	border-radius: 0px 0px 5px 5px;
+	}
+	
+	.rbappmanager-item-footer-lower{		
+    	height:100%;    
+    	background: #333333;
+    	border-radius: 0px 0px 5px 5px; 	
+	}
+	.rbappmanager-item-footer-purchased-upper{
+		background: #F8F06C;
+	}
+	
+	.rbappmanager-item-footer-purchased-lower{
+		background: #333333; 
+	}	
+	
+	.rbappmanager-item-footer-upgradable-upper{
+		background: #F7981D;	
+	}
+	
+	.rbappmanager-item-footer-upgradable-lower{
+		background: #333333; 
+	}
+	
+	.rbappmanager-item-header-notcompatible{
+		background: #EEEEEE;
+	}	
+		
+	.rbappmanager-item-footer-notcompatible-upper{
+		background: #EEEEEE;
+	}
+	
+	.rbappmanager-item-footer-notcompatible-lower{
+		background: #333333; 
+	}
+	
+	.rbappmanager-item-footer-installed-upper{
+		background: #0F9D58;	
+	}
+	
+	.rbappmanager-item-footer-installed-lower{
+		background: #333333; 
+	}
+	
+	.rbappmanager-item-footer-buynow-upper{
+		/* Nothing */
+	}
+	
+	.rbappmanager-item-footer-buynow-lower{
+		background: #333333; 
+	}
+	
+	.rbappmanager-item-footer-addedtocart-upper{
+		background: #4285F4;
+	}
+	
+	.rbappmanager-item-footer-addedtocart-lower{
+		background: #333333; 
+	}
+</style>
+
+<div data-ng-controller="AppController">	
 	<div class="rbappmanager-app-container">
-		<div ng-include src="templates.item"></div>
-	</div>
+		<div class="clearfix">
+			<div data-ng-repeat="(counter,item) in items | item_filter:model_filter" class="rbappmanager-item" id="rbappmanager-item-{{ item.item_id }}">
+				<div ng-include src="getFooterTemplatePath(item);" "></div>
+       		</div>	
+		</div>
+	
+		<div ui-view class="" id="rbappmanager-fulldetail-view"></div>			
+	</div>	
 </div>
