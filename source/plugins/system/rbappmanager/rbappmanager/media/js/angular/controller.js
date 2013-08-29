@@ -10,8 +10,17 @@ controllers.AppController = function($scope){
 	
 	$scope.fullview_rom_number = -1;
 	
+	$scope.buynow = function(item_id){
+		$scope.items[item_id].status = "active_installed";
+		return false;
+	}
+	
 	$scope.templates = { 
-			item: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_list_item.html',			 		
+			item: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_list_item.html',
+			alert: {
+				expired_installed 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_installed.html',
+				expired_upgradable 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_upgradable.html'
+			} 
 	 };
 		
 	//function to find proper place to render this view
@@ -52,48 +61,52 @@ controllers.AppController = function($scope){
 		return true;
 	}	
 	
-	$scope.getFooterTemplatePath = function(item){
+	$scope.getTemplatePath = function(item_id){
 		var base_path = '../plugins/system/rbappmanager/rbappmanager/view/tmpl/';		
 		
-		// Condition : Not Compatible
-		if(typeof(item.compatible_file_id) == 'undefined' || !item.compatible_file_id){
-			return base_path + 'default_list_item_notcompatible.html';
-		}
-		else if(item.subscription_status == 'none' && !item.installed_version){
-			// Condition : Not Installed, Not Purchased, Not AddedToCart
-			if(typeof($scope.added_items[item.item_id]) == 'undefined'){
-				return base_path + 'default_list_item_buynow.html';
-			}
+		switch($scope.items[item_id].status){
+			case 'not_available': 
+			case 'not_compatible':	
 			
-			// Condition : Not Installed, Not Purchased, AddedToCart
-			return base_path + 'default_list_item_addedtocart.html';
-		}	
-		// Condition : Installed and Purchased and Upgradable
-		// Condition : Installed and Purchased and Not Upgradable
-		else if(item.installed_version && item.subscription_status == 'active'){
-			// XITODO:
-			var upgradable = false;
-			if(upgradable){
-				return base_path + 'default_list_item_upgradable.html';
-			}
-			else{
-				return base_path + 'default_list_item_installed.html';
-			}
-		}
-		// Condition : Not Installed and Purchased
-		else if(!item.installed_version && item.subscription_status == 'active'){
-			return base_path + 'default_list_item_purchased.html';
-		}
-		else if(item.installed_version && item.subscription_status == 'expired'){
-			// XITODO:
-			var upgradable = false;
-			if(upgradable){
-				return base_path + 'default_list_item_upgrade_expired.html';
-			}
-			else{
-				return base_path + 'default_list_item_installed_expired.html';
-			}
-		}
+			case 'none_addedtocart' :
+			case 'none_buynow' :
+			case 'none_installed' :   // Rare Condition
+			case 'none_upgradable' :  // Rare Condition
+			
+			case 'active_install' :
+			case 'active_installed' :
+			case 'active_upgradable' :
+			
+			case 'expired_install' :
+			case 'expired_installed' :
+			case 'expired_upgradable' :
+					return base_path + 'default_list_item_' + $scope.items[item_id].status +'.html';
+			default : return '';//base_path + 'default_list_item_buynow.html';		
+		}		
+	};
+	
+	$scope.getTestTemplatePath = function(item, status){
+		var base_path = '../plugins/system/rbappmanager/rbappmanager/view/tmpl/';		
+		
+		switch(status){
+			case 'not_available': 
+			case 'not_compatible':	
+			
+			case 'none_addedtocart' :
+			case 'none_buynow' :
+			case 'none_installed' :   // Rare Condition
+			case 'none_upgradable' :  // Rare Condition
+			
+			case 'active_install' :
+			case 'active_installed' :
+			case 'active_upgradable' :
+			
+			case 'expired_install' :
+			case 'expired_installed' :
+			case 'expired_upgradable' :
+					return base_path + 'default_list_item_' + status +'.html';
+			default : return '';//base_path + 'default_list_item_buynow.html';		
+		}		
 	};
 };
 

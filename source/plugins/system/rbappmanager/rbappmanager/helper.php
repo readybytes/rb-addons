@@ -89,7 +89,7 @@ class RbappmanagerHelper extends Rb_Helper
 		return json_decode($response->body, true);
 	}
 	
-	public function get_items($component_name, $user = null)
+	public function get_items($component_name, $added_items, $user = null)
 	{
 		$this->json = $this->_copyFileFromServer();
 
@@ -128,10 +128,92 @@ class RbappmanagerHelper extends Rb_Helper
 			if(isset($purchased_item[$item['item_id']])){
 				$item['subscription_status'] = $purchased_item[$item['item_id']]; 
 			}
+			
+			$item['status'] = $this->_get_item_status($item, $added_items);
 		}
 		
 		// arrange app list according to tags		
 		return $this->json;
+	}
+	
+	public function _get_item_status($item, $cart_items)
+	{
+		// case : Not Available
+		if(!isset($item['compatible_file_id']) || !$item['compatible_file_id']){
+			return 'not_available';
+		}	
+		
+		// if item is not installed
+		if($item['installed_version']){
+			
+			// if item is upgradable
+			if($this->compare_version($item['version'][$item['compatible_file_id']], $item['installed_version']) > 1){
+				if(floatval($item['price']) == floatval('0.00')){
+					return 'active_upgradable';
+				}
+				
+				// case :  
+				if($item['subscription_status'] == 'none'){					
+					return 'none_upgradable';
+				}
+				
+				// case :  
+				if($item['subscription_status'] == 'active'){
+					return 'active_upgradable';
+				}
+				
+				// case :  
+				if($item['subscription_status'] == 'expired'){
+					return 'expired_upgradable';
+				}		
+			}
+			
+			// if item is not upgradable
+			if(floatval($item['price']) == floatval('0.00')){
+				return 'active_installed';
+			}
+			
+			// case :  
+			if($item['subscription_status'] == 'none'){
+				return 'none_installed';				
+			}
+			
+			// case :  
+			if($item['subscription_status'] == 'active'){
+				return 'active_installed';
+			}
+			
+			// case :  
+			if($item['subscription_status'] == 'expired'){
+				return 'expired_installed';
+			}			
+		}
+		
+		if(!$item['installed_version']){	
+			// if item is not upgradable
+			if(floatval($item['price']) == floatval('0.00')){
+				return 'active_install';
+			}
+				
+			// case :  
+			if($item['subscription_status'] == 'none'){
+				if(in_array($item['item_id'], $cart_items)){
+					return 'none_addedtocart';
+				}
+				
+				return 'none_buynow';				
+			}
+			
+			// case :  
+			if($item['subscription_status'] == 'active'){
+				return 'active_install';
+			}
+			
+			// case :
+			if($item['subscription_status'] == 'expired'){
+				return 'expired_install';
+			}		
+		}
 	}
 	
 	public function create_invoice($data)
@@ -293,7 +375,7 @@ class RbappmanagerHelper extends Rb_Helper
 		return $response['response_data'];
 	}
 	
-	public function is_compatible($version1, $version2)
+	public function compare_version($version1, $version2)
 	{
 		// equal 	= 0
 		// smaller 	= -1
@@ -350,7 +432,7 @@ class RbappmanagerHelper extends Rb_Helper
 					continue;					
 				}
 				
-				if($this->is_compatible($component_version, $version) >= 0){
+				if($this->compare_version($component_version, $version) >= 0){
 					$found = true;
 					break; 
 				}

@@ -41,15 +41,14 @@ class PayInvoiceAdminViewRbappmanager extends PayInvoiceAdminBaseViewRbappmanage
 		
 		
 		$component_name = "com_payinvoice";
-		
-		$app_data 	 = $this->_helper->get_items($component_name, $user);
-		$added_items = $this->_helper->get('cart_items');
-		
+		$added_items = $this->_helper->get('cart_items');		
 		
 		if(!empty($added_items)){
 			$added_items = explode(",", $added_items);
 			$added_items = array_combine($added_items, $added_items);
 		}
+		
+		$app_data 	 = $this->_helper->get_items($component_name, $added_items, $user);		
 		 
 		$this->assign('helper', $this->_helper);
 		$this->assign('added_items', 	 $added_items);

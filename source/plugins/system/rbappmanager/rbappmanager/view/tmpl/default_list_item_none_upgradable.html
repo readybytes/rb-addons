@@ -1,0 +1,30 @@
+<div class="rbappmanager-item-header">
+	<h2>{{ item.title }}</h2>			
+</div>
+	
+<div class="rbappmanager-item-content" style="height:208px; position:relative;">
+	
+	<img src="http://10.0.0.16/paymart1.png" style="opacity: 0.25;"/>
+	
+
+	<div class="text-warning" style=" bottom: 0; left: 0; position: absolute; right: 0; top: 0;position:absolute;">
+		<span><i class="icon-bell"></i> Alert</span>
+		<ul>
+			<li>An upgrade for this app is available.</li>
+			<li>But Your subscription has been expired.</li>
+		</ul>
+		<button type="button" data-toggle="modal" data-target="#rbappmanager-alert-{{ item.status }}-{{ item.item_id }}">Read More >></button>
+	</div>
+	<!-- Load Alert Tempaltes -->
+	<div data-ng-include src="templates.alert.expired_upgradable;"></div>
+</div>
+
+<div class="rbappmanager-item-footer">    		
+	<div class="rbappmanager-item-footer-upper rbappmanager-item-footer-transition rbappmanager-item-footer-none-upgradable-upper">
+    	<span>{{ item.price }} Price</span>
+    	<span class="pull-right">Ratings</span>  
+	</div>
+	<div class="rbappmanager-item-footer-lower rbappmanager-item-footer-transition rbappmanager-item-footer-none-upgradable-lower">
+    	<a href="#/app/{{ counter }}" class="btn rbappmanager-item-viewdetail" ng-click="find_last_item_block(item.item_id);">Details</a>
+	</div>  		
+</div>

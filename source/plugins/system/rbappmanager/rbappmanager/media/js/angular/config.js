@@ -25,5 +25,10 @@ rb_appmanager_app.config(function($stateProvider, $urlRouterProvider){
             url: "/{item_id}",
             templateUrl: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_item_fullview.html',
             controller: 	'DetailAppController'
-        })         
+        })        
+      .state('test', {
+          url: "/test",
+          controller: 	'AppController',
+          templateUrl: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/test_list.html'
+      })
   });
