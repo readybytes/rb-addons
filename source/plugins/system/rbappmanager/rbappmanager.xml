@@ -11,8 +11,11 @@
 	<files>
 		<filename plugin="rbappmanager">rbappmanager.php</filename>
 		<filename>index.html</filename>
+		<filename>install.sql</filename>
 		<folder>rbappmanager</folder>
 	</files>
+
+	<scriptfile>script.php</scriptfile>
 
 	<languages>
 		<language tag="en-GB">en-GB.plg_system_rbappmanager.ini</language>
