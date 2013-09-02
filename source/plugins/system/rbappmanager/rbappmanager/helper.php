@@ -246,7 +246,8 @@ class RbappmanagerHelper extends Rb_Helper
 			if ($response['response_code'] == 204){
 				$response['response_data'] = 'No Data to return'; // XITODO
 			}
-			  throw new Exception($response['response_data']);
+			  return json_encode(array());
+			  //throw new Exception($response['response_data']);
 		}
 		
 		return $response['response_data'];
@@ -361,10 +362,15 @@ class RbappmanagerHelper extends Rb_Helper
 	
 	public function get_pay_url($invoice_id)
 	{
+		$email 		= $this->get('email', 0);
+		$password   = $this->get('password', 0);
+		
 		$url 		 = $this->_getServerUrl().'';
-		$url 		.= '&resource=invoice&filter=payurl&id='.$invoice_id;
+		$url 		.= '&resource=invoice&filter=payurl&id='.$invoice_id.'&email='.$email.'&password='.$password;
+
 		$link 		= new JURI($url);		
 		$curl 		= new JHttpTransportCurl(new Rb_Registry());
+		
 		$response 	= $curl->request('GET', $link);		
 		$response	= json_decode($response->body, true);
 		

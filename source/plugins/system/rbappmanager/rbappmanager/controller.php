@@ -15,7 +15,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
  * App Manager Controller
  * @author Gaurav Jain
  */
-class PayInvoiceAdminControllerRbappmanager extends PayInvoiceController
+class PayInvoiceAdminControllerRbappmanager extends Rb_Controller
 {
 	/**
 	 * @var RbappmanagerHelper
@@ -40,5 +40,113 @@ class PayInvoiceAdminControllerRbappmanager extends PayInvoiceController
 		}
 		
 		return $this->_helper;
+	}
+	
+	public function addToCart()
+	{
+		$args = $this->_getArgs();
+		
+		$item_id = isset($args['item_id']) ? $args['item_id'] : 0;
+		
+		// no item-id provided to add in the cart
+		if (!$item_id){
+			// XITODO :
+			return ;
+		}
+
+		$cart_items = $this->_helper->get('cart_items');
+		
+		$cart = $item_id;
+		if(!empty($cart_items)){
+			$cart = explode(',', $cart_items);
+			
+			if (!in_array($item_id, $cart)){
+				$cart[] = $item_id;
+			}
+			
+			$cart = implode(',', $cart);
+		}
+		
+		$this->_helper->set(array('cart_items' => $cart));
+		
+		$response = Rb_Factory::getAjaxResponse();
+		$response->addScriptCall('rbappmanager.cart.add_success', explode(',', $cart));
+		$response->sendResponse();
+	}
+	
+	public function removeFromCart()
+	{
+		$args = $this->_getArgs();
+		
+		$item_id = isset($args['item_id']) ? $args['item_id'] : 0;
+		
+		// 	no item-id provided to remove from the cart
+		if (!$item_id){
+			return ;
+		}
+
+		$added_items = $this->_helper->get('cart_items');
+		$added_items = explode(",", $added_items);
+		
+		if(in_array($item_id, $added_items)){
+			$added_items = array_diff($added_items, array($item_id));
+			$this->_helper->set(array('cart_items' => implode(",", $added_items)));
+		}
+		
+		$response = Rb_Factory::getAjaxResponse();
+		$response->addScriptCall('rbappmanager.cart.remove_success', $added_items);
+		$response->sendResponse();
+	}
+	
+	public function checkout()
+	{		
+		$ajax_response = Rb_Factory::getAjaxResponse();
+		$args = $this->_getArgs();
+
+		$data = array();
+		$data['paymart']['items'] = isset($args['items']) ? $args['items'] : array();
+		$data['paymart']['buyer_email']	= $this->_helper->get('email');
+		
+		//XITODO : need to discuss, if we can send buyer email
+		try{
+			$user = (array) $this->_helper->get_user($data['paymart']['buyer_email']);
+			$user = array_shift($user);
+		}
+		catch (Exception $e){
+			//XITODO : what to do
+			$ajax_response->sendResponse();
+		}
+		
+		$data['paymart']['buyer_id']	= $user['buyer_id'];
+		$data['paymart']['currency']	= 'USD';
+		
+		$url = JUri::getInstance();
+		$data['paymart']['domain']	= $url->getHost();
+		
+		try{
+			$invoice = $this->_helper->create_invoice($data);
+		}
+		catch (Exception $e){
+			//XITODO : what to do
+			$ajax_response->sendResponse();
+		}
+		
+		// IMP :: as invoice has been created than clean the cart items
+		// XITODO : cartitems should be deleted after invoice is paid
+		$this->_helper->set(array('cart_items' => ''));
+		$invoice = (array) $invoice;
+		$invoice = array_shift($invoice);
+		
+		try{
+			$url = $this->_helper->get_pay_url($invoice['invoice_id']);
+		}
+		catch (Exception $e){
+			//XITODO : what to do
+			$ajax_response->sendResponse();
+		}
+		
+		$ajax_response->addScriptCall('rbappmanager.cart.redirect_to_pay',$url);
+		$ajax_response->sendResponse();
+		
 	}
 }

@@ -20,7 +20,8 @@ controllers.AppController = function($scope){
 			alert: {
 				expired_installed 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_installed.html',
 				expired_upgradable 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_upgradable.html'
-			} 
+			} ,
+			cart : '../plugins/system/rbappmanager/rbappmanager/view/tmpl/cart.html'
 	 };
 		
 	//function to find proper place to render this view
@@ -107,7 +108,34 @@ controllers.AppController = function($scope){
 					return base_path + 'default_list_item_' + status +'.html';
 			default : return '';//base_path + 'default_list_item_buynow.html';		
 		}		
+	
+	$scope.cart = {};
+	
+	$scope.cart.addToCart = function(item_id){
+		rbappmanager.cart.add_item(item_id);
 	};
+
+	$scope.cart.add_success = function(items){
+		$scope.added_items = items;
+		$scope.$apply();	
+	
+		rb.jQuery('#rbappmanager-cart').modal('show');
+	};
+	
+	$scope.cart.removeFromCart = function(item_id){
+		rbappmanager.cart.remove_item(item_id);
+	};
+	
+	$scope.cart.remove_success = function(items){
+		$scope.added_items = items;
+		$scope.$apply();		
+		rb.jQuery('#rbappmanager-cart').modal('show');
+	};
+	
+	$scope.cart.checkout = function(added_items)
+	{
+		rbappmanager.cart.checkout(added_items);
+	};	
 };
 
 controllers.DetailAppController = function($scope, $state){

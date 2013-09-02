@@ -102,7 +102,7 @@
 	}
 </style>
 
-<div data-ng-controller="AppController">	
+<div data-ng-controller="AppController" id="rbappmanager-list-ctrl">	
 	<div class="rbappmanager-app-container">
 		<div class="clearfix">
 			<div data-ng-repeat="(counter,item) in items | item_filter:model_filter" class="rbappmanager-item" id="rbappmanager-item-{{ item.item_id }}">
@@ -110,6 +110,8 @@
 	   		</div>
 		</div>
 	
+		<div ng-include src="templates.cart;"></div>
+		
 		<div ui-view class="" id="rbappmanager-fulldetail-view"></div>			
 	</div>	
 </div>

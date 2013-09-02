@@ -11,12 +11,12 @@
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
+Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/rbappmanager.js');
 Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/angular.js');
 Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/ui-router.js');
 Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/config.js');
 Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/controller.js');
 Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/filters.js');
-Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/appmanager.js');
 Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.css');
 ?>
 <style>
