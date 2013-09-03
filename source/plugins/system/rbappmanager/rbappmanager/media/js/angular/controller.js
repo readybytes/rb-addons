@@ -1,5 +1,8 @@
 // XITODO : where to put this constant
-var rb_app_manager_limit_per_row = 3;
+var rb_app_manager_limit_per_row 		= 3;
+var rb_app_manager_invoice_status_paid 	= 402;
+var rb_app_manager_invoice_status_inprocess	= 404;
+
 var controllers = {};
 	
 controllers.AppController = function($scope){	
@@ -7,16 +10,19 @@ controllers.AppController = function($scope){
 	$scope.tag_items 		= rbappmanager_tag_items;
 	$scope.default_tag 		= rbappmanager_default_tag;	
 	$scope.added_items 		= rbappmanager_added_items;
+	$scope.invoices 		= rbappmanager_invoices;
+	$scope.config 			= rbappmanager_config;
 	
 	$scope.fullview_rom_number = -1;
 	
 	$scope.buynow = function(item_id){
 		$scope.items[item_id].status = "active_installed";
 		return false;
-	}
+	};
 	
 	$scope.templates = { 
 			item: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_list_item.html',
+			myapps: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/myapps.html',
 			alert: {
 				expired_installed 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_installed.html',
 				expired_upgradable 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_upgradable.html'
@@ -60,7 +66,7 @@ controllers.AppController = function($scope){
 		
 		rb.jQuery('#rbappmanager-fulldetail-view').insertAfter('#' + item_blocks[last_index].id);
 		return true;
-	}	
+	};	
 	
 	$scope.getTemplatePath = function(item_id){
 		var base_path = '../plugins/system/rbappmanager/rbappmanager/view/tmpl/';		
@@ -107,7 +113,8 @@ controllers.AppController = function($scope){
 			case 'expired_upgradable' :
 					return base_path + 'default_list_item_' + status +'.html';
 			default : return '';//base_path + 'default_list_item_buynow.html';		
-		}		
+		}
+	};
 	
 	$scope.cart = {};
 	
@@ -136,6 +143,54 @@ controllers.AppController = function($scope){
 	{
 		rbappmanager.cart.checkout(added_items);
 	};	
+
+	// XITODO : use directives
+	$scope.fromJson = function(json){	
+			return angular.isString(json) ? rb.jQuery.parseJSON(json): json;
+	};
+	
+
+	$scope.mysql_to_date = function(dateString){
+		// Split timestamp into [ Y, M, D, h, m, s ]
+		var time = dateString.split(/[- :]/);
+		// Apply each element to the Date function
+		return new Date(time[0], time[1]-1, time[2], time[3], time[4], time[5]);			
+	};
+	
+	$scope.add_expiration = function(dateString, expiration){		
+		// Split timestamp into [ Y, M, D, h, m, s ]
+		var time = dateString.split(/[- :]/);
+		
+		var exp = Array();		
+		for(var count = 0; count <= 5 ; count++){
+			time[count] = parseInt(time[count]) + parseInt(expiration.slice(count*2, (count*2)+2));			 
+		}		
+		
+		return new Date(time[0], time[1]-1, time[2], time[3], time[4], time[5]);
+	};
+	
+	$scope.get_item_status = function(status, paid_date, expiration){
+		if(expiration == '000000000000'){
+			return 'active';
+		}
+		
+		if(status == rb_app_manager_invoice_status_inprocess){
+			return 'inprocess';
+		}
+		
+		if(status == rb_app_manager_invoice_status_paid){
+			var expiration_date = $scope.add_expiration(paid_date, expiration);
+			var now = new Date();
+			
+			if(expiration_date.getTime() > now.getTime()){
+				return 'active';
+			}
+			
+			return 'expired';
+		}
+		
+		return '-';
+	};
 };
 
 controllers.DetailAppController = function($scope, $state){

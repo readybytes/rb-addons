@@ -1,0 +1,65 @@
+<div id="rbappmanager-modal-myapps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="My Apps" aria-hidden="true" style="width:800px;">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<div class="row-fluid">
+			<h3 id="myModalLabel" class="pull-left">My Paid Info.</h3>
+			<span class="pull-right">Active Subscripiton</span>
+		</div>
+	</div>
+	
+	<div class="modal-body">
+		<div class="row-fluid">
+			<span class="span1">#</span>
+	        <span class="span1">Invoice No.</span>
+	      	<span class="span4">Apps</span>
+	      	<span class="span2">Activated On</span>
+	      	<span class="span2">Expired On</span>
+	      	<span class="span2">Subscription Status</span>
+      	</div>
+		<div data-ng-repeat="invoice in invoices | orderBy:paid_date:true | myapp_invoice_filter">
+			<div data-ng-repeat="invoiceitem in invoice.invoiceitems">
+				<span data-ng-init="params = fromJson(invoiceitem.params);"></span>					
+				<div class="row-fluid" style="padding: 10px 0px; border-top: 1px solid #CCCCCC;">
+					<span class="span1">#</span>
+			        <span class="span1">{{ invoice.serial }}</span>
+			      	<div class="span4">
+			      		<div class="row-fluid">
+				      		<div class="span2 text-center"><img alt="" src="http://10.0.0.13/2checkout.png"></div>
+							<div class="span9">							
+								<div class="row-fluid">
+									<a href="#/app/{{ params.item.item_id }}" class="rbappmanager-item-viewdetail" ng-click="find_last_item_block(params.item.item_id);">
+										{{ params.item.title }}
+									</a>
+								</div>
+								<div class="row-fluid">Subscription Time : {{ params.item.time }}</div>								
+								<div class="row-fluid">For Domain : {{ invoiceitem.custom2 }}</div>
+								<div class="row-fluid">Price : {{ params.item.price }}</div>
+							</div>
+						</div>
+			      	</div>
+			      	<span class="span2" >{{ mysql_to_date(invoice.paid_date) | date:'mediumDate' }}</span>
+			      	<span class="span2">{{ add_expiration(invoice.paid_date, params.item.time) | date:'mediumDate' }}</span>
+			      	<span class="span2" ng-switch on="get_item_status(invoice.status, invoice.paid_date, params.item.time);">
+						<span ng-switch-when="inprocess">In Process</span>
+						<span ng-switch-when="active">Active</span>
+						<span ng-switch-default>Expired</span>
+					</sapn>			      	
+			      </div>
+	      	</div>
+		</div>
+		
+	</div>
+	
+	<div class="modal-footer">
+		<div class="row-fluid">
+			<div class="span6">
+				<div>User</div>
+				<div>{{ config.email }}</div>
+			</div>
+			<div class="span6">
+				<div>Current Domain</div>
+				<div>{{ config.current_domain }}</div>	
+			</div>
+		</div>
+	</div>
+</div>

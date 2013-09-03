@@ -49,14 +49,21 @@ class PayInvoiceAdminViewRbappmanager extends PayInvoiceAdminBaseViewRbappmanage
 		}
 		
 		$app_data 	 = $this->_helper->get_items($component_name, $added_items, $user);		
-		 
+
+		$invoices = array();
+		if(isset($user['buyer_id']) && $user['buyer_id']){
+			$invoices = $this->_helper->get_invoices($user['buyer_id']);
+		}
+		
 		$this->assign('helper', $this->_helper);
-		$this->assign('added_items', 	 $added_items);
+		$this->assign('added_items', $added_items);
 		$this->assign('data', 		 $app_data);
+		$this->assign('invoices', 	 array_reverse($invoices, true));
 		
 		// XITODO : get component name
 		// IMP : Tag will not contain "_" so use "-"
 		$this->assign('default_tag', 	 'com-payinvoice');
+		$this->assign('config', $this->_helper->get_config());
 		return true;
 	} 
 }

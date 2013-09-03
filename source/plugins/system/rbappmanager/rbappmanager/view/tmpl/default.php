@@ -52,11 +52,12 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 </style>
 
 <script>
-	var rbappmanager_data				= <?php echo json_encode($data);?>;
 	var rbappmanager_items	 			= <?php echo json_encode($data['items']);?>;
 	var rbappmanager_tag_items 			= <?php echo json_encode($data['tag_items']);?>;
 	var rbappmanager_default_tag 		= <?php echo $data['tags'][$default_tag]['id'];?>;	
 	var rbappmanager_added_items 		= <?php echo json_encode($added_items);?>;	
+	var rbappmanager_invoices 			= <?php echo json_encode($invoices);?>;
+	var rbappmanager_config 			= <?php echo json_encode($config);?>;	
 </script>
 
 <div data-ng-app="rb_appmanager_app">
@@ -85,7 +86,15 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 				</div>
 				
 				<div class="span2 rbappmanager-padding20">
-					MyApps
+				    <div class="btn-group">
+    					<button class="btn" type="button" data-toggle="modal" data-target="#rbappmanager-modal-myapps">My Apps</button>
+    					<button class="btn dropdown-toggle" data-toggle="dropdown">
+    						<span class="caret"></span>
+    					</button>
+					    <ul class="dropdown-menu">
+					     dropdown menu links 
+					    </ul>
+    				</div>
 				</div>
 			</div>
 		</div>

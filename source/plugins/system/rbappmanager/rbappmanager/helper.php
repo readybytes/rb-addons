@@ -234,23 +234,28 @@ class RbappmanagerHelper extends Rb_Helper
 	
 	public function get_invoices($userid)
 	{
-		$url 		 = $this->_getServerUrl().'';
-		$url 		.= '&resource=invoice&filter=buyer&id='.$userid;
-		
-		$link 		= new JURI($url);		
-		$curl 		= new JHttpTransportCurl(new Rb_Registry());
-		$response 	= $curl->request('GET', $link);		
-		$response	= json_decode($response->body, true);
-		
-		if($response['response_code'] != 200){
-			if ($response['response_code'] == 204){
-				$response['response_data'] = 'No Data to return'; // XITODO
+		static $invoices = null;
+		if($invoices === null){
+			$url 		 = $this->_getServerUrl().'';
+			$url 		.= '&resource=invoice&filter=buyer&id='.$userid;
+			
+			$link 		= new JURI($url);		
+			$curl 		= new JHttpTransportCurl(new Rb_Registry());
+			$response 	= $curl->request('GET', $link);		
+			$response	= json_decode($response->body, true);
+			
+			if($response['response_code'] != 200){
+				if ($response['response_code'] == 204){
+					$response['response_data'] = 'No Data to return'; // XITODO
+				}
+				    return json_encode(array());
+			  		//throw new Exception($response['response_data']);
 			}
-			  return json_encode(array());
-			  //throw new Exception($response['response_data']);
+			
+			$invoices = $response['response_data'];
 		}
 		
-		return $response['response_data'];
+		return $invoices;
 	}
 	
 	public function get_purchased_item($userid)
@@ -495,5 +500,18 @@ class RbappmanagerHelper extends Rb_Helper
 		$db->setQuery($sql);
 		return $db->loadObjectList('extension');
 		
+	}
+	
+	public function get_config()
+	{
+		$params = array('email');
+		$config = array();
+		foreach($params as $param){
+			$config[$param] = $this->get($param);
+		}
+		
+		// add domain name also
+		$config['current_domain'] = JUri::root();
+		return $config;
 	}
 }
