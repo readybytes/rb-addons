@@ -23,7 +23,7 @@ rb_appmanager_app.config(function($stateProvider, $urlRouterProvider){
       })
         .state('app.list', {
             url: "/{item_id}",
-            templateUrl: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/default_item_fullview.html',
+            templateUrl: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/fullview.html',
             controller: 	'DetailAppController'
         })        
       .state('test', {

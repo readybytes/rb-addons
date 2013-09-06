@@ -12,6 +12,7 @@ controllers.AppController = function($scope){
 	$scope.added_items 		= rbappmanager_added_items;
 	$scope.invoices 		= rbappmanager_invoices;
 	$scope.config 			= rbappmanager_config;
+	$scope.tags 			= rbappmanager_tags;
 	
 	$scope.fullview_rom_number = -1;
 	
@@ -195,6 +196,7 @@ controllers.AppController = function($scope){
 
 controllers.DetailAppController = function($scope, $state){
 	$scope.item = $scope.items[$state.params.item_id];
+	$scope.header_template = '../plugins/system/rbappmanager/rbappmanager/view/tmpl/fullview_header_'+ $scope.item.status +'.html';	
 };
 	
 rb_appmanager_app.controller(controllers);

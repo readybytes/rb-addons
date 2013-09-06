@@ -26,6 +26,8 @@ class PayInvoiceAdminViewRbappmanager extends PayInvoiceAdminBaseViewRbappmanage
 	public function display($tpl = null)
 	{
 		$email = $this->_helper->get('email');
+		
+		$user = null;
 		if(!empty($email)){
 			// get user from email
 			try{
@@ -33,9 +35,7 @@ class PayInvoiceAdminViewRbappmanager extends PayInvoiceAdminBaseViewRbappmanage
 				$user 				= array_shift($user);				
 			}
 			catch (Exception $e){
-				Rb_Error::assert(false, 'User Not found', Rb_Error::ERROR);
-				// XITODO : pop up registration window 
-				exit;
+				$user = null;
 			}
 		}
 		

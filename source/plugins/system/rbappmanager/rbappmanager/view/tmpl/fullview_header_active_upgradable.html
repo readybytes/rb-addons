@@ -1,0 +1,41 @@
+<div class="row-fluid">
+	<div class="span1 rbappmanager-item-icon">
+		<img src="{{ item.icon }}" alt="">
+	</div>
+	
+	<div class="span11">
+		<div class="row-fluid">		
+			<h1>{{ item.title }}<small> (Version : {{ item.compatible_file.version_number }})</small></h1>
+		</div>
+		<div class="row-fluid">
+			<div class="span8">
+				<span>
+					Category :
+						<span data-ng-repeat="tag in tags|fullview_tag_filter : item.item_id : tag_items">				
+							<a href="#">{{ tag.title }}</a>
+						</span>
+				</span> 
+			  	|  Hits : {{ item.hits }}  |  Last Updated : {{ mysql_to_date(item.modified_date) |  date:'mediumDate' }}
+		 	</div>
+		 	
+		 	<div class="span4">		 
+				<div class="pull-right text-warning">
+					<i class="icon-cog"></i>Upgradable
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr class="rbappmanager-item-hr">
+
+<div class="row-fluid">
+	 <div class="span10 rbappmanager-item-compatibility" > 
+	 </div>
+	 
+	 <div class="span2">
+		<button class="btn btn-warning" data-toggle="modal" data-target="#rbappmanager-alert-{{ item.status }}-{{ item.item_id }}">
+			Upgrade
+		 </button>
+	</div>
+</div>

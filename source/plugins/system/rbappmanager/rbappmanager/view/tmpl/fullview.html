@@ -49,32 +49,7 @@
 	
 		<div class="rbappmanager-item-detail">
 		
-			<div class="row-fluid">
-				<div class="span1 rbappmanager-item-icon">
-					<img src="http://pub.jpayplans.com/livesite/screenshots/app-icons/payplans-2checkout.png" alt="">
-				</div>
-				
-				<div class="span10">
-					<div><h1>{{ item.title }}<small> (Version : {{ item.version }})</small></h1></div>
-					<div><img src="http://localhost/star.png" alt="" width="128px;" height="128px;"> | Category : {{ item.tag }}  |  Hits : {{ item.hit }}  |  {{ item.last_date }}</div>
-				</div>
-			</div>
-			
-			<hr class="rbappmanager-item-hr">
-			
-			<div class="row-fluid">
-				 <div class="span9 rbappmanager-item-compatibility" > 
-				 	<h3>Compatible to Payinvoice : V1.1 / V2.0 / V2.4 </h3>
-				 </div>
-				 
-				 <div class="span3">
-				 	<div class="row-fluid">
-				 	<div class="span1"></div> 
-				 	<div class="span5">Price<br><h3>{{ item.price }}</h3></div>
-				 	<div class="span5"><button class="btn btn-primary center">Buy Now</button> </div>
-				 	</div>
-				 </div>
-			</div>
+			<div data-ng-include src="header_template;"></div>
 		
 			<div class="row-fluid rbappmanager-description-block">
 				 <div class="span12" style="margin-top:15px; margin-left:50px;"> 
@@ -122,6 +97,5 @@
 				    </div>
 				 </div>
 			</div>
-		</div>
-	
+		</div>	
 </div>

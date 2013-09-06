@@ -20,10 +20,15 @@ Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/filters.j
 Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.css');
 ?>
 <style>
+
+	.rbappmanager{
+		background: #EEEEEE;
+	}
+	
 	.rbappmanager-app-container{
 		max-width : 1200px;
 		margin: auto;
-		background: #EEEEEE;
+	
 	}
 	
 	.rbappmanager-app-title{		
@@ -34,7 +39,8 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 	}
 	
 	.rbappmanager-app-header{		
-		border-bottom:1px solid #CCCCCC;		
+		border-bottom:1px solid #CCCCCC;	
+		background: #FFFFFF;	
 	}
 	
 	.rbappmanager-app-header-content{
@@ -57,10 +63,11 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 	var rbappmanager_default_tag 		= <?php echo $data['tags'][$default_tag]['id'];?>;	
 	var rbappmanager_added_items 		= <?php echo json_encode($added_items);?>;	
 	var rbappmanager_invoices 			= <?php echo json_encode($invoices);?>;
-	var rbappmanager_config 			= <?php echo json_encode($config);?>;	
+	var rbappmanager_config 			= <?php echo json_encode($config);?>;
+	var rbappmanager_tags 				= <?php echo json_encode($data['tags']);?>;	
 </script>
 
-<div data-ng-app="rb_appmanager_app">
+<div data-ng-app="rb_appmanager_app" class="rbappmanager">
 	<div class="rbappmanager-app-title text-center">
 		<h1>Pay Invoice App Store</h1>
 	</div>

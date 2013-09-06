@@ -120,7 +120,7 @@ class RbappmanagerHelper extends Rb_Helper
 			
 			// find if this item is compatible with component name or not			
 			if(isset($item['version'])){
-				$item['compatible_file_id'] = $this->get_compatible_file($component_version, $item['version'], $criterias);
+				$item['compatible_file'] = $this->get_compatible_file($component_version, $item['version'], $criterias);
 			}
 						
 			// set status of item, Like : active or expired or none
@@ -139,7 +139,7 @@ class RbappmanagerHelper extends Rb_Helper
 	public function _get_item_status($item, $cart_items)
 	{
 		// case : Not Available
-		if(!isset($item['compatible_file_id']) || !$item['compatible_file_id']){
+		if(!isset($item['compatible_file']) || !$item['compatible_file']){
 			return 'not_available';
 		}	
 		
@@ -147,7 +147,7 @@ class RbappmanagerHelper extends Rb_Helper
 		if($item['installed_version']){
 			
 			// if item is upgradable
-			if($this->compare_version($item['version'][$item['compatible_file_id']], $item['installed_version']) > 1){
+			if($this->compare_version($item['compatible_file']['version_number'], $item['installed_version']) > 1){
 				if(floatval($item['price']) == floatval('0.00')){
 					return 'active_upgradable';
 				}
@@ -393,6 +393,17 @@ class RbappmanagerHelper extends Rb_Helper
 		// greater 	= 1
 		$flag = 0;
 				
+		if(!is_array($version1)){
+			$version1 = explode(".", $version2);
+		}
+		
+		if(!is_array($version2)){
+			$version2 = explode(".", $version2);
+		}
+		
+		$version1 = array_slice($version1, 0, 3);
+		$version2 = array_slice($version2, 0, 3);
+		
 		foreach($version1 as $key => $value){
 			if(is_numeric($version2[$key])){
 				// check for lower
@@ -461,6 +472,10 @@ class RbappmanagerHelper extends Rb_Helper
 	{
 		if(empty($this->json)){
 			$this->json = $this->getItems();
+		}
+		
+		if(!isset($this->json['compatibility']) || !isset($this->json['compatibility'][$component])){
+			return array();
 		}
 		
 		$component_compatibility = $this->json['compatibility'][$component];
