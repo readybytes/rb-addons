@@ -39,6 +39,26 @@ rbappmanager.cart = {
 		}
 };
 
+rbappmanager.item = {
+		install		: 	function(item_id, version_id){
+						var	args = {'event_args': {'item_id': item_id, 'version_id' : version_id}};
+						rb.ajax.go('index.php?option=com_payinvoice&view=rbappmanager&task=install', args);
+		},
+		
+		install_response : function(response){
+						response = JSON.parse(response);
+						
+						var scope = angular.element(document.getElementById('rbappmanager-list-ctrl')).scope();
+						
+						if(response.response_code == 200){
+							return scope.install.success();
+						}
+						else {
+							return scope.install.error(response);
+						}				
+		}
+};
+
 $(document).ready(function(){
 
 });

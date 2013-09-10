@@ -12,7 +12,7 @@ controllers.AppController = function($scope){
 	$scope.added_items 		= rbappmanager_added_items;
 	$scope.invoices 		= rbappmanager_invoices;
 	$scope.config 			= rbappmanager_config;
-	$scope.tags 			= rbappmanager_tags;
+	$scope.install_item		= 0;
 	
 	$scope.fullview_rom_number = -1;
 	
@@ -28,7 +28,8 @@ controllers.AppController = function($scope){
 				expired_installed 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_installed.html',
 				expired_upgradable 	: '../plugins/system/rbappmanager/rbappmanager/view/tmpl/alert_expired_upgradable.html'
 			} ,
-			cart : '../plugins/system/rbappmanager/rbappmanager/view/tmpl/cart.html'
+			cart : '../plugins/system/rbappmanager/rbappmanager/view/tmpl/cart.html',
+			install : '../plugins/system/rbappmanager/rbappmanager/view/tmpl/install.html'
 	 };
 		
 	//function to find proper place to render this view
@@ -116,6 +117,24 @@ controllers.AppController = function($scope){
 			default : return '';//base_path + 'default_list_item_buynow.html';		
 		}
 	};
+	
+	$scope.install = {};
+	$scope.install.view = function(item_id){
+		$scope.install_item = $scope.items[item_id];
+		rb.jQuery('#rbappmanager-install').modal('show');
+	};
+	
+	$scope.install.item = function(itemversion_id){
+		rbappmanager.item.install($scope.install_item.item_id, itemversion_id);
+	};
+	
+	$scope.install.success = function(){
+		
+	};
+	
+	$scope.install.error = function(response){
+		
+	}
 	
 	$scope.cart = {};
 	

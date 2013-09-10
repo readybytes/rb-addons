@@ -1,0 +1,20 @@
+<div id="rbappmanager-install" class="modal hide" data-ng->
+	
+	 <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Install</h3> 
+	</div>
+
+	<div id="rbappmanager-install-error">
+	</div>
+
+	<select data-ng-model="versionmodal" >	
+		<option data-ng-repeat="version in install_item.version" value="{{ version.itemversion_id }}"> {{ version.version_name }} - {{ version.version_number }}	</option>
+	</select>
+	
+
+	<div class="modal-footer">
+	<a href="#" class="btn btn-primary" ng-click="install.item(versionmodal);">Install</a>
+	</div>
+	
+</div>

@@ -56,11 +56,6 @@ class RbappmanagerHelper extends Rb_Helper
 		return JUri::root().'index.php?option=com_paymart&view=api&task=process';
 	}
 	
-	protected function get_file_url($file_id)
-	{
-		return $this->_getServerUrl().'&resource=file&filter=file&id='.$file_id;
-	}
-	
 	protected function _copyFileFromServer()
 	{
 		// XITODO : apply some calculation for not to ask on each request
@@ -348,6 +343,32 @@ class RbappmanagerHelper extends Rb_Helper
 		return $response['response_data'];
 	}
 	
+	public function get_version_file($item_id, $version_id)
+	{
+		$email  = self::get('email');
+		$url 	=	 $this->_getServerUrl().'';
+		$url   .=	'&resource=item&filter=file&id='.$item_id.'&itemversion_id='.$version_id.'&email='.trim($email).'&password='.urlencode($this->get('password'));
+		
+		$link 		=	new JUri($url);
+		$curl		= 	new JHttpTransportCurl(new Rb_Registry());
+		$response 	=	$curl->request('GET', $link);
+		
+		$content_type = $response->headers['Content-Type'];
+		
+		if ($content_type != 'application/zip'){
+			$response	= 	json_decode($response->body, true);
+			
+			if($response['response_code'] != 200){
+				  throw new Exception($response['response_data']);
+			}
+		}
+		else {
+			$response =  $response->body;
+		}
+		
+		return $response;
+	}
+	
 	public function get_user($email)
 	{
 		$url 		 = $this->_getServerUrl().'';
@@ -528,5 +549,39 @@ class RbappmanagerHelper extends Rb_Helper
 		// add domain name also
 		$config['current_domain'] = JUri::root();
 		return $config;
+	}
+	
+	public function install($file, $item_id, $version_id)
+	{
+		$random			 = rand(1000, 999999);
+		$tmp_file_name 	 = JPATH_ROOT.'/tmp/'.$random.'item_'.$item_id.'_'.$version_id.'.zip';
+		$tmp_folder_name = JPATH_ROOT.'/tmp/'.$random.'item_'.$item_id.'_'.$version_id;
+		
+		// create a file
+		JFile::write($tmp_file_name, $file);	
+		
+		jimport('joomla.filesystem.archive');
+		jimport( 'joomla.installer.installer' );
+		jimport('joomla.installer.helper');
+		
+		JArchive::extract($tmp_file_name, $tmp_folder_name);
+		$installer = JInstaller::getInstance();	
+
+		if($installer->install($tmp_folder_name)){
+				$response = json_encode(array('response_code' => 200, 'error_code' => 'INSTALLATION_SUCCESS'));
+		}
+		else{
+			$response = json_encode(array('response_code' => 400, 'error_code' => 'INSTALLATION_ERROR'));
+		}
+		
+		if (JFolder::exists($tmp_folder_name)){
+			JFolder::delete($tmp_folder_name);
+		}
+		
+		if (JFile::exists($tmp_file_name)){
+			JFile::delete($tmp_file_name);
+		}
+		
+		return $response;
 	}
 }

@@ -149,4 +149,28 @@ class PayInvoiceAdminControllerRbappmanager extends Rb_Controller
 		$ajax_response->sendResponse();
 		
 	}
+	
+	public function install()
+	{ 
+		$ajax_response  = Rb_Factory::getAjaxResponse();
+		$args  = $this->_getArgs();
+	
+		if(!isset($args['item_id']) || !isset($args['version_id'])){
+			//XITODO :send error response
+			$ajax_response->sendResponse();
+		}
+		
+		try {
+			$file = $this->_helper->get_version_file($args['item_id'], $args['version_id']);
+		}
+		catch (Exception $e){
+			//XITODO : error handling
+			$ajax_response->sendResponse();
+		}
+		
+		$response = $this->_helper->install($file, $args['item_id'], $args['version_id']);
+		
+		$ajax_response->addScriptCall('rbappmanager.item.install_response',$response);
+		$ajax_response->sendResponse();
+	}
 }
