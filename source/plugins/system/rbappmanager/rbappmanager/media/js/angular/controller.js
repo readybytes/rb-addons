@@ -12,6 +12,7 @@ controllers.AppController = function($scope){
 	$scope.added_items 		= rbappmanager_added_items;
 	$scope.invoices 		= rbappmanager_invoices;
 	$scope.config 			= rbappmanager_config;
+	$scope.tags 			= rbappmanager_tags;
 	$scope.install_item		= 0;
 	
 	$scope.fullview_rom_number = -1;

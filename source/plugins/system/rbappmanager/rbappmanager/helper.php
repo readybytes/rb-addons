@@ -584,4 +584,32 @@ class RbappmanagerHelper extends Rb_Helper
 		
 		return $response;
 	}
+
+	public function verify_crendetial($email, $password)
+	{
+		$url 		 = $this->_getServerUrl().'';
+		$url 		.= '&resource=buyer&filter=verify&email='.$email.'&password='.$password;
+		
+		$link 		= new JURI($url);		
+		$curl 		= new JHttpTransportCurl(new Rb_Registry());
+		$response 	= $curl->request('GET', $link);		
+		$response	= json_decode($response->body, true);		
+		
+		return $response['response_data'];
+	}
+	
+	public function register($email, $password)
+	{
+		$data['paymart']['email'] 		= $email;
+		$data['paymart']['password'] 	= $password;
+		
+		$url 		 = $this->_getServerUrl().'';
+		$url 		.= '&resource=buyer';
+		$link 		= new JURI($url);		
+		$curl 		= new JHttpTransportCurl(new Rb_Registry());
+		$response 	= $curl->request('POST', $link, $data);		
+		$response	= json_decode($response->body, true);
+				
+		return $response['response_data'];
+	}
 }

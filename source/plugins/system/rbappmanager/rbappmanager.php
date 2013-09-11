@@ -15,6 +15,8 @@ if(!defined('RB_FRAMEWORK_LOADED')){
 			
 class plgSystemRbappmanager extends JPlugin
 {
+	protected $autoloadLanguage = true;
+	
 	public function __construct(&$subject, $config = array())
 	{
 		parent::__construct($subject, $config);
@@ -27,10 +29,7 @@ class plgSystemRbappmanager extends JPlugin
 	
 	public function onRbControllerCreation($option, $view, $controller, $task, $format)
 	{
-		if($controller === 'rbappmanager'){
-			// load language file also
-			$this->loadLanguage();
-			
+		if($controller === 'rbappmanager'){			
 			require_once dirname(__FILE__).'/'.$this->_name.'/view/view.'.$format.'.php';
 			require_once dirname(__FILE__).'/'.$this->_name.'/controller.php';
 			require_once dirname(__FILE__).'/'.$this->_name.'/model.php';

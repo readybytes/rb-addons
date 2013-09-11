@@ -59,6 +59,36 @@ rbappmanager.item = {
 		}
 };
 
+rbappmanager.credential = {
+		verify : function(){
+					var url = "index.php?option=com_payinvoice&view=rbappmanager&task=credential&action=verify";
+				
+					var email 	 = $('#rbappmanager-credential-email').val();
+					var password = $('#rbappmanager-credential-password').val();
+					var arg = {'event_args' :{'email' : email, 'password' : encodeURIComponent(password)} };
+					rb.ajax.go(url, arg);
+					return false;
+		}
+};
+
+rbappmanager.registration = {
+		form : function(){
+					var url = "index.php?option=com_payinvoice&view=rbappmanager&task=registration&action=form";				
+					rb.ajax.go(url);
+					return false;
+		},
+		
+		register : function(){
+			var email 	 	= $('#rbappmanager-registration-email').val();
+			var password 	= $('#rbappmanager-registration-password').val();
+			var arg 		= {'event_args' :{'email' : email, 'password' : encodeURIComponent(password)} };			
+			var url 		= "index.php?option=com_payinvoice&view=rbappmanager&task=registration&action=register";
+			
+			rb.ajax.go(url, arg);
+			return false;
+		}
+};
+
 $(document).ready(function(){
 
 });

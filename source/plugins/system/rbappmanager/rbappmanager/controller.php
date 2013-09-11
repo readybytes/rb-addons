@@ -173,4 +173,58 @@ class PayInvoiceAdminControllerRbappmanager extends Rb_Controller
 		$ajax_response->addScriptCall('rbappmanager.item.install_response',$response);
 		$ajax_response->sendResponse();
 	}
+
+	public function credential()
+	{
+		$action = $this->input->get('action', 'check');
+		$this->getView()->assign('action', $action);
+		
+		if($action == 'check'){
+			$credential['email'] 		= $this->_helper->get('email');
+			$credential['password'] 	= urlencode($this->_helper->get('password'));			
+		}
+		
+		if($action == 'verify'){
+			$credential = $this->_getArgs();					
+		}
+		
+		$verified = false;
+		if(isset($credential['email']) && isset($credential['password'])
+			&& !empty($credential['email']) && !empty($credential['password'])){		
+			// verify the credential from app server
+			$response = $this->_helper->verify_crendetial($credential['email'], $credential['password']);
+			if(!(is_array($response) && isset($response['error']) && $response['error']== true)){
+				$verified = true;
+			}
+		}
+		
+		$this->getView()->assign('credential_verified', $verified);
+		$this->getView()->assign('credential', $credential);
+		
+		return true;
+	}
+	
+	public function registration()
+	{
+		$action = $this->input->get('action', 'check');
+		$this->getView()->assign('action', $action);
+		
+		if($action == 'form'){
+			return true;
+		}
+		
+		if($action == 'register'){
+			$args 		= $this->_getArgs();
+			$email 		= $args['email'];			
+			$password 	= $args['password'];
+			$registered = false;
+			
+			$response = $this->_helper->register($email, urlencode($password));
+			if(!(is_array($response) && isset($response['error']) && $response['error']== true)){
+				$registered = true;
+			}
+			
+			$this->getView()->assign('registered', $registered);
+		}
+	}
 }

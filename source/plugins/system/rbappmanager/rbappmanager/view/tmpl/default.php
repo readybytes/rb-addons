@@ -19,6 +19,17 @@ Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/controlle
 Rb_Html::script(dirname(dirname(dirname(__FILE__))).'/media/js/angular/filters.js');
 Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.css');
 ?>
+
+<script type="text/javascript">
+(function($){
+	$(document).ready(function(){	
+		// send ajax request to check the credential
+		var url = 'index.php?option=com_<?php echo $this->_component->getNameSmall();?>&view=rbappmanager&task=credential&action=check';
+		rb.ajax.go(url);
+	});
+})(rb.jQuery);
+</script>
+
 <style>
 
 	.rbappmanager{
@@ -121,3 +132,4 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 	</div>
 	
 </div>
+<?php 
