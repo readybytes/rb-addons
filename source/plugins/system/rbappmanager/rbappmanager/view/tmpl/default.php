@@ -55,6 +55,16 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 	.rbappmanager-padding20{
 		padding: 20px 0px;
 	}
+	
+	.rbappmanager-badge{
+		background-color: #FF9900;
+		font-size: 10px;
+	    position: relative;
+	    right: 5px;
+	    top: -15px;
+	    z-index: 55;
+	}
+	
 </style>
 
 <script>
@@ -89,7 +99,7 @@ Rb_Html::stylesheet(dirname(dirname(dirname(__FILE__))).'/media/css/appmanager.c
 				</div>
 				
 				<div class="span2 rbappmanager-border-right rbappmanager-padding20">
-					<i class="icon-shopping-cart"></i> Cart
+					<a href="#" data-toggle="modal" data-target="#rbappmanager-cart"><i class="icon-shopping-cart"></i> My Cart<span class="badge rbappmanager-badge"><?php echo (!empty($added_items)) ? count($added_items): 0;?></span></a>
 				</div>
 				
 				<div class="span2 rbappmanager-padding20">
