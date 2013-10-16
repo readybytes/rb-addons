@@ -103,8 +103,8 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 		$payment_data 	= $object->payment_data;
 		
 		// common parameters
-		$form_data['return'] 		= !empty($url_data->return_url) ? $url_data->return_url : $config->return_url;
-		$form_data['cancel_return'] = !empty($url_data->cancel_url) ? $url_data->cancel_url : $config->cancel_url;
+		$form_data['return'] 		= !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number : $config->return_url.'&invoice_number='.$payment_data->invoice_number;
+		$form_data['cancel_return'] = !empty($url_data->cancel_url) ? $url_data->cancel_url.'&invoice_number='.$payment_data->invoice_number : $config->cancel_url.'&invoice_number='.$payment_data->invoice_number;
 		$form_data['notify_url'] 	= !empty($url_data->notify_url) ? $url_data->notify_url : $config->notify_url;
 				
 		$form_data['business'] 		= $this->getConfig()->merchant_email;
@@ -417,3 +417,4 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 				 ->set('payment_status', Rb_EcommerceResponse::NOTIFICATION);
 	}
 }
+
