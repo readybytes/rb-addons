@@ -37,6 +37,16 @@
 		        	<option value="0">JNO</option>
 		        	<option value="1">JYES</option>
 	        </field>  
+		
+		 <field  name="proxy_server" 
+	        		type="radio" 
+	        		default="0"
+	        		class="btn-group" 
+	        		label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_PROXY_SERVER_LABEL" 
+	        		description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_PROXY_SERVER_DESC">
+		        	<option value="0">JNO</option>
+		        	<option value="1">JYES</option>
+	        </field>  
 	        		  
 			<field	name="return_url" 	
 					default="" 		

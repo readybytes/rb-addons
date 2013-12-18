@@ -17,181 +17,232 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
  */
 class Rb_EcommerceProcessorPayfast  extends Rb_EcommerceProcessor
 {
-	protected $_location = __FILE__;
-	
-	public function __construct($config = array())
-	{
-		parent::__construct($config);		
-	}
-	
-	public function get_invoice_number($response)
-	{	
-		if(isset($response->data['invoice_number'])){
-			return $response->data['invoice_number'];
-		}
-		
-		if(isset($response->data['m_payment_id'])){
-			return $response->data['m_payment_id'];
-		}
-		
-		return 0;
-	}
-	
-	public function request(Rb_EcommerceRequest $request)
-	{
-		$type = $request->get('type');
-		$func = '_request_'.$type;
-		return $this->$func($request);
-	}
-
-	protected function _request_build(Rb_EcommerceRequest $request)
-	{
-		$form 						= JForm::getInstance('rb_ecommerce.processor.payfast', dirname(__FILE__).'/forms/form.xml');
-
-		$object 					= $request->toObject();		
-		$user_data					= $object->user_data;
-		$payment_data				= $object->payment_data;
-		$url_data 					= $object->url_data;
-		$config 					= $this->getConfig(false);
-		
-		$binddata['merchant_id']  	= $config->merchant_id;
-		$binddata['merchant_key']  	= $config->merchant_key;
-		$binddata['amount']  		= number_format($payment_data->total, 2, '.', '');
-		$binddata['item_name']  	= $payment_data->item_name;
-		$binddata['m_payment_id']  	= $payment_data->invoice_number;
-		$binddata['return_url']  	= !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number : $config->return_url.'&invoice_number='.$payment_data->invoice_number;
-		$binddata['notify_url']  	= !empty($url_data->notify_url) ? $url_data->notify_url : $config->notify_url;
-		$binddata['cancel_url']  	= !empty($url_data->cancel_url) ? $url_data->cancel_url.'&invoice_number='.$payment_data->invoice_number : $config->cancel_url.'&invoice_number='.$payment_data->invoice_number;
-		$form->bind($binddata);
-				
-		$response 					= new stdClass();
-		$response->data 			= new stdClass();
-		$response->data->post_url 	= $this->getPostUrl();
-		$response->data->form 		= $form;
-		
-		return $response;	
-	}
-	
-	public function getPostUrl()
-	{
-		$url	= 'https://www.payfast.co.za/eng/process';
-		if($this->getConfig()->sandbox){
-			$url	= 'https://sandbox.payfast.co.za/eng/process';
-		}
-		
-		return $url;
-	}
-	
-	public function process($payfast_response)
-	{
-		$data		= $payfast_response->data;
-		$response 	= new Rb_EcommerceResponse();
-		
-		$response->set('txn_id', 			isset($data['pf_payment_id']) 	? $data['pf_payment_id'] 	: 0)
-				 ->set('subscr_id', 		0)  
-				 ->set('parent_txn', 		0)
-				 ->set('amount', 	 		0)
-				 ->set('payment_status',	Rb_EcommerceResponse::PAYMENT_FAIL)	
-				 ->set('message', 		    'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_PAYMENT_FAILED')		 
-		 		 ->set('params', 			$data);
-		 		 
- 		$validationData = $payfast_response->__post; 		 
- 		if($this->isValidIPN($validationData) == false){
-			 $response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_INVALID_IPN');
-		} 
-		else {
-			$func_name 	= isset($data['payment_status']) ? 'process_on_payment_'.JString::strtolower($data['payment_status']) : 'EMPTY';
-			if(method_exists($this, $func_name)){
-				$this->$func_name($response, $data);
-			}
-			else{
-				$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_INVALID_TRANSACTION_TYPE_OR_PAYMENT_STATUS');	 
-			}
-		}
-		return $response;
-	}
-	
-	protected function process_on_payment_complete($response, array $data)
-	{
-		$errors = $this->_validateNotification($data);
-		
-		if(empty($errors)){
-			$response->set('amount', 			$data['amount_gross'])
-					 ->set('payment_status',	Rb_EcommerceResponse::PAYMENT_COMPLETE)
-					 ->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_PAYMENT_COMPLETED');
-		}else {
-			$response->set('message', 	$errors);
-		}	
-	}
-	
-/* Validates the notifictaion */
-	function _validateNotification(array $data)
+    protected $_location = __FILE__;
+    
+    public function __construct($config = array())
     {
-    	$errors = array();
-    	
-		// find the required data from post-data, and match with payment and check reciever email must be same.
-    	if($this->getConfig()->merchant_id != $data['merchant_id']) {
+        parent::__construct($config);       
+    }
+    
+    public function get_invoice_number($response)
+    {   
+        if(isset($response->data['invoice_number'])){
+            return $response->data['invoice_number'];
+        }
+        
+        if(isset($response->data['m_payment_id'])){
+            return $response->data['m_payment_id'];
+        }
+        
+        return 0;
+    }
+    
+    public function request(Rb_EcommerceRequest $request)
+    {
+        $type = $request->get('type');
+        $func = '_request_'.$type;
+        return $this->$func($request);
+    }
+
+    protected function _request_build(Rb_EcommerceRequest $request)
+    {
+        $form                       = JForm::getInstance('rb_ecommerce.processor.payfast', dirname(__FILE__).'/forms/form.xml');
+
+        $object                     = $request->toObject();     
+        $user_data                  = $object->user_data;
+        $payment_data               = $object->payment_data;
+        $url_data                   = $object->url_data;
+        $config                     = $this->getConfig(false);
+        
+        if($config->sandbox) 
+        {            
+            $binddata['merchant_id']    ='10000103';
+            $binddata['merchant_key']   = '479f49451e829';
+        }
+        else
+        {            
+            $binddata['merchant_id']    = $config->merchant_id;
+            $binddata['merchant_key']   = $config->merchant_key;
+        }
+        
+        $binddata['return_url']     = !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number : $config->return_url.'&invoice_number='.$payment_data->invoice_number;
+        $binddata['cancel_url']     = !empty($url_data->cancel_url) ? $url_data->cancel_url.'&invoice_number='.$payment_data->invoice_number : $config->cancel_url.'&invoice_number='.$payment_data->invoice_number;
+        $binddata['notify_url']     = !empty($url_data->notify_url) ? $url_data->notify_url : $config->notify_url;
+        $binddata['m_payment_id']   = $payment_data->invoice_number;
+        $binddata['amount']         = number_format($payment_data->total, 2, '.', '');
+        $binddata['item_name']      = $payment_data->item_name;
+
+        $sigString = '';
+        foreach( $binddata as $key => $val )
+        {
+            if(!empty($val))
+            {
+              $sigString .= $key .'='. urlencode( $val  ) .'&';
+            }
+        }
+        // Remove last ampersand
+        $getString = substr( $sigString, 0, -1 );
+
+        $binddata['signature'] = md5( $getString );
+        $form->bind($binddata);
+                
+        $response                   = new stdClass();
+        $response->data             = new stdClass();
+        $response->data->post_url   = $this->getPostUrl();
+        $response->data->form       = $form;
+        
+        return $response;   
+    }
+    
+    public function getPostUrl()
+    {
+        $url    = 'https://www.payfast.co.za/eng/process';
+        if($this->getConfig()->sandbox){
+            $url    = 'https://sandbox.payfast.co.za/eng/process';
+        }
+        
+        return $url;
+    }
+    
+    public function process($payfast_response)
+    {
+        $data       = $payfast_response->data;
+        $response   = new Rb_EcommerceResponse();
+        
+        $response->set('txn_id',            isset($data['pf_payment_id'])   ? $data['pf_payment_id']    : 0)
+                 ->set('subscr_id',         0)  
+                 ->set('parent_txn',        0)
+                 ->set('amount',            0)
+                 ->set('payment_status',    Rb_EcommerceResponse::PAYMENT_FAIL) 
+                 ->set('message',           'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_PAYMENT_FAILED')      
+                 ->set('params',            $data);
+                 
+        $validationData = $payfast_response->__post;         
+        if($this->isValidIPN($validationData) == false){
+             $response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_INVALID_IPN');
+        } 
+        else {
+            $func_name  = isset($data['payment_status']) ? 'process_on_payment_'.JString::strtolower($data['payment_status']) : 'EMPTY';
+            if(method_exists($this, $func_name)){
+                $this->$func_name($response, $data);
+            }
+            else{
+                $response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_INVALID_TRANSACTION_TYPE_OR_PAYMENT_STATUS');   
+            }
+        }
+        return $response;
+    }
+    
+    protected function process_on_payment_complete($response, array $data)
+    {
+        $errors = $this->_validateNotification($data);
+        
+        if(empty($errors)){
+            $response->set('amount',            $data['amount_gross'])
+                     ->set('payment_status',    Rb_EcommerceResponse::PAYMENT_COMPLETE)
+                     ->set('message',           'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_PAYMENT_COMPLETED');
+        }else {
+            $response->set('message',   $errors);
+        }   
+    }
+    
+/* Validates the notifictaion */
+    function _validateNotification(array $data)
+    {
+        $errors = array();
+        
+        // find the required data from post-data, and match with payment and check reciever email must be same.
+        if($this->getConfig()->merchant_id != $data['merchant_id'] && !$this->getConfig()->sandbox) {
             $errors[] = Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_INVALID_PAYFAST_MERCHANT_ID');
         }
         return $errors;
     }
     
-	protected function process_on_payment_failed($response, array $data)
-	{
-		$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_PAYMENT_FAILED');
-	}
+    protected function process_on_payment_failed($response, array $data)
+    {
+        $response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_TRANSACTION_PAYFAST_PAYMENT_FAILED');
+    }
+    
+    
+    /* Validates the incoming data */
+    private function isValidIPN($data)
+    {               
+        if($this->getConfig()->proxy_server)
+        {
+	        // Variable initialization
+	        $validHosts = array(
+	            'www.payfast.co.za',
+	            'sandbox.payfast.co.za',
+	            'w1w.payfast.co.za',
+	            'w2w.payfast.co.za',
+	         );
 	
+	        $validIps = array();
 	
-	/* Validates the incoming data */
-	private function isValidIPN($data)
-	{				
-		foreach($data as $key => $val ) 
-		{
-			if($key == 'm_payment_id') $returnString = '';
-			if(! isset($returnString)) continue;
-			if($key == 'signature') continue;
-			$returnString .= $key . '=' . urlencode($val) . '&';
-		}
+	        foreach( $validHosts as $pfHostname )
+	        {
+	            $ips = gethostbynamel( $pfHostname );
+	
+	            if( $ips !== false )
+	                $validIps = array_merge( $validIps, $ips );
+	        }
+	
+	        // Remove duplicates
+	        $validIps = array_unique( $validIps );
+	     
+	        if( !in_array( $_SERVER['REMOTE_ADDR'], $validIps ) )
+	        {
+	            return false;
+	        }
+        }
 
-		$returnString = substr($returnString, 0, -1);
-		
-		if(md5($returnString) != $data['signature']) {
-			return false;
-		}
-	
-		$header 	 = "POST /eng/query/validate HTTP/1.0\r\n";
-		$header 	.= "Content-Type: application/x-www-form-urlencoded\r\n";
-		$header 	.= "Content-Length: " . strlen($returnString) . "\r\n\r\n";
-		
-		$fp 		 = fsockopen($this->getValidationUrl(), 443, $errno, $errstr, 10);
-		
-		if (!$fp) {
-			// HTTP ERROR
-			return false;
-		} else {
-			fputs($fp, $header . $returnString);
-			while(! feof($fp)) 
-			{
-				$res = fgets($fp, 1024);
-				if (strcmp($res, "VALID") == 0) {
-					fclose($fp);
-					return true;
-				}
-			}
-		}
-		
-		fclose($fp);
-		return false;
-	}
+        foreach($data as $key => $val ) 
+        {
+            if($key == 'm_payment_id') $returnString = '';
+            if(! isset($returnString)) continue;
+            if($key == 'signature') continue;
+            $returnString .= $key . '=' . urlencode($val) . '&';
+        }
 
-	
-	/* Get Validation URL */
-	private function getValidationUrl()
-	{
-		$url	= 'ssl://www.payfast.co.za';
-		if($this->getConfig()->sandbox) {
-			$url = 'ssl://sandbox.payfast.co.za';
-		}
-		return $url;
-	}
+        $returnString = substr($returnString, 0, -1);
+        
+        if(md5($returnString) != $data['signature']) {
+            return false;
+        }
+    
+        $header      = "POST /eng/query/validate HTTP/1.0\r\n";
+        $header     .= "Content-Type: application/x-www-form-urlencoded\r\n";
+        $header     .= "Content-Length: " . strlen($returnString) . "\r\n\r\n";
+        
+        $fp          = fsockopen($this->getValidationUrl(), 443, $errno, $errstr, 10);
+        
+        if (!$fp) {
+            // HTTP ERROR
+            return false;
+        } else {
+            fputs($fp, $header . $returnString);
+            while(! feof($fp)) 
+            {
+                $res = fgets($fp, 1024);
+                if (strcmp($res, "VALID") == 0) {
+                    fclose($fp);
+                    return true;
+                }
+            }
+        }
+        
+        fclose($fp);
+        return false;
+    }
+
+    
+    /* Get Validation URL */
+    private function getValidationUrl()
+    {
+        $url    = 'ssl://www.payfast.co.za';
+        if($this->getConfig()->sandbox) {
+            $url = 'ssl://sandbox.payfast.co.za';
+        }
+        return $url;
+    }
 }
