@@ -51,7 +51,6 @@ class Rb_EcommerceProcessorStripe extends Rb_EcommerceProcessor
 			return $this->__request_payment_create_transaction($object, $config);
 		}
 		
-		return $response;
 	}	
 	
 	protected function _request_refund(Rb_EcommerceRequest $request)
@@ -221,8 +220,8 @@ class Rb_EcommerceProcessorStripe extends Rb_EcommerceProcessor
 	protected function _process_charge_response($stripe_response)
 	{
 		$response = new Rb_EcommerceResponse();
-		$response->set('txn_id', isset($stripe_response->id) ? $stripe_response->id : 0)
-				 ->set('subscr_id', 0)  
+		$response->set('txn_id', 	isset($stripe_response->id) 		? $stripe_response->id : 0)
+				 ->set('subscr_id', isset($stripe_response->customer) 	? $stripe_response->customer : 0)  
 				 ->set('parent_txn', 0)
 				 ->set('amount', 	 0)
 				 ->set('payment_status', Rb_EcommerceResponse::NOTIFICATION)	
