@@ -164,8 +164,8 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 	{
 		$response 	= new Rb_EcommerceResponse();
 		
-		$response->set('txn_id', 			isset($data['mb_transaction_id']) ? $data['mb_transaction_id'] : 0)
-				 ->set('subscr_id', 		0)  
+		$response->set('txn_id', 			isset($data['mb_transaction_id']) 	? $data['mb_transaction_id'] 	: 0)
+				 ->set('subscr_id', 		isset($data['customer_id'])			? $data['customer_id']			: $data['mb_transaction_id'])  
 				 ->set('parent_txn', 		0)
 				 ->set('amount', 	 		0)
 				 ->set('payment_status', 	Rb_EcommerceResponse::FAIL)	
@@ -219,9 +219,9 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 		$data	  	= $mb_response->data;
 		$response 	= new Rb_EcommerceResponse();
 		
-		$response->set('txn_id', 			isset($data['mb_transaction_id']) ? $data['mb_transaction_id'] : 0)
- 				 ->set('subscr_id', 		0)  
-				 ->set('parent_txn', 		0)
+		$response->set('txn_id', 			isset($data['mb_transaction_id']) ? $data['mb_transaction_id'].'_refund' : 'refund')
+				 ->set('subscr_id', 		isset($data['customer_id'])			? $data['customer_id']			: $data['mb_transaction_id'])  
+				 ->set('parent_txn', 		isset($data['mb_transaction_id']) ? $data['mb_transaction_id'] : 0)
 				 ->set('amount', 			0)
 				 ->set('payment_status',  	Rb_EcommerceResponse::FAIL)
 				 ->set('params', 			$data);

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Mes</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+	<help>
+    	<![CDATA[
+		1. Minimum Amount should be positive(+).<br/><br/>
+		2. In Transaction screen amount not shown on <b>Payment completed</b> status beacause amount not returned in Mes Response.<br>
+		You need to check amount in your <b>Mes Merchant Account</b>.  
+		]]>
+   	 </help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="profile_id" 	
+					default="" 		
+					type="text" 	
+					label="Profile Id"  
+					description="Profile Id" 
+					required="true" />
+				
+			<field	name="profile_key" 	
+					default="" 		
+					type="text" 	
+					label="Profile Key"  
+					description="Profile Key" 
+					required="true" />
+		</fieldset>
+	</fields>
+</config>

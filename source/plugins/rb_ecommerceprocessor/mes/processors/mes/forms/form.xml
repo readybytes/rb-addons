@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+<fields name="payment_data">
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_mes_form_mes_fieldset_card_details">
+	<field 		name="card_number"
+				id="rb_ecommerce_processor_mes_card_number"
+				type="text"
+				default=""
+				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CARD_NUMBER_LABEL"
+				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CARD_NUMBER_DESC"
+				required="true"/>
+		
+	<field 		name="exp_month" 
+				id="rb_ecommerce_processor_mes_exp_month"
+				type="rb_.month"
+				default=""
+				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_EXPIRATION_MONTH_LABEL"
+				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_EXPIRATION_MONTH_DESC"
+				required="true"/>
+		
+	<field 		name="exp_year" 
+				id="rb_ecommerce_processor_mes_exp_year"
+				type="rb_.year"
+				from="now"
+				for="20"
+				default=""
+				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_STRIPE_EXPIRATION_YEAR_LABEL"
+				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_STRIPE_EXPIRATION_YEAR_DESC"
+				required="true"/>				
+				
+	<field 		name="cvv2" 
+				id="rb_ecommerce_processor_mes_cvv2"
+				type="text"
+				default=""
+				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CVN_NUMBER_LABEL"
+				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CVN_NUMBER_DESC"
+				required="true"/>
+
+	<field 		name="transaction_amount" 
+				id="rb_ecommerce_processor_mes_transaction_amount"
+				type="hidden"
+				default=""/>
+
+	<field 		name="transaction_type" 
+				id="rb_ecommerce_processor_mes_transaction_type"
+				type="hidden"
+				default="D"/>
+
+	<field 		name="invoice_number" 
+				id="rb_ecommerce_processor_mes_invoice_number"
+				type="hidden"
+				default=""/>
+
+	</fieldset>
+
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="plg_rb_ecommerceprocessor_mes_form_mes_fieldset_personal_details">
+		<field 	name="cardholder_street_address"
+				id="rb_ecommerce_processor_mes_cardholder_street_address"
+				type="text"
+				default=""
+				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CARDHOLDER_STREET_ADDRESS_LABEL"
+				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CARDHOLDER_STREET_ADDRESS_DESC"
+				required="true"/>
+
+		<field 	name="cardholder_zip"
+				id="rb_ecommerce_processor_mes_cardholder_zip"
+				type="text"
+				default=""
+				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CARDHOLDER_ZIP_LABEL"
+				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CARDHOLDER_ZIP_DESC"
+				required="true"/>
+	</fieldset>
+</fields>
+</form>
