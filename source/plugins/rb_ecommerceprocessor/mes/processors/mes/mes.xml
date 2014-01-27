@@ -7,9 +7,8 @@
     <tags></tags>
 	<help>
     	<![CDATA[
-		1. Minimum Amount should be positive(+).<br/><br/>
-		2. In Transaction screen amount not shown on <b>Payment completed</b> status beacause amount not returned in Mes Response.<br>
-		You need to check amount in your <b>Mes Merchant Account</b>.  
+		1. Mes support external refund.<br/><br/>
+		2. At Transaction screen, amount is not shown in <b>Payment Completed</b> status beacause amount is not returned by Mes gateway in response.So, you need to check amount in your Mes Merchant Account.</b>.  
 		]]>
    	 </help>
 

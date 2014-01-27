@@ -78,8 +78,6 @@ class Rb_EcommerceProcessorEway extends Rb_EcommerceProcessor
 		else {
 			return $this->__request_payment_create_transaction($object, $config);	
 		}
-		
-		return $response;
 	}
 	
 	protected function _request_refund(Rb_EcommerceRequest $request)
@@ -219,7 +217,6 @@ class Rb_EcommerceProcessorEway extends Rb_EcommerceProcessor
 			return $this->_process_error_response($eway_response);
 		}
 		
-		
 	}
     
 	private function __request_payment_create_transaction($object, $config, $url = '')
@@ -289,7 +286,7 @@ class Rb_EcommerceProcessorEway extends Rb_EcommerceProcessor
 		$response = new Rb_EcommerceResponse();
 		
 		$response->set('txn_id', 			isset($eway_response->ewayTrxnNumber) ? $eway_response->ewayTrxnNumber : 0)
-				 ->set('subscr_id', 		0)  
+				 ->set('subscr_id', 		isset($eway_response->ewayTrxnNumber) ? $eway_response->ewayTrxnNumber : 0)  
 				 ->set('parent_txn', 		0)
 				 ->set('amount', 	 		0)
 				 ->set('payment_status', 	Rb_EcommerceResponse::NOTIFICATION)	
@@ -326,8 +323,8 @@ class Rb_EcommerceProcessorEway extends Rb_EcommerceProcessor
 				 	 ->set('payment_status',  	Rb_EcommerceResponse::PAYMENT_REFUND)	
 				 	 ->set('message',        	'PLG_RB_ECOMMERCEPROCESSOR_EWAY_TRANSACTION_EWAY_PAYMENT_REFUNDED')		 
 	 	 			 ->set('params',         	$eway_response)
-	 	 			 ->set('parent_txn', 		0)
-					 ->set('txn_id', 			$eway_response['ewayTrxnNumber']);
+	 	 			 ->set('parent_txn', 		isset($eway_response['ewayTrxnNumber']) ? $eway_response['ewayTrxnNumber'] 			 : 0)
+					 ->set('txn_id', 			isset($eway_response['ewayTrxnNumber']) ? $eway_response['ewayTrxnNumber'].'_refund' : 'refund');
 		}
 		
 		return $response;

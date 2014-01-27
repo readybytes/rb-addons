@@ -22,5 +22,9 @@
 	
 	<config>
 	</config>
+
+<alias>rb-moneybookers</alias>
+<version_number>0.9.0</version_number>
+<version_name>MoneyBookers 0.9</version_name>
 </extension>
 

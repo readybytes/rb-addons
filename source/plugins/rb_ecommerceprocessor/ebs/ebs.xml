@@ -3,10 +3,10 @@
     <name>plg_rb_ecommerceprocessor_ebs</name>
     <version>0.9.1</version>
     <creationDate>Jul 2013</creationDate>
-    <author>Team PayPlans</author>
-    <authorEmail>team@readybytes.in</authorEmail>
-    <authorUrl>http://www.payplans.com</authorUrl>
-    <copyright>2009-13 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <author>Team PayInvoice</author>
+    <authorEmail>support+payinvoice@readybytes.in</authorEmail>
+    <authorUrl>http://www.readybytes.net/payinvoice.html</authorUrl>
+    <copyright>2009-14 Ready Bytes Software Labs Pvt. Ltd.</copyright>
     <license>GNU General Public License v2</license>
     <description>PLG_RB_ECOMMERCEPROCESSOR_EBS_DESCRIPTION</description>
 	<files>
@@ -22,5 +22,9 @@
 	
 	<config>
 	</config>
+
+<alias>rb-ebs</alias>
+<version_number>0.9.1</version_number>
+<version_name>EBS 0.9</version_name>
 </extension>
 

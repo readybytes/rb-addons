@@ -8,7 +8,6 @@
     <help>
     <![CDATA[
 		For testing MoneyBookers Payment gateway, you need to create two accounts at MoneyBookers site and request MoneyBookers to transaform those accounts as testing accounts. <br/><br/>
-		<b>It does not support Trial Subscription.</b>
 	]]>
 	</help>
 

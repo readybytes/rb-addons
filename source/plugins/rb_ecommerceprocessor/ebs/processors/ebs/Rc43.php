@@ -41,6 +41,10 @@
 * @package Crypt
 * @author Dave Mertens <dmertens@zyprexia.com>
  */
+
+// no direct access
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
 class RBCrypt_RC4 {
 
     /**
