@@ -8,7 +8,7 @@
     <authorUrl>http://www.readybytes.net/payinvoice.html</authorUrl>
     <copyright>2009-14 Ready Bytes Software Labs Pvt. Ltd.</copyright>
     <license>GNU General Public License v2</license>
-    <description>PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_DESCRIPTION</description>
+    <description>PLG_RB_ECOMMERCEPROCESSOR_SKRILL_DESCRIPTION</description>
 	<files>
 		<filename plugin="skrill">skrill.php</filename>
 		<filename>index.html</filename>
