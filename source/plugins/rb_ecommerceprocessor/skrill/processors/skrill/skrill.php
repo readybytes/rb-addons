@@ -4,7 +4,7 @@
 * @copyright	Copyright (C) 2009 - 2014 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
 * @package 		Joomla.Plugin
-* @subpackage	Rb_EcommerceProcessor.Moneybookers
+* @subpackage	Rb_EcommerceProcessor.Skrill
 * @contact		support+payinvoice@readybytes.in
 */
 
@@ -12,10 +12,10 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 /** 
- * Moneybookers Processor 
+ * Skrill Processor 
  * @author Manisha Ranawat
  */
-class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
+class Rb_EcommerceProcessorSkrill extends Rb_EcommerceProcessor
 {
 	protected $_location = __FILE__;
 	
@@ -26,18 +26,18 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 	private $_supportedLanguages  = array('da','de','en','fo','fr','kl','it','no','nl','pl','ru','sv');
 	
 	// MoneyBookers transaction states
-	private $txnStates	 = array('MONEYBOOKERS_TRANSACTION_STATE_PROCESSED'		=> 2, 
-						       	 'MONEYBOOKERS_TRANSACTION_STATE_PENDING'		=> 0,
-							   	 'MONEYBOOKERS_TRANSACTION_STATE_CANCELLED'		=> -1,
-							   	 'MONEYBOOKERS_TRANSACTION_STATE_FAILED'		=> -2,
-							   	 'MONEYBOOKERS_TRANSACTION_STATE_CHARGEBACK'	=> -3 );
+	private $txnStates	 = array('SKRILL_TRANSACTION_STATE_PROCESSED'		=> 2, 
+						       	 'SKRILL_TRANSACTION_STATE_PENDING'		=> 0,
+							   	 'SKRILL_TRANSACTION_STATE_CANCELLED'		=> -1,
+							   	 'SKRILL_TRANSACTION_STATE_FAILED'		=> -2,
+							   	 'SKRILL_TRANSACTION_STATE_CHARGEBACK'	=> -3 );
 
 	//moneybookers transaction states
-	const MONEYBOOKERS_TRANSACTION_STATE_PROCESSED	 = 2;
-	const MONEYBOOKERS_TRANSACTION_STATE_PENDING	 = 0;
-	const MONEYBOOKERS_TRANSACTION_STATE_CANCELLED	 = -1;
-	const MONEYBOOKERS_TRANSACTION_STATE_FAILED	 	 = -2;
-	const MONEYBOOKERS_TRANSACTION_STATE_CHARGEBACK	 = -3;
+	const SKRILL_TRANSACTION_STATE_PROCESSED	 = 2;
+	const SKRILL_TRANSACTION_STATE_PENDING	 = 0;
+	const SKRILL_TRANSACTION_STATE_CANCELLED	 = -1;
+	const SKRILL_TRANSACTION_STATE_FAILED	 	 = -2;
+	const SKRILL_TRANSACTION_STATE_CHARGEBACK	 = -3;
 	
 	
 	public function get_invoice_number($response)
@@ -93,7 +93,7 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 
 		}
 		else {
-			$form = JForm::getInstance('rb_ecommerce.processor.moneybookers', dirname(__FILE__).'/forms/form.xml');
+			$form = JForm::getInstance('rb_ecommerce.processor.skrill', dirname(__FILE__).'/forms/form.xml');
 		}
 		
 		$form->bind($form_data);
@@ -122,7 +122,7 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 			$mb_transaction_id 	= $object->post_data->txn_id;
 			$amount				= number_format($payment_data->total, 2);
 					
-			$url 				= "https:www.moneybookers.com/app/payment.pl";
+			$url 				= "https://www.moneybookers.com/app/payment.pl";
 			$post_data			= "action=$action&email=$email&password=$password&mb_transaction_id=$mb_transaction_id&amount=$amount";
 			
 			$curl				= new JHttpTransportCurl(new Rb_Registry());
@@ -169,15 +169,15 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 				 ->set('parent_txn', 		0)
 				 ->set('amount', 	 		0)
 				 ->set('payment_status', 	Rb_EcommerceResponse::FAIL)	
-				 ->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_MONEYBOOKERS_NOTIFICATION')		 
+				 ->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_SKRILL_NOTIFICATION')		 
 		 		 ->set('params', 			$data);
 			
-		if(in_array($data['status'], array(self::MONEYBOOKERS_TRANSACTION_STATE_PROCESSED, self::MONEYBOOKERS_TRANSACTION_STATE_CHARGEBACK))){	
+		if(in_array($data['status'], array(self::SKRILL_TRANSACTION_STATE_PROCESSED, self::SKRILL_TRANSACTION_STATE_CHARGEBACK))){	
 			$this->_process_payment_notification($response, $data);
 		}
 		else {
 			if($data['status']){
-				$response->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_'.array_search($data['status'], $this->txnStates));
+				$response->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_'.array_search($data['status'], $this->txnStates));
 			}		 
 		}
 		return $response;
@@ -192,23 +192,23 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 		$md5string		= JString::strtoupper( md5($md5Content) );
 		
 		if($this->getConfig()->merchant_email !== JString::strtolower($data['pay_to_email'])){
-			$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_MONEYBOOKERS_INVALID_MERCHANT');
+			$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_SKRILL_INVALID_MERCHANT');
 		}
 		
-		elseif((!in_array($data['status'], array(self::MONEYBOOKERS_TRANSACTION_STATE_PROCESSED, self::MONEYBOOKERS_TRANSACTION_STATE_CHARGEBACK)) ) || $data['md5sig'] != $md5string){
+		elseif((!in_array($data['status'], array(self::SKRILL_TRANSACTION_STATE_PROCESSED, self::SKRILL_TRANSACTION_STATE_CHARGEBACK)) ) || $data['md5sig'] != $md5string){
 			$response->set('payment_status', 	Rb_EcommerceResponse::PAYMENT_FAIL);
-			$response->set('message',			'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_MONEYBOOKERS_PAYMENT_FAILED');
+			$response->set('message',			'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_SKRILL_PAYMENT_FAILED');
 		}
 		
-		elseif( self::MONEYBOOKERS_TRANSACTION_STATE_FAILED == $data['status']){
+		elseif( self::SKRILL_TRANSACTION_STATE_FAILED == $data['status']){
 			if(isset($data['failed_reason_code'])){
-				$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_MONEYBOOKERS_PAYMENT_FAILED_REASON_CODE_'.$data['failed_reason_code']);				
+				$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_SKRILL_PAYMENT_FAILED_REASON_CODE_'.$data['failed_reason_code']);				
 			}
 		}
 		else {
 			$response->set('amount', 		 $data['amount'])
 				 	 ->set('payment_status', Rb_EcommerceResponse::PAYMENT_COMPLETE)
-				 	 ->set('message',  		 'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_MONEYBOOKERS_PAYMENT_COMPLETED');
+				 	 ->set('message',  		 'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_SKRILL_PAYMENT_COMPLETED');
 		}
 		
 		return $response;
@@ -227,15 +227,15 @@ class Rb_EcommerceProcessorMoneybookers extends Rb_EcommerceProcessor
 				 ->set('params', 			$data);
 				 
 		if($mb_response->refund_transaction){
-			if($data['status'] == self::MONEYBOOKERS_TRANSACTION_STATE_PROCESSED)
+			if($data['status'] == self::SKRILL_TRANSACTION_STATE_PROCESSED)
 			{
 				$response->set('amount',          	$data['mb_amount'])
 				 	 	 ->set('payment_status',  	Rb_EcommerceResponse::PAYMENT_REFUND)	
-				 	 	 ->set('message',        	'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_MONEYBOOKERS_PAYMENT_REFUNDED');
+				 	 	 ->set('message',        	'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_SKRILL_PAYMENT_REFUNDED');
 		 	}
 		}
 	 	else {
-		 	$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_TRANSACTION_MONEYBOOKERS_AUTHORISATION_FAILED');
+		 	$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_SKRILL_TRANSACTION_SKRILL_AUTHORISATION_FAILED');
 		 }
 	}
 	

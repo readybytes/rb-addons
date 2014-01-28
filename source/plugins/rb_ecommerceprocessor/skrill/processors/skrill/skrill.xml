@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Skrill</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+    <help>
+    <![CDATA[
+		For testing Skrill Payment gateway, you need to create two accounts at Skrill site and request Skrill to transaform those accounts as testing accounts. <br/><br/>
+	]]>
+	</help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="merchant_email" 			
+					type="text" 
+					default="" 
+					label="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_MERCHANT_EMAIL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_MERCHANT_EMAIL_DESC" 
+					class="required validate-email" />
+				
+			<field	name="merchant_secret_word" 	
+					type="text" 	
+					default="" 
+					label="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_MRECHANT_SECRET_WORD_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_MERCHANT_SECRET_WORD_DESC" 
+					class="required" />	
+					
+			<field	name="password" 	
+					type="text" 	
+					default="" 
+					label="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_PASSWORD_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_PASSWORD_DESC" 
+					class="required" />	
+					
+			<field	name="notify_url" 	
+					type="text" 	
+					default="" 
+					label="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_NOTIFY_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_NOTIFY_URL_DESC" 
+					class="required" />	
+					
+			<field	name="return_url" 	
+					type="text" 	
+					default="" 
+					label="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_RETURN_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_RETURN_URL_DESC" 
+					class="required" />	
+					
+			<field	name="cancel_url" 	
+					type="text" 	
+					default="" 
+					label="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_CANCEL_URL_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_SKRILL_PARAMS_SKRILL_CANCEL_URL_DESC" 
+					class="required" />						
+		</fieldset>
+	</fields>
+</config>

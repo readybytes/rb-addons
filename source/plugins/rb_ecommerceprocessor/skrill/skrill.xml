@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
-    <name>plg_rb_ecommerceprocessor_moneybookers</name>
+    <name>plg_rb_ecommerceprocessor_skrill</name>
     <version>0.9.0</version>
     <creationDate>Jan 2014</creationDate>
     <author>Team PayInvoice</author>
@@ -10,21 +10,21 @@
     <license>GNU General Public License v2</license>
     <description>PLG_RB_ECOMMERCEPROCESSOR_MONEYBOOKERS_DESCRIPTION</description>
 	<files>
-		<filename plugin="moneybookers">moneybookers.php</filename>
+		<filename plugin="skrill">skrill.php</filename>
 		<filename>index.html</filename>
 		<folder>processors</folder>
 	</files>
 	
 	<languages>
-		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_moneybookers.ini</language>
-		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_moneybookers.sys.ini</language>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_skrill.ini</language>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_skrill.sys.ini</language>
 	</languages>
 	
 	<config>
 	</config>
 
-<alias>rb-moneybookers</alias>
+<alias>rb-skrill</alias>
 <version_number>0.9.0</version_number>
-<version_name>MoneyBookers 0.9</version_name>
+<version_name>Skrill 0.9</version_name>
 </extension>
 

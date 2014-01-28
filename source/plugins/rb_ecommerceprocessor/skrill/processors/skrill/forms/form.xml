@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
-	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_moneybookers_form_standard">
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_skrill_form_standard">
 		<field 	name="pay_to_email"
-				id="rb_ecommerce_processor_moneybookers_pay_to_email"
+				id="rb_ecommerce_processor_skrill_pay_to_email"
 				type="hidden"
 				default="" />
 				 
 		<field 	name="language"
-				id="rb_ecommerce_processor_moneybookers_language"
+				id="rb_ecommerce_processor_skrill_language"
 				type="hidden"
 				default="" />
 		
 		<field 	name="amount"
-				id="rb_ecommerce_processor_moneybookers_amount"
+				id="rb_ecommerce_processor_skrill_amount"
 				type="hidden"
 				default="" />
 				
 		<field 	name="currency"
-				id="rb_ecommerce_processor_moneybookers_currency"
+				id="rb_ecommerce_processor_skrill_currency"
 				type="hidden"
 				default="" />
 				
 		<field 	name="status_url"
-				id="rb_ecommerce_processor_moneybookers_status_url"
+				id="rb_ecommerce_processor_skrill_status_url"
 				type="hidden"
 				default="" />
 				
 		<field 	name="recipient_description"
-				id="rb_ecommerce_processor_moneybookers_recipient_description"
+				id="rb_ecommerce_processor_skrill_recipient_description"
 				type="hidden"
 				default="" />
 				
 		<field 	name="return_url"
-				id="rb_ecommerce_processor_moneybookers_return_url"
+				id="rb_ecommerce_processor_skrill_return_url"
 				type="hidden"
 				default="" />
 				
 		<field 	name="cancel_url"
-				id="rb_ecommerce_processor_moneybookers_cancel_url"
+				id="rb_ecommerce_processor_skrill_cancel_url"
 				type="hidden"
 				default="" />
 				
 		<field 	name="transaction_id"
-				id="rb_ecommerce_processor_moneybookers_transaction_id"
+				id="rb_ecommerce_processor_skrill_transaction_id"
 				type="hidden"
 				default="" />
 	
 				
 		<field 	name="detail1_description"
-				id="rb_ecommerce_processor_moneybookers_detail1_description"
+				id="rb_ecommerce_processor_skrill_detail1_description"
 				type="hidden"
 				default="Order" />
 				
 		<field 	name="detail1_text"
-				id="rb_ecommerce_processor_moneybookers_detail1_text"
+				id="rb_ecommerce_processor_skrill_detail1_text"
 				type="hidden"
 				default="" />
 				
 		<field 	name="status_url2"
-				id="rb_ecommerce_processor_moneybookers_status_url2"
+				id="rb_ecommerce_processor_skrill_status_url2"
 				type="hidden"
 				default="" />
 	
