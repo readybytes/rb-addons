@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
+	<name>paypalpro</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+	<help>
+    	<![CDATA[
+        	Set the IPN Notification Url in your paypal pro account also.<br/><br/>
+	  	    <b>Set Notify Url as</b><br/>
+		     http://yoursite.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=notify&amp;processor=paypalpro
+	  	 ]]>	
+   	 </help>
+
 	<fields name="processor_config">
 		<fieldset name="parameters">        		
 			<field 	name="merchant_email" 
