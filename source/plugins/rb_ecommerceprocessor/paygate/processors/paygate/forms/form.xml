@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="plg_rb_ecommerceprocessor_paygate_form_paygate_fieldset_card_details">
+		<field 	name="PAYGATE_ID"
+				id="rb_ecommerce_processor_paygate_paygate_id"
+				type="hidden"
+				default=""/>
+		
+		<field 	name="REFERENCE" 
+				id="rb_ecommerce_processor_paygate_reference"
+				type="hidden"
+				default=""/>
+				
+		<field 	name="AMOUNT" 
+				id="rb_ecommerce_processor_paygate_amount"
+				type="hidden"
+				default=""/>
+			
+		<field 	name="CURRENCY" 
+				id="rb_ecommerce_processor_paygate_currency"
+				type="hidden"
+				default=""/>
+						
+		<field 	name="RETURN_URL"
+				id="rb_ecommerce_processor_paygate_return_url"
+				type="hidden"
+				default=""/>
+				
+		<field 	name="TRANSACTION_DATE" 
+				id="rb_ecommerce_processor_paygate_transaction_date"
+				type="hidden"
+				default=""/>
+				
+		<field 	name="CHECKSUM" 
+				id="rb_ecommerce_processor_paygate_checksum"
+				type="hidden"
+				default=""/>
+		
+	</fieldset>	
+</form>

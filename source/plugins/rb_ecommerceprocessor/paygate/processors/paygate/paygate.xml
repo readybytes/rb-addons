@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Paygate</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+	<help>
+    	<![CDATA[
+		1. Paygate supports only South African Rand (ZAR) currency.<br>
+		]]>
+   	 </help>
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field 	name="paygate_id" 
+					type="text"
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_PAYGATE_ID_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_PAYGATE_ID_DESC"					 
+					required="true"/>
+       		
+       		<field 	name="encryption_key" 
+					type="text"
+					filter="text"
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_ENCRYPTION_KEY_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_ENCRYPTION_KEY_DESC"/>
+				
+			<field 	name="return_url" 
+					type="url"
+					filter="url"
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_RETURN_URL_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_RETURN_URL_DESC"/>
+					
+		</fieldset>
+	</fields>
+</config>
