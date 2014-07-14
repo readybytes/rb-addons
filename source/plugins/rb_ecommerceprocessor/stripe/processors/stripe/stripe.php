@@ -91,21 +91,32 @@ class Rb_EcommerceProcessorStripe extends Rb_EcommerceProcessor
 	}
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
-	{			
-		$form = JForm::getInstance('rb_ecommerce.processor.stripe', dirname(__FILE__).'/forms/form.xml');
+	{
+		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
 		
 		$response 					= new stdClass();
-		$response->type 			= 'form';
 		$response->data 			= new stdClass();
-		$response->data->post_url 	= false;
-		$response->data->form 		= $form;
+		$response->data->post_url 	= $this->getPostUrl();
+		
+		switch ($build_type) 
+		{
+			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
+				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+				$response->data->form	=	JLayoutHelper::render('stripe', null,  'plugins/rb_ecommerceprocessor/stripe/processors/stripe/layouts');
+				break;
+				
+			case Rb_EcommerceRequest::BUILD_TYPE_XML :
+			default:
+				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
+				$response->data->form	= JForm::getInstance('rb_ecommerce.processor.stripe', dirname(__FILE__).'/forms/form.xml');
+		}
+		
 		return $response;
 	}
 	
 	protected function getPostUrl()
 	{
-		$subdomain  = $this->getConfig()->sandbox  ? 'apitest' : 'api';
-        return 'https://' . $subdomain . '.authorize.net/xml/v1/request.api';		
+        return false;
 	}	
 	
 	public function process($stripe_response)

@@ -115,22 +115,29 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 		$form_data['currency_code'] = $payment_data->currency;
 		
 		$form_path = dirname(__FILE__).'/forms/';
-		if($payment_data->expiration_type == RB_ECOMMERCE_EXPIRATION_TYPE_RECURRING){			
-			$form = JForm::getInstance('rb_ecommerce.processor.paypal', $form_path.'recurring.xml');
+		
+		$form_file_name 			=	'fixed';
+		$form_data['is_trial_one'] 	= 	false;
+		$form_data['is_trial_two']	=	false;
+		
+		if ($payment_data->expiration_type == RB_ECOMMERCE_EXPIRATION_TYPE_RECURRING) {			
+			$form_file_name = 'recurring';
 			
 	   		$all_prices = $payment_data->price;
 	   		$regular_index = 0;
 	   		// Trial 1
 	   		if(count($all_prices) >= 2){
-	   			$form->loadFile($form_path.'trial1.xml', false, '//config');	   				   			
+	   			$form_data['is_trial_one']	=	true;
+ 				   			
 	   			$form_data['a1'] = number_format($all_prices[0], 2, '.', '');	   			
 	   			list($form_data['p1'], $form_data['t1']) = $this->__get_recurrence_time($payment_data->time[0]);
 	   			$regular_index = 1;
 	   		}
 	   		
 	   		// trial 2
-	   		if(count($all_prices) >= 3){	   			
-	   			$form->loadFile($form_path.'trial2.xml', false, '//config');
+	   		if(count($all_prices) >= 3){
+	   			$form_data['is_trial_two']	=	true;
+
 	   			$form_data['a2'] = number_format($all_prices[1], 2, '.', '');
 	   			list($form_data['p2'], $form_data['t2']) = $this->__get_recurrence_time($payment_data->time[1]);
 	   			$regular_index = 2;
@@ -147,10 +154,33 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 			$form_data['amount'] 		= number_format($payment_data->total, 2, '.', '');
 			$form_data['cmd'] 			= '_xclick';			
 			
-			$form = JForm::getInstance('rb_ecommerce.processor.paypal', $form_path.'fixed.xml');
 		}		
 		
-		$form->bind($form_data);
+		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
+
+		switch ($build_type) 
+		{
+			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
+				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+				$form	=	JLayoutHelper::render('paypal_'.$form_file_name , $form_data,  'plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts');
+				break;
+
+			case Rb_EcommerceRequest::BUILD_TYPE_XML :
+			default:
+				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
+				$form = JForm::getInstance('rb_ecommerce.processor.paypal', $form_path."$form_file_name.xml");
+
+				if ($form_data['is_trial_one']) {
+					$form->loadFile($form_path.'trial1.xml', false, '//config');
+				}
+
+				if ($form_data['is_trial_two']) {
+					$form->loadFile($form_path.'trial2.xml', false, '//config');
+				}
+
+				// bind existing data
+				$form->bind($form_data);
+		}
 		
 		$response 					= new stdClass();		
 		$response->data 			= new stdClass();
