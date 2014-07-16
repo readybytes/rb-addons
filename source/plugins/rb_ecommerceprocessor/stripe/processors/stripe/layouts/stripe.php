@@ -35,20 +35,20 @@ $year = date('Y');
 			      <span class="required-label"><?php echo JText::_('Expiration (MM/YYYY)');?></span>
 			     </label>
 
-	            <select name="payment_data[expiration_month]" class="input-mini" required="true">
+	            <select name="payment_data[expiration_month]" class="input-small" required="true">
 <!--						<option value="" selected="selected">MM </option>-->
-						<option value="01" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_JANUARY'); ?> </option>
-						<option value="02" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FEBRUARY'); ?></option>
-						<option value="03" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_MARCH'); ?></option>
-						<option value="04" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_APRIL'); ?></option>
-						<option value="05" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_MAY'); ?></option>
-						<option value="06" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_JUNE'); ?></option>
-						<option value="07" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_JULY'); ?></option>
-						<option value="08" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_AUGUST'); ?></option>
-						<option value="09" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_SEPTEMBER'); ?></option>
-						<option value="10" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_OCTOBER'); ?></option>
-						<option value="11" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_NOVEMBER'); ?></option>
-						<option value="12" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_DECEMBER'); ?></option>
+						<option value="01" ><?php echo JText::_('JANUARY'); ?> </option>
+						<option value="02" ><?php echo JText::_('FEBRUARY'); ?></option>
+						<option value="03" ><?php echo JText::_('MARCH'); ?></option>
+						<option value="04" ><?php echo JText::_('APRIL'); ?></option>
+						<option value="05" ><?php echo JText::_('MAY'); ?></option>
+						<option value="06" ><?php echo JText::_('JUNE'); ?></option>
+						<option value="07" ><?php echo JText::_('JULY'); ?></option>
+						<option value="08" ><?php echo JText::_('AUGUST'); ?></option>
+						<option value="09" ><?php echo JText::_('SEPTEMBER'); ?></option>
+						<option value="10" ><?php echo JText::_('OCTOBER'); ?></option>
+						<option value="11" ><?php echo JText::_('NOVEMBER'); ?></option>
+						<option value="12" ><?php echo JText::_('DECEMBER'); ?></option>
 					</select>
 					
 		    	<span> / </span>
