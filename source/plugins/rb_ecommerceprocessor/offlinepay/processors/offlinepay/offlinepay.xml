@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>OfflinePay</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+	<help></help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="bank_name"
+					type="text" 
+					default="" 
+					class="required"
+					label="PLG_RB_ECOMMERCEPROCESSOR_OFFLINEPAY_PARAMS_OFFLINEPAY_BANK_NAME_LABEL" 
+					description="PLG_RB_ECOMMERCEPROCESSOR_OFFLINEPAY_PARAMS_OFFLINEPAY_BANK_NAME_DESC" />
+				
+			<field	name="account_number"
+					type="text" 
+					default="" 
+					class="required"
+					label="PLG_RB_ECOMMERCEPROCESSOR_OFFLINEPAY_PARAMS_OFFLINEPAY_ACCOUNT_NUMBER_LABEL" 
+					description="PLG_RB_ECOMMERCEPROCESSOR_OFFLINEPAY_PARAMS_OFFLINEPAY_ACCOUNT_NUMBER_DESC" />
+							
+		</fieldset>
+	</fields>
+</config>
