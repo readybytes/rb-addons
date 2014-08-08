@@ -25,17 +25,17 @@
 				type="text" 
 				id="rb_ecommerce_processor_offlinepay_bankname"
 				default="" 
+				readonly="true" 
 				label="PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_BANK_NAME_LABEL" 
-				description="PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_BANK_NAME_DESC"
-				class="readonly" />
+				description="PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_BANK_NAME_DESC" />
 				
 		<field	name="account_number"
 				type="text" 
 				id="rb_ecommerce_processor_offlinepay_account_number"
 				default="" 
+				readonly="true"
 				label="PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_ACCOUNT_NUMBER_LABEL" 
-				description="PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_ACCOUNT_NUMBER_DESC"
-				class="readonly" />
+				description="PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_ACCOUNT_NUMBER_DESC" />
 				
 		<field 	name="invoice_number"
 			  	type="hidden"

@@ -148,7 +148,8 @@ class Rb_EcommerceProcessorOfflinepay extends Rb_EcommerceProcessor
 	protected function _process_refund_response($offline_response)
 	{
 		$response = new Rb_EcommerceResponse();
-		
+		unset($offline_response->request);
+
 		$response->set('txn_id', 			$offline_response->txn_id.'_refund')
  				 ->set('subscr_id', 		0)  
 				 ->set('parent_txn', 		$offline_response->txn_id)
