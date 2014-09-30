@@ -24,7 +24,7 @@ $year = date('Y');
 			<div class="span12">
 			    
 			    <label>
-			      <span class="required-label"><?php echo JText::_('Card Number');?></span>
+			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_CARD_NUMBER_LABEL');?></span>
 			    </label>
 		        
 		        <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx" size="20" data-input-type="number" class="input-xlarge" name="payment_data[card_number]" required="true" />
@@ -32,7 +32,7 @@ $year = date('Y');
 	
 	        <div class="span12">
 			    <label>
-			      <span class="required-label"><?php echo JText::_('Expiration (MM/YYYY)');?></span>
+			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_MONTH_LABEL').'/'.JText::_("PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_YEAR_LABEL");?></span>
 			     </label>
 
 	            <select name="payment_data[expiration_month]" class="input-small" required="true">
@@ -63,7 +63,7 @@ $year = date('Y');
 		
 			<div class="span12">
 				<label>
-			      <span class="required-label"> <?php echo JText::_('Security Code');?></span>
+			      <span class="required-label"> <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_CARD_CODE_LABEL');?></span>
 			    </label>
 		        
 		        <div class="input-append">
