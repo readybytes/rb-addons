@@ -36,23 +36,37 @@ class Rb_EcommerceProcessorOfflinepay extends Rb_EcommerceProcessor
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{
-		$form = JForm::getInstance('rb_ecommerce.processor.offlinepay', dirname(__FILE__).'/forms/form.xml');
 
-		$object	 										= $request->toObject();		
-		$user_data										= $object->user_data;
-		$payment_data									= $object->payment_data;
+		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
+
+		$response 					= new stdClass();
+		$response->data 			= new stdClass();
+		$response->data->post_url 	= false;
+
+		$object	 		= $request->toObject();		
+		$user_data		= $object->user_data;
+		$payment_data	= $object->payment_data;
+
+		$binddata		= Array();
 		
 		$binddata['payment_data']['bank_name'] 			= $this->getConfig()->bank_name;
 		$binddata['payment_data']['account_number']		= $this->getConfig()->account_number;
 		$binddata['payment_data']['invoice_number']		= $payment_data->invoice_number;
 		$binddata['payment_data']['amount']				= $payment_data->total;
-		$form->bind($binddata); 
 		
-		$response 										= new stdClass();
-		$response->type 								= 'form';
-		$response->data 								= new stdClass();
-		$response->data->post_url 						= false;
-		$response->data->form 							= $form;
+		switch ($build_type) 
+		{
+			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
+				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+				$response->data->form	=	JLayoutHelper::render('offlinepay', $binddata,  'plugins/rb_ecommerceprocessor/offlinepay/processors/offlinepay/layouts');
+				break;
+				
+			case Rb_EcommerceRequest::BUILD_TYPE_XML :
+			default:
+				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
+				$response->data->form	= JForm::getInstance('rb_ecommerce.processor.offline', dirname(__FILE__).'/forms/form.xml');
+				$response->data->form->bind($binddata);
+		}
 		
 		return $response;
 	}

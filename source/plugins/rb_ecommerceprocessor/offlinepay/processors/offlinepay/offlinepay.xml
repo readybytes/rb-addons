@@ -8,7 +8,9 @@
 	<help></help>
 
 	<fields name="processor_config">
+		
 		<fieldset name="parameters">
+		
 			<field	name="bank_name"
 					type="text" 
 					default="" 
@@ -22,7 +24,14 @@
 					class="required"
 					label="PLG_RB_ECOMMERCEPROCESSOR_OFFLINEPAY_PARAMS_OFFLINEPAY_ACCOUNT_NUMBER_LABEL" 
 					description="PLG_RB_ECOMMERCEPROCESSOR_OFFLINEPAY_PARAMS_OFFLINEPAY_ACCOUNT_NUMBER_DESC" />
+					
+			<field	name="require_admin_approval"
+					type="hidden" 
+					default="true" 
+					class="required"
+					description="Process offline from backend allowed or not" 	/>
 							
 		</fieldset>
+		
 	</fields>
 </config>
