@@ -153,7 +153,7 @@ class Rb_EcommerceProcessorPayfast  extends Rb_EcommerceProcessor
         
         // find the required data from post-data, and match with payment and check reciever email must be same.
         if($this->getConfig()->merchant_id != $data['merchant_id'] && !$this->getConfig()->sandbox) {
-            $errors[] = Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_INVALID_PAYFAST_MERCHANT_ID');
+            $errors[] = JText::_('PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_INVALID_PAYFAST_MERCHANT_ID');
         }
         return $errors;
     }

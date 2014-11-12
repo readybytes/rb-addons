@@ -199,7 +199,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 		
 		if(empty($pro_response->data)){
 			$response->set('payment_status', Rb_EcommerceResponse::FAIL);					
-			$response->set('message', Rb_Text::_('PLG_XIPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_MESSAGE_FAILED'));
+			$response->set('message', JText::_('PLG_XIPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_MESSAGE_FAILED'));
 			return $response;					
 		}	
 		
@@ -214,7 +214,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 			}
 			else{
 				$response->set('payment_status', Rb_EcommerceResponse::NOTIFICATION);
-				$response->set('message', Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_NOTIFICATION'));	
+				$response->set('message', JText::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_NOTIFICATION'));	
 			}
 
 			$response->set('params', $parsed_response);
@@ -310,7 +310,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 		}
 	
 		if((0 == sizeof($httpParsedResponseAr)) || !array_key_exists('ACK', $httpParsedResponseAr)) {
-			$response->set('message', Rb_Text::_('PLG_XIPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_MESSAGE_FAILED'));
+			$response->set('message', JText::_('PLG_XIPROCESSOR_PAYPALPRO_PROCESSOR_PAYPALPRO_RESPONSE_MESSAGE_FAILED'));
 			return false;
 		}
 		

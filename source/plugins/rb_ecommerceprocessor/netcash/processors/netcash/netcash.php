@@ -89,12 +89,12 @@ class Rb_EcommerceProcessorNetcash extends Rb_EcommerceProcessor
 		if(isset($data['Reason]'])){
 			$msg = $data['Reason'];
 		}elseif($data['TransactionAccepted'] == false){
-			$msg = Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_NETCASH_TRANSACTION_NETCASH_TRANSACTION_NOT_ACCEPTED');
+			$msg = JText::_('PLG_RB_ECOMMERCEPROCESSOR_NETCASH_TRANSACTION_NETCASH_TRANSACTION_NOT_ACCEPTED');
 		}
 		else{
 			$response->set('amount', 		$data['amount'])					 
 					 ->set('payment_status', Rb_EcommerceResponse::PAYMENT_COMPLETE);
-			$msg = Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_NETCASH_TRANSACTION_NETCASH_TRANSACTION_ACCEPTED');
+			$msg = JText::_('PLG_RB_ECOMMERCEPROCESSOR_NETCASH_TRANSACTION_NETCASH_TRANSACTION_ACCEPTED');
 		}
 		
 		$response->set('message', $msg);		
