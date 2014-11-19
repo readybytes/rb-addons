@@ -68,7 +68,12 @@ $year = date('Y');
 		        
 		        <div class="input-append">
 		        	<input type="text" size="4" name="payment_data[card_code]" required="true" class="input-small" />
-		            <span class="add-on"><i class="fa fa-question"></i></span>
+		            <span class="add-on">
+		            	<?php 
+			            	//@TODO:: dont use hardcoded path
+							echo Rb_Html::image('/plugins/rb_ecommerceprocessor/stripe/processors/stripe/layouts/cvc-code-icon.png', 'CVC Code', Array('style' =>"height:20px", 'title' => 'CVC Code'));
+						?>
+		            </span>
 		        </div>
 		            
 			</div>
