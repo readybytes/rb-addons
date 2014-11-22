@@ -102,7 +102,7 @@ class Rb_EcommerceProcessorStripe extends Rb_EcommerceProcessor
 		{
 			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
 				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$response->data->form	=	JLayoutHelper::render('stripe', null,  'plugins/rb_ecommerceprocessor/stripe/processors/stripe/layouts');
+				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_stripe_fixed', null,  'plugins/rb_ecommerceprocessor/stripe/processors/stripe/layouts');
 				break;
 				
 			case Rb_EcommerceRequest::BUILD_TYPE_XML :

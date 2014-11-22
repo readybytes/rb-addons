@@ -58,7 +58,7 @@ class Rb_EcommerceProcessorOfflinepay extends Rb_EcommerceProcessor
 		{
 			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
 				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$response->data->form	=	JLayoutHelper::render('offlinepay', $binddata,  'plugins/rb_ecommerceprocessor/offlinepay/processors/offlinepay/layouts');
+				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_offlinepay_fixed', $binddata,  'plugins/rb_ecommerceprocessor/offlinepay/processors/offlinepay/layouts');
 				break;
 				
 			case Rb_EcommerceRequest::BUILD_TYPE_XML :

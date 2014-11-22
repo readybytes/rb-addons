@@ -162,7 +162,7 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 		{
 			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
 				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$form	=	JLayoutHelper::render('paypal_'.$form_file_name , $form_data,  'plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts');
+				$form	=	Rb_HelperTemplate::renderLayout('gateway_paypal_'.$form_file_name , $form_data,  'plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts');
 				break;
 
 			case Rb_EcommerceRequest::BUILD_TYPE_XML :
