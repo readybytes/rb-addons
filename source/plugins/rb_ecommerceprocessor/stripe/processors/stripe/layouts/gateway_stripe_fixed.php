@@ -27,37 +27,54 @@ $year = date('Y');
 			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_CARD_NUMBER_LABEL');?></span>
 			    </label>
 		        
-		        <input type="text" placeholder="xxxx-xxxx-xxxx-xxxx" size="20" data-input-type="number" class="input-xlarge" name="payment_data[card_number]" required="true" />
+		        <input type="text"  size="20" id="rb-processor-stripe-card-number" class="input-xlarge validate-rb-credit-card" name="payment_data[card_number]" required="true" />
+		        <span for="rb-processor-stripe-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
+		        
 			</div>
 	
 	        <div class="span12">
-			    <label>
-			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_MONTH_LABEL').'/'.JText::_("PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_YEAR_LABEL");?></span>
-			     </label>
 
-	            <select name="payment_data[expiration_month]" class="input-small" required="true">
+	        	<div class ="">
+				    <label>
+				      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_MONTH_LABEL').'/'.JText::_("PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_YEAR_LABEL");?></span>
+				     </label>
+	
+		            <select name="payment_data[expiration_month]" class="input-small validate-rb-exp-date "  
+		            		id="rb-processor-stripe-card-expiry-month" 
+		            		data-rb-validate-error="#rb-processor-stripe-card-expiry-error"
+		            		data-rb-validate="#rb-processor-stripe-card-expiry-year"
+		            		data-rb-validate-type="month"
+		            		>
 <!--						<option value="" selected="selected">MM </option>-->
-						<option value="01" ><?php echo JText::_('JANUARY'); ?> </option>
-						<option value="02" ><?php echo JText::_('FEBRUARY'); ?></option>
-						<option value="03" ><?php echo JText::_('MARCH'); ?></option>
-						<option value="04" ><?php echo JText::_('APRIL'); ?></option>
-						<option value="05" ><?php echo JText::_('MAY'); ?></option>
-						<option value="06" ><?php echo JText::_('JUNE'); ?></option>
-						<option value="07" ><?php echo JText::_('JULY'); ?></option>
-						<option value="08" ><?php echo JText::_('AUGUST'); ?></option>
-						<option value="09" ><?php echo JText::_('SEPTEMBER'); ?></option>
-						<option value="10" ><?php echo JText::_('OCTOBER'); ?></option>
-						<option value="11" ><?php echo JText::_('NOVEMBER'); ?></option>
-						<option value="12" ><?php echo JText::_('DECEMBER'); ?></option>
+							<option value="01" ><?php echo JText::_('JANUARY'); 	?></option>
+							<option value="02" ><?php echo JText::_('FEBRUARY'); 	?></option>
+							<option value="03" ><?php echo JText::_('MARCH'); 		?></option>
+							<option value="04" ><?php echo JText::_('APRIL'); 		?></option>
+							<option value="05" ><?php echo JText::_('MAY'); 		?></option>
+							<option value="06" ><?php echo JText::_('JUNE'); 		?></option>
+							<option value="07" ><?php echo JText::_('JULY'); 		?></option>
+							<option value="08" ><?php echo JText::_('AUGUST'); 		?></option>
+							<option value="09" ><?php echo JText::_('SEPTEMBER'); 	?></option>
+							<option value="10" ><?php echo JText::_('OCTOBER');		?></option>
+							<option value="11" ><?php echo JText::_('NOVEMBER');	?></option>
+							<option value="12" ><?php echo JText::_('DECEMBER'); 	?></option>
+						</select>
+						
+			    	<span> / </span>
+		            <select name="payment_data[expiration_year]" class="input-mini validate-rb-exp-date" 
+		            		id="rb-processor-stripe-card-expiry-year" 
+		            		data-rb-validate-error="#rb-processor-stripe-card-expiry-error"
+		            		data-rb-validate="#rb-processor-stripe-card-expiry-month"
+		            		data-rb-validate-type="year"
+		            		>
+	<!--					<option value="" selected="selected">YYYY </option>-->
+						<?php for ( $i = 0; $i < 20 ; $i++ ):?>
+							<option value="<?php  echo $year ?>" > <?php echo $year++; ?> </option>
+						<?php endfor; ?>
 					</select>
-					
-		    	<span> / </span>
-	            <select name="payment_data[expiration_year]" class="input-mini" required="true">
-<!--					<option value="" selected="selected">YYYY </option>-->
-					<?php for ( $i = 0; $i < 20 ; $i++ ):?>
-						<option value="<?php  echo $year ?>" > <?php echo $year++; ?> </option>
-					<?php endfor; ?>
-				</select>
+	            </div>
+	            
+	            <span id="rb-processor-stripe-card-expiry-error" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_ERROR_EXPIRY_DATE_NOT_VALID'); ?> </span>	
 	            
 	        </div>
 		
@@ -67,7 +84,7 @@ $year = date('Y');
 			    </label>
 		        
 		        <div class="input-append">
-		        	<input type="text" size="4" name="payment_data[card_code]" required="true" class="input-small" />
+		        	<input type="text" size="4" name="payment_data[card_code]" class="input-small validate-rb-cvc-length" id="rb-processor-stripe-cvc-number" data-rb-validate='#rb-processor-stripe-card-number'  required="true" class="input-small" />
 		            <span class="add-on">
 		            	<?php 
 			            	//@TODO:: dont use hardcoded path
@@ -75,6 +92,7 @@ $year = date('Y');
 						?>
 		            </span>
 		        </div>
+		        <span for="rb-processor-stripe-cvc-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_ERROR_CVC_NOT_VALID'); ?></span>
 		            
 			</div>
 		</div>

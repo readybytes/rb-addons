@@ -31,22 +31,20 @@ $amount				=	@$displayData['payment_data']['amount'];
 			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_OFFLINE_PAYMENT_MODE_LABEL');?></span>
 			    </label>
 		        
-		        <select class="input-xlarge" name="payment_data[from]" required="true" >
-		        
+		        <select class="input-xlarge" name="payment_data[from]" required="true" data-rb-processor-offline="payment-data-from" >
 		        	<option value="cash" ><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_OFFLINE_PAYMENT_MODE_CASH'); ?> </option>
 					<option value="cheque"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_OFFLINE_PAYMENT_MODE_CHEQUE'); ?> </option>
 					<option value="dd"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_OFFLINE_PAYMENT_MODE_DEMAND_DRAFT'); ?> </option>
-					
 		        </select>
 		        
 			</div>
 	
-	        <div class="span12">
+	        <div class="span12" data-rb-processor-offline="payment-data-id-div">
 			    <label>
 			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_DD_OR_CHEQUE_NUMBER_LABEL');?></span>
 			     </label>
 
-				<input type="text"  name="payment_data[id]" class="input-xlarge" />	            
+				<input type="text"  name="payment_data[id]" class="input-xlarge" data-rb-processor-offline="payment-data-id" />	            
 	        </div>
 		
 		
@@ -76,3 +74,28 @@ $amount				=	@$displayData['payment_data']['amount'];
 		
 		</div>
 	</div>
+	
+	<script>
+		(function($){
+
+			var onChangeOfflinePaymentDataFrom = 
+				function(value)
+				{
+					//$('[data-rb-processor-offline="payment-data-id"]').prop('readonly',false);
+					$('[data-rb-processor-offline="payment-data-id-div"]').show();
+	
+					// if selected value is cash then no need any cheque or dd number
+					if ($('[data-rb-processor-offline="payment-data-from"]').val() == 'cash') {
+						//$('[data-rb-processor-offline="payment-data-id"]').prop('readonly',true);
+						$('[data-rb-processor-offline="payment-data-id-div"]').hide();
+					};					
+				} 
+
+				$('[data-rb-processor-offline="payment-data-from"]').on('change', function() {
+					onChangeOfflinePaymentDataFrom();
+				});
+				
+				onChangeOfflinePaymentDataFrom();
+			
+			})(rb.jQuery);
+	</script>
