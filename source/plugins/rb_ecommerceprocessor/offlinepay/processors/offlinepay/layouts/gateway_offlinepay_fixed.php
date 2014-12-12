@@ -44,7 +44,8 @@ $amount				=	@$displayData['payment_data']['amount'];
 			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_FORM_DD_OR_CHEQUE_NUMBER_LABEL');?></span>
 			     </label>
 
-				<input type="text"  name="payment_data[id]" class="input-xlarge" data-rb-processor-offline="payment-data-id" />	            
+				<input type="text"  name="payment_data[id]" class="input-xlarge" data-rb-processor-offline="payment-data-id" id="payment-data-id" required="true" autocomplete="off" />
+				<span for="payment-data-id" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_OFFLINE_ERROR_DD_NUMBER_NOT_VALID'); ?></span>	            
 	        </div>
 		
 		

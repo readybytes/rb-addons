@@ -27,7 +27,7 @@ $year = date('Y');
 			      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_CARD_NUMBER_LABEL');?></span>
 			    </label>
 		        
-		        <input type="text"  size="20" id="rb-processor-stripe-card-number" class="input-xlarge validate-rb-credit-card" name="payment_data[card_number]" required="true" />
+		        <input type="text"  size="20" id="rb-processor-stripe-card-number" class="input-xlarge validate-rb-credit-card" name="payment_data[card_number]" required="true" autocomplete="off"/>
 		        <span for="rb-processor-stripe-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
 		        
 			</div>
@@ -84,7 +84,7 @@ $year = date('Y');
 			    </label>
 		        
 		        <div class="input-append">
-		        	<input type="text" size="4" name="payment_data[card_code]" class="input-small validate-rb-cvc-length" id="rb-processor-stripe-cvc-number" data-rb-validate='#rb-processor-stripe-card-number'  required="true" class="input-small" />
+		        	<input type="text" size="4" name="payment_data[card_code]" class="input-small validate-rb-cvc-length" id="rb-processor-stripe-cvc-number" data-rb-validate='#rb-processor-stripe-card-number'  required="true" class="input-small"  autocomplete="off"/>
 		            <span class="add-on">
 		            	<?php 
 			            	//@TODO:: dont use hardcoded path
