@@ -19,19 +19,19 @@
        		</field>
        		
        		<field 	name="notify_url" 
-					type="url"
+					type="hidden"
 					filter="url"
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYPAL_PARAMS_PAYPAL_NOTIFY_URL_LABEL"
 					description="PLG_RB_ECOMMERCEPROCESSOR_PAYPAL_PARAMS_PAYPAL_NOTIFY_URL_DESC"/>
 					
 			<field 	name="cancel_url" 
-					type="url"
+					type="hidden"
 					filter="url"
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYPAL_PARAMS_PAYPAL_CANCEL_URL_LABEL"
 					description="PLG_RB_ECOMMERCEPROCESSOR_PAYPAL_PARAMS_PAYPAL_CANCEL_URL_DESC"/>
 					
 			<field 	name="return_url" 
-					type="url"
+					type="hidden"
 					filter="url"
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYPAL_PARAMS_PAYPAL_RETURN_URL_LABEL"
 					description="PLG_RB_ECOMMERCEPROCESSOR_PAYPAL_PARAMS_PAYPAL_RETURN_URL_DESC"/>
