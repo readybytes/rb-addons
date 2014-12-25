@@ -25,7 +25,7 @@
 					description="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_ENCRYPTION_KEY_DESC"/>
 				
 			<field 	name="return_url" 
-					type="url"
+					type="hidden"
 					filter="url"
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_RETURN_URL_LABEL"
 					description="PLG_RB_ECOMMERCEPROCESSOR_PAYGATE_PARAMS_RETURN_URL_DESC"/>

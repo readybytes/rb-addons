@@ -50,24 +50,21 @@
 	        		  
 			<field	name="return_url" 	
 					default="" 		
-					type="text" 	
+					type="hidden" 	
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_RETURN_URL_LABEL"  
-					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_RETURN_URL_DESC" 
-					class="required" />
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_RETURN_URL_DESC"  />
 					
 			<field	name="cancel_url" 	
 					default="" 		
-					type="text" 	
+					type="hidden" 	
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_CANCEL_URL_LABEL"  
-					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_CANCEL_URL_DESC" 
-					class="required" />     	
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_CANCEL_URL_DESC"  />     	
 					
 			<field	name="notify_url" 	
 					default="" 		
-					type="text" 	
+					type="hidden" 	
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_NOTIFY_URL_LABEL"  
-					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_NOTIFY_URL_DESC" 
-					class="required" />     		  											
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYFAST_PARAMS_PAYFAST_NOTIFY_URL_DESC"  />     		  											
 		</fieldset>
 	</fields>
 </config>

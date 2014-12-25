@@ -47,18 +47,16 @@
 
 			<field	name="return_url" 	
 					default="" 		
-					type="text" 	
+					type="hidden" 	
 					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_RETURN_URL_LABEL"  
 					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_RETURN_URL_DESC" 
-					class="required"
 					/>
 				
 			<field	name="cancel_url" 	
 					default="" 		
-					type="text" 	
+					type="hidden" 	
 					label="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_CANCEL_URL_LABEL"  
 					description="PLG_RB_ECOMMERCEPROCESSOR_NETCASH_PARAMS_NETCASH_CANCEL_URL_DESC" 
-					class="required"
 					/>        						
 		</fieldset>
 	</fields>

@@ -50,7 +50,7 @@
        		</field>
        		
        		<field 	name="notify_url" 
-					type="url"
+					type="hidden"
 					filter="url"
 					label="PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_PARAMS_PAYPALPRO_NOTIFY_URL_LABEL"
 					description="PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_PARAMS_PAYPALPRO_NOTIFY_URL_DESC"/>

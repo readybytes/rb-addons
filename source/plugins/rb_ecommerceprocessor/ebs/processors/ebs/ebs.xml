@@ -34,10 +34,9 @@
 
 			<field	name="return_url" 	
 					default="" 		
-					type="text" 	
+					type="hidden" 	
 					label="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_RETURN_URL_LABEL"  
 					description="PLG_RB_ECOMMERCEPROCESSOR_EBS_PARAMS_EBS_RETURN_URL_DESC" 
-					class="required"
 					/>
         						
 		</fieldset>
