@@ -61,7 +61,7 @@ $year = date('Y');
 						</select>
 						
 			    	<span> / </span>
-		            <select name="payment_data[expiration_year]" class="input-mini validate-rb-exp-date" 
+		            <select name="payment_data[expiration_year]" class="input-small validate-rb-exp-date" 
 		            		id="rb-processor-stripe-card-expiry-year" 
 		            		data-rb-validate-error="#rb-processor-stripe-card-expiry-error"
 		            		data-rb-validate="#rb-processor-stripe-card-expiry-month"
