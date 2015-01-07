@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
     <name>PLG_RB_ECOMMERCEPROCESSOR_PAYGATE</name>
-    <version>1.0.0</version>
+    <version>0.9.0</version>
     <creationDate>April 2014</creationDate>
     <author>Team Readybytes</author>
     <authorEmail>support@readybytes.in</authorEmail>
@@ -22,9 +22,5 @@
 	
 	<config>
 	</config>
-
-	<alias>rb-paygate</alias>
-	<version_number>1.0.0</version_number>
-	<version_name>Paygate 1.0</version_name>
 </extension>
 
