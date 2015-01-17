@@ -125,6 +125,8 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 			
 	   		$all_prices = $payment_data->price;
 	   		$regular_index = 0;
+	   		
+	   		$form_data['srt']		= $payment_data->recurrence_count;
 	   		// Trial 1
 	   		if(count($all_prices) >= 2){
 	   			$form_data['is_trial_one']	=	true;
@@ -132,6 +134,7 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 	   			$form_data['a1'] = number_format($all_prices[0], 2, '.', '');	   			
 	   			list($form_data['p1'], $form_data['t1']) = $this->__get_recurrence_time($payment_data->time[0]);
 	   			$regular_index = 1;
+	   			$form_data['srt']		= $payment_data->recurrence_count - 1 ;
 	   		}
 	   		
 	   		// trial 2
@@ -141,13 +144,13 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 	   			$form_data['a2'] = number_format($all_prices[1], 2, '.', '');
 	   			list($form_data['p2'], $form_data['t2']) = $this->__get_recurrence_time($payment_data->time[1]);
 	   			$regular_index = 2;
+	   			$form_data['srt']		= $payment_data->recurrence_count - 2 ;
 	   		}
 
 	   		// regular price
 	   		$form_data['a3'] = number_format($all_prices[$regular_index], 2, '.', '');
 	   		list($form_data['p3'], $form_data['t3']) = $this->__get_recurrence_time($payment_data->time[$regular_index]);
-
-	   		$form_data['srt']		= $payment_data->recurrence_count;       		
+  				
        		$form_data['cmd']		= '_xclick-subscriptions';
 		}
 		else {
