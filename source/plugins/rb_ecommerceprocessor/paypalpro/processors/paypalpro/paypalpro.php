@@ -61,7 +61,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 				case Rb_EcommerceRequest::BUILD_TYPE_XML :
 				default:
 					$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-					$response->data->form	= JForm::getInstance('rb_ecommerce.processor.stripe', dirname(__FILE__).'/forms/form.xml');
+					$response->data->form	= JForm::getInstance('rb_ecommerce.processor.paypalpro', dirname(__FILE__).'/forms/form.xml');
 			}
 			
 			return $response;
