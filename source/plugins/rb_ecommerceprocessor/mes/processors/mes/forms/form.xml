@@ -24,8 +24,8 @@
 				from="now"
 				for="20"
 				default=""
-				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_STRIPE_EXPIRATION_YEAR_LABEL"
-				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_STRIPE_EXPIRATION_YEAR_DESC"
+				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_EXPIRATION_YEAR_LABEL"
+				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_EXPIRATION_YEAR_DESC"
 				required="true"/>				
 				
 	<field 		name="cvv2" 
@@ -35,22 +35,6 @@
 				label="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CVN_NUMBER_LABEL"
 				description="PLG_RB_ECOMMERCEPROCESSOR_MES_FORM_MES_CVN_NUMBER_DESC"
 				required="true"/>
-
-	<field 		name="transaction_amount" 
-				id="rb_ecommerce_processor_mes_transaction_amount"
-				type="hidden"
-				default=""/>
-
-	<field 		name="transaction_type" 
-				id="rb_ecommerce_processor_mes_transaction_type"
-				type="hidden"
-				default="D"/>
-
-	<field 		name="invoice_number" 
-				id="rb_ecommerce_processor_mes_invoice_number"
-				type="hidden"
-				default=""/>
-
 	</fieldset>
 
 	<fieldset addfieldpath="/plugins/system/rbsl/rb/pkg/ecommerce/html/fields" name="plg_rb_ecommerceprocessor_mes_form_mes_fieldset_personal_details">
