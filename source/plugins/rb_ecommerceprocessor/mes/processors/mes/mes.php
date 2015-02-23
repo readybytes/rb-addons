@@ -56,7 +56,19 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 		$response->data 									= new stdClass();
 		$response->data->object_data						= $object;
 		$response->data->post_url 							= false;
-		$response->data->form 								= $form;
+
+		switch ($object->build_type) 
+		{
+			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
+				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_mes', $form,  'plugins/rb_ecommerceprocessor/mes/processors/mes/layouts');
+				break;
+				
+			case Rb_EcommerceRequest::BUILD_TYPE_XML :
+			default:
+				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
+				$response->data->form	= $form;
+		}
 		
 		return $response;
 	}
@@ -124,9 +136,7 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 			$transaction->setAvsRequest($post_data->cardholder_street_address, $post_data->cardholder_zip);
 		}
 		
-		if(!empty($post_data->invoice_number)){
-			$transaction->setRequestField('invoice_number', $post_data->invoice_number);
-		}
+		$transaction->setRequestField('invoice_number', $payment_data->invoice_number);
 		
 		if(!empty($post_data->cvv2)){
 			$transaction->setRequestField('cvv2', $post_data->cvv2);
@@ -137,7 +147,7 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 			$transaction->setEcommInd('3');
 		}
 		
-		$transaction->setRequestField('transaction_amount', $post_data->transaction_amount);
+		$transaction->setRequestField('transaction_amount', $payment_data->total);
 		
 		$transaction->setHost( HOSTURI );
 		$transaction->execute();
@@ -249,7 +259,7 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
     	$response->set('parent_txn', 		0);
 		$response->set('amount', 	 		0);
 		$response->set('payment_status', 	Rb_EcommerceResponse::FAIL);
-		$response->set('message', 			$mes_response->ResponseFields['auth_response_text']);
+		$response->set('message', 			isset($mes_response->ResponseFields['auth_response_text']) ? $mes_response->ResponseFields['auth_response_text'] : $mes_response->ErrorMessage);
 		$response->set('params', 			$mes_response->ResponseFields);
 		
 		return $response;
