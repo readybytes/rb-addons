@@ -26,7 +26,7 @@ $year = date('Y');
 		        <div class="controls">
 		        	<input type="text"  size="20" id="rb-processor-paypalpro-card-number" class="input-block-level validate-rb-credit-card" name="payment_data[card_number]" required="true" autocomplete="off"/>
 		        </div>
-		        <span for="rb-processor-paypalpro-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
+		        <span for="rb-processor-paypalpro-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_ERROR_CREDIT_CARD_NOT_VALID'); ?></span>
 		</div>      
 			
       	    <div class="control-group">

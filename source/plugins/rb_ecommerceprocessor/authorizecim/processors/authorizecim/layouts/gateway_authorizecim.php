@@ -27,7 +27,7 @@ $year = date('Y');
           	<div class="controls">
 		        <input type="text"  size="20" id="rb-processor-authorizecim-card-number" class="input-block-level validate-rb-credit-card" name="payment_data[card_number]" required="true" autocomplete="off"/>
         	</div>
-        	<span for="rb-processor-authorizecim-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
+        	<span for="rb-processor-authorizecim-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_ERROR_CREDIT_CARD_NOT_VALID'); ?></span>
         </div>  
         
  	    <div class="control-group">
@@ -69,7 +69,7 @@ $year = date('Y');
 						<?php endfor; ?>
 					</select>
 			</div>
-				 <span id="rb-processor-authorizecim-card-expiry-error" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_ERROR_CVC_NOT_VALID'); ?></span>
+				 <span id="rb-processor-authorizecim-card-expiry-error" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_ERROR_EXPIRY_DATE_NOT_VALID'); ?></span>
 					
 	     </div>
         
@@ -175,12 +175,13 @@ $year = date('Y');
 		          <label for="rb-processor-authorizecim-country">
 					  <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_FORM_AUTHORIZECIM_COUNTRY_LABEL')?>
 				  </label>
+				</div>
 		          <div class="controls">
 		  			<?php echo PaycartHtmlCountry::getList("payment_data[country]", '', "rb-processor-authorizecim-country", array('class' => 'input-block-level required')); ?>
 		          </div>
 	         	<span for="rb-processor-authorizecim-country" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_ERROR_VALIDATION_REQUIRED'); ?></span>
         	</div>
-        
+             
           <div class="control-group" >
              	<div class="control-label">
 		          	<label for="rb-processor-authorizecim-state">
@@ -211,6 +212,7 @@ $year = date('Y');
 	          	<label for="rb-processor-authorizecim-zip">
 				   <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_FORM_AUTHORIZECIM_ZIP_LABEL')?>
 				</label>
+			 </div>
 	          <div class="controls">
 	          	  <input type="text" class="input-block-level required " id="rb-processor-authorizecim-zip" name="payment_data[zip]" value=""></input>
 	          </div>
