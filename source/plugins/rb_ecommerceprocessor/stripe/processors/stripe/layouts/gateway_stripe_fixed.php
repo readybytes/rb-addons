@@ -28,7 +28,7 @@ $year = date('Y');
 		        <div class="controls">
 		        	<input type="text"  size="20" id="rb-processor-stripe-card-number" class="input-block-level validate-rb-credit-card" name="payment_data[card_number]" required="true" autocomplete="off"/>
 		        </div>
-		        <span for="rb-processor-stripe-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
+		        <span for="rb-processor-stripe-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_ERROR_CREDIT_CARD_NOT_VALID'); ?></span>
 		        
 			</div>
 	

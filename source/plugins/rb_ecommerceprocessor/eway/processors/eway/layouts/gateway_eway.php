@@ -34,7 +34,7 @@ $year = date('Y');
 	                            <option value="DinersClub"><?php echo JText::_("PLG_RB_ECOMMERCEPROCESSOR_EWAY_FORM_CARD_TYPE_DINERSCLUB");?></option>
 					</select>
 				</div>
-				<span for="rb_ecommerce_processor_eway_cc_type" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
+				<span for="rb_ecommerce_processor_eway_cc_type" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>
 						        
  		   </div>  
  		
@@ -48,7 +48,7 @@ $year = date('Y');
 		        <div class="controls">
 		       		 <input type="text"  size="20" class="input-block-level" name="payment_data[card_name]" required="true" id ="rb-processor-eway-card-name"/>
 		        </div>
-	        	<span for="rb-processor-eway-card-name" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
+	        	<span for="rb-processor-eway-card-name" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>
 		</div> 
 		
 		 <div class="control-group" >
@@ -60,7 +60,7 @@ $year = date('Y');
 		         <div class="controls">
 		       		 <input type="text"  size="20" id="rb-processor-eway-card-number" class="input-block-level validate-rb-credit-card" name="payment_data[card_number]" required="true" autocomplete="off"/>
 		       	 </div>	 
-		        <span for="rb-processor-eway-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
+		        <span for="rb-processor-eway-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_CREDIT_CARD_NOT_VALID'); ?></span>
 		</div>      
 			
         
