@@ -33,8 +33,8 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 
 	public function get_invoice_number($response)
 	{
-		if(isset($response->data['MerchantRefNo'])){
-			return $response->data['MerchantRefNo'];
+		if(isset($response->data['invoice_number'])){
+			return $response->data['invoice_number'];
 		}
 		
 		return 0;
@@ -42,7 +42,12 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{
-		$form 			= JForm::getInstance('rb_ecommerce.processor.ebs', dirname(__FILE__).'/forms/form.xml');
+		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
+		$response 									= new stdClass();
+		$response->type 							= 'form';
+		$response->data 							= new stdClass();
+		$response->data->post_url 					= $this->getPostUrl();
+		
 
 		$object 		= $request->toObject();		
 		$payment_data	= $object->payment_data;
@@ -53,7 +58,7 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
     		$mode		=	'LIVE';	
     	}
     	
-    	$return_url  	 							= !empty($url_data->return_url) ? $url_data->return_url.'&DR={DR}' : $config->return_url.'&DR={DR}';
+    	$return_url  	 							= !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number.'&DR={DR}&notify=1' : $config->return_url.'&invoice_number='.$payment_data->invoice_number.'&DR={DR}&$notify=1';
     	$hash         								= $this->getConfig()->secret_key."|".$this->getConfig()->account_id."|". number_format($payment_data->total, 2, '.', '')."|".$payment_data->invoice_number."|".$return_url."|".$mode;
 		$secure_hash  								= md5($hash);
 		
@@ -64,24 +69,28 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 		$binddata['payment_data']['description']	= $payment_data->item_name;	
 		$binddata['payment_data']['return_url']		= $return_url;	
 		$binddata['payment_data']['secure_hash']	= $secure_hash;	
-		$form->bind($binddata); 
 		
-		$response 									= new stdClass();
-		$response->type 							= 'form';
-		$response->data 							= new stdClass();
-		$response->data->post_url 					= $this->getPostUrl();
-		$response->data->form 						= $form;
+		switch ($build_type) 
+			{
+				case Rb_EcommerceRequest::BUILD_TYPE_HTML :
+					$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+					$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_ebs', $binddata,  'plugins/rb_ecommerceprocessor/ebs/processors/ebs/layouts');
+					break;
+					
+				case Rb_EcommerceRequest::BUILD_TYPE_XML :
+				default:
+					$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
+					$form 			= JForm::getInstance('rb_ecommerce.processor.ebs', dirname(__FILE__).'/forms/form.xml');
+					$form->bind($binddata); 
+					$response->data->form	= $form;
+			}
 		
 		return $response;
 	}
 	
 	protected function getPostUrl()
 	{	
-		$url  = 'https://testing.secure.ebs.in/pg/ma/sale/pay';
-		if($this->getConfig()->sandbox){
-			$url  = 'https://secure.ebs.in/pg/ma/sale/pay/';	
-		}
-		
+		$url  = 'https://secure.ebs.in/pg/ma/sale/pay';
 		return $url;
 	}
 	
@@ -95,7 +104,7 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 		$secret_key 	= $this->getConfig()->secret_key;
 		$data			= array();
 		 
-		if(isset($data['DR'])) 
+		if(isset($response_data['DR'])) 
 		{
 		 	$DR 			= preg_replace("/\s/","+",$response_data['DR']);
 		 	$rc4 			= new RBCrypt_RC4($secret_key);
@@ -125,7 +134,7 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 				 ->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_EBS_TRANSACTION_EBS_PAYMENT_FAILED')		 
 		 		 ->set('params', 			$data);
 		 
-		if(!$data['ResponseCode'])
+		if(isset($data['ResponseCode']) && $data['ResponseCode'] == 0)
 		{
 			$response->set('amount', 		$data['Amount'])
 					 ->set('message', 		'PLG_RB_ECOMMERCEPROCESSOR_EBS_TRANSACTION_EBS_PAYMENT_COMPLETED')
