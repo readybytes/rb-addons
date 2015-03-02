@@ -22,7 +22,7 @@ $year = date('Y');
 			<div class="control-group">
 				<div class="control-label">
 				    <label for="rb-processor-stripe-card-number">
-				     	<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_FORM_PAYPALPRO_CARD_NUMBER_LABEL');?>
+				     	<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_CARD_NUMBER_LABEL');?>
 				    </label>
 			    </div>
 		        <div class="controls">
