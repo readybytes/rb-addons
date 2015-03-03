@@ -21,7 +21,7 @@ $year = date('Y');
 		
 		    <div class="control-group" >
              	<div class="control-label"> 
-		    		<label for="rb_ecommerce_processor_eway_cc_type">
+		    		<label for="rb_ecommerce_processor_eway_cc_type" class="required">
 		     	 		<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_FORM_CARD_TYPE_LABEL');?>
 		    		</label>
 		    	</div>
@@ -41,32 +41,32 @@ $year = date('Y');
  		
  		 <div class="control-group" >
              	<div class="control-label"> 
-				    <label for="rb-processor-eway-card-name">
+				    <label for="rb-processor-eway-card-name" >
 				     	<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_FORM_CARD_NAME_LABEL');?>
 				    </label>
 				  </div>
 		        <div class="controls">
-		       		 <input type="text"  size="20" class="input-block-level" name="payment_data[card_name]" required="true" id ="rb-processor-eway-card-name"/>
+		       		 <input type="text"  size="20" class="input-block-level" name="payment_data[card_name]" id ="rb-processor-eway-card-name"/>
 		        </div>
 	        	<span for="rb-processor-eway-card-name" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>
 		</div> 
 		
 		 <div class="control-group" >
              	 <div class="control-label"> 
-				    <label for="rb-processor-eway-card-number">
+				    <label for="rb-processor-eway-card-number" class="required">
 				      <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_FORM_CARD_NUMBER_LABEL');?>
 				    </label>
 				 </div>
 		         <div class="controls">
 		       		 <input type="text"  size="20" id="rb-processor-eway-card-number" class="input-block-level validate-rb-credit-card" name="payment_data[card_number]" required="true" autocomplete="off"/>
 		       	 </div>	 
-		        <span for="rb-processor-eway-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_CREDIT_CARD_NOT_VALID'); ?></span>
+		        <span for="rb-processor-eway-card-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_CRDEIT_CARD_NOT_VALID'); ?></span>
 		</div>      
 			
         
       	     <div class="control-group" >
              	<div class="control-label"> 
-			    	<label for="rb-processor-eway-card-expiry-month">
+			    	<label for="rb-processor-eway-card-expiry-month" class="required">
 			      		<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_FORM_EXPIRATION_MONTH_LABEL').'/'.JText::_("PLG_RB_ECOMMERCEPROCESSOR_EWAY_FORM_EXPIRATION_YEAR_LABEL");?>
 			    	</label>
 			    </div>
@@ -110,7 +110,7 @@ $year = date('Y');
 	        
        	<div class="control-group" >
              	<div class="control-label"> 
-					<label for="rb-processor-eway-cvc-number">
+					<label for="rb-processor-eway-cvc-number" class="required">
 				      <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_FORM_CARD_CODE_LABEL');?>
 				    </label>
 		        </div>
@@ -159,7 +159,7 @@ $year = date('Y');
 					</label>
 				</div>
 		        <div class="controls">
-		          	<input type="text" class="input-block-level required " name="payment_data[company]" id="rb-processor-eway-company" value=""></input>
+		          	<input type="text" class="input-block-level" name="payment_data[company]" id="rb-processor-eway-company" value=""></input>
 		        </div>
           
          		 <span for="rb-processor-eway-company" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -172,7 +172,7 @@ $year = date('Y');
 					</label>
 				</div>
 		        <div class="controls">  
-		          	<input type="text" class="input-block-level required " name="payment_data[first_name]" id="rb-processor-eway-first_name" value=""></input>
+		          	<input type="text" class="input-block-level" name="payment_data[first_name]" id="rb-processor-eway-first_name" value=""></input>
 		        </div>
           
            <span for="rb-processor-eway-first_name" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -185,7 +185,7 @@ $year = date('Y');
 					</label>
 				</div>
 		        <div class="controls">
-		          	<input type="text" class="input-block-level required " name="payment_data[last_name]" id="rb-processor-eway-last_name" value=""></input>
+		          	<input type="text" class="input-block-level" name="payment_data[last_name]" id="rb-processor-eway-last_name" value=""></input>
 		        </div>
           
           <span for="rb-processor-eway-last_name" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -199,7 +199,7 @@ $year = date('Y');
 					</label>
 				 </div>
 		          <div class="controls">
-		          	<input type="email" class="input-block-level required " name="payment_data[email]" id="rb-processor-eway-email" value=""></input>
+		          	<input type="email" class="input-block-level" name="payment_data[email]" id="rb-processor-eway-email" value=""></input>
 		          </div>
           
          <span for="rb-processor-eway-email" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_EMAIL_VALIDATION_REQUIRED'); ?></span>  
@@ -213,7 +213,7 @@ $year = date('Y');
 					</label>
 				</div>
 		          <div class="controls">
-		          	<input type="text" class="input-block-level required " name="payment_data[phone]" id="rb-processor-eway-phone" value=""></input>
+		          	<input type="text" class="input-block-level" name="payment_data[phone]" id="rb-processor-eway-phone" value=""></input>
 		          </div>
           
           	<span for="rb-processor-eway-phone" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -227,7 +227,7 @@ $year = date('Y');
 					</label>
 				</div>
           	<div class="controls">
-          		<input type="text" class="input-block-level required " name="payment_data[mobile]" id="rb-processor-eway-mobile" value=""></input>
+          		<input type="text" class="input-block-level" name="payment_data[mobile]" id="rb-processor-eway-mobile" value=""></input>
           	</div>
           
           <span for="rb-processor-eway-mobile" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -241,7 +241,7 @@ $year = date('Y');
 				</label>
 			 </div>
 	          <div class="controls">
-	          	<input type="text" class="input-block-level required " name="payment_data[fax]" id="rb-processor-eway-fax" value=""></input>
+	          	<input type="text" class="input-block-level" name="payment_data[fax]" id="rb-processor-eway-fax" value=""></input>
 	          </div>
           
         	 <span for="rb-processor-eway-fax" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -256,7 +256,7 @@ $year = date('Y');
 					</label>
 				  </div>
 		          <div class="controls">
-		          	<textarea  class="input-block-level required " name="payment_data[address]" id="rb-processor-eway-address" value=""></textarea>
+		          	<textarea  class="input-block-level" name="payment_data[address]" id="rb-processor-eway-address" value=""></textarea>
 		          </div>
           		  <span for="rb-processor-eway-address" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
         </div>
@@ -283,7 +283,7 @@ $year = date('Y');
 					</label>
 				</div>
 		        <div class="controls">
-		          	<input type="text" class="input-block-level required " name="payment_data[state]" id="rb-processor-eway-state" value=""></input>
+		          	<input type="text" class="input-block-level" name="payment_data[state]" id="rb-processor-eway-state" value=""></input>
 		        </div>
           
           <span for="rb-processor-eway-state" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -297,7 +297,7 @@ $year = date('Y');
 			   		</label>
 			   	</div>
 	          <div class="controls">
-	          	<input type="text" class="input-block-level required " name="payment_data[city]" id="rb-processor-eway-city" value=""></input>
+	          	<input type="text" class="input-block-level" name="payment_data[city]" id="rb-processor-eway-city" value=""></input>
 	          </div>
           
          <span for="rb-processor-eway-city" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
@@ -312,7 +312,7 @@ $year = date('Y');
 				</div>
           <div class="controls">
           
-          	<input type="text" class="input-block-level required " name="payment_data[zip]" id="rb-processor-eway-zip" value=""></input>
+          	<input type="text" class="input-block-level" name="payment_data[zip]" id="rb-processor-eway-zip" value=""></input>
           </div>
           
          <span for="rb-processor-eway-zip" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EWAY_ERROR_VALIDATION_REQUIRED'); ?></span>  
