@@ -21,7 +21,7 @@ $year = date('Y');
 			
 			<div class="control-group">
 				<div class="control-label">
-				    <label for="rb-processor-stripe-card-number">
+				    <label for="rb-processor-stripe-card-number" class="required">
 				     	<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_CARD_NUMBER_LABEL');?>
 				    </label>
 			    </div>
@@ -34,7 +34,7 @@ $year = date('Y');
 	
 	       <div class="control-group">
 				<div class="control-label">
-				    <label for="rb-processor-stripe-card-expiry-year">
+				    <label class="required" for="rb-processor-stripe-card-expiry-year">
 				      	<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_MONTH_LABEL').'/'.JText::_("PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_EXPIRATION_YEAR_LABEL");?>
 				     </label>
 				</div>
@@ -81,7 +81,7 @@ $year = date('Y');
 		
 			 <div class="control-group">
 				<div class="control-label">
-					<label for="rb-processor-stripe-cvc-number">
+					<label class="required" for="rb-processor-stripe-cvc-number">
 				      	 <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_STRIPE_FORM_STRIPE_CARD_CODE_LABEL');?>
 				    </label>
 		        </div>
