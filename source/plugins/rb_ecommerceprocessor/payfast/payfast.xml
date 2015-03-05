@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
     <name>plg_rb_ecommerceprocessor_payfast</name>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <creationDate>Aug 2013</creationDate>
-    <author>Team PayInvoice</author>
-    <authorEmail>support+payinvoice@readybytes.in</authorEmail>
+    <author>Team ReadyBytes</author>
+    <authorEmail>support@readybytes.in</authorEmail>
     <authorUrl>http://www.readybytes.net/payinvoice.html</authorUrl>
     <copyright>2009-14 Ready Bytes Software Labs Pvt. Ltd.</copyright>
     <license>GNU General Public License v2</license>
@@ -24,7 +24,7 @@
 	</config>
 
 <alias>rb-payfast</alias>
-<version_number>1.1.0</version_number>
+<version_number>1.1.1</version_number>
 <version_name>payFast 1.1</version_name>
 </extension>
 
