@@ -146,7 +146,7 @@ $year = date('Y');
 	          <div class="controls">
 	          	  <input type="email" class="input-block-level required validate-email"  id="rb-processor-ebs-email" name="email" value=""></input>
 	          </div>
-	          <span for="rb-processor-ebs-email" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_ERROR_EMAIL_VALIDATION_REQUIRED'); ?></span> 
+	          <span for="rb-processor-ebs-email" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EBS_ERROR_EMAIL_VALIDATION_REQUIRED'); ?></span> 
         </div>
         
 	 <!--  Shipping detail     -->
