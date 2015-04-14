@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Payza</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="merchant" 	
+					type="text" 
+					default="" 			
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYZA_PARAMS_PAYZA_MERCHANT_EMAIL_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYZA_PARAMS_PAYZA_MERCHANT_EMAIL_DESC" />								
+		  		
+   			<field  name="sandbox" 
+        			type="radio" 
+        			default="0" 
+        			label="PLG_RB_ECOMMERCEPROCESSOR_PAYZA_PARAMS_PAYZA_SANDBOX_LABEL" 
+        			description="PLG_RB_ECOMMERCEPROCESSOR_PAYZA_PARAMS_PAYZA_SANDBOX_DESC" 
+					class="btn-group">
+		          	<option value="0">JNO</option>
+	         	 	<option value="1">JYES</option>
+       		</field>
+       		 					
+		</fieldset>
+	</fields>
+</config>

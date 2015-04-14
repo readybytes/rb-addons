@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
+    <name>plg_rb_ecommerceprocessor_payza</name>
+    <version>1.1.0</version>
+    <creationDate>Jul 2013</creationDate>
+    <author>Team ReadyBytes</author>
+    <authorEmail>team@readybytes.in</authorEmail>
+    <authorUrl>http://www.payplans.com</authorUrl>
+    <copyright>2009-15 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PLG_RB_ECOMMERCEPROCESSOR_PAYZA_DESCRIPTION</description>
+	<files>
+		<filename plugin="payza">payza.php</filename>
+		<filename>index.html</filename>
+		<folder>processors</folder>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_payza.ini</language>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_payza.sys.ini</language>
+	</languages>
+	
+	<config>
+	</config>
+
+	<alias>rb-payza</alias>
+	<version_number>1.1.0</version_number>
+	<version_name>Payza 1.1</version_name>
+</extension>
+
