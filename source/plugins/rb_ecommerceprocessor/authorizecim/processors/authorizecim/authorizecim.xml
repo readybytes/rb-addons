@@ -3,7 +3,7 @@
 	<name>Authorize CIM</name>
 	<help>
     	<![CDATA[
-		<b>Note : </b>Amount must be no more than than $99,999.99.
+		<b>Note : </b>Amount must be no more than than $99,999.99.<br>
 		]]>
    	 </help>
 

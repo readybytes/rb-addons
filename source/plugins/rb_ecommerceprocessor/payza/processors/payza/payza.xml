@@ -5,7 +5,22 @@
     <description></description>
    	<icon></icon>
     <tags></tags>
-
+    <help>
+    	<![CDATA[
+		You need to enable IPN Status & Enable IPN Version 2 and set Test Mode to Enabled if you are currently using it in test mode.<br/>
+		
+		<div class="hide rb-help-payinvoice rb-processor-help">		
+			You need to enter Aler URL as <b>http://yoursite.com/index.php?option=com_payinvoice&view=invoice&task=notify&processor=payza</b><br/>
+		</div>
+		
+		<div class="hide rb-help-paycart rb-processor-help">
+			You need to enter Aler URL as <b>http://yoursite.com/index.php?option=com_paycart&view=cart&task=notify&processor=payza</b><br/>
+		</div>
+		 
+		If you are using it in Test mode then append string <b>&test=1</b> in the above alert URL.<br/>
+		]]>
+   	</help>
+   	 
 	<fields name="processor_config">
 		<fieldset name="parameters">
 			<field	name="merchant" 	
