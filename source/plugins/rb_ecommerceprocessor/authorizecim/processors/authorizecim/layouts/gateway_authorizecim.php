@@ -86,7 +86,7 @@ $year = date('Y');
 	            <span class="add-on">
 	            	<?php 
 		            	//@TODO:: dont use hardcoded path
-						echo Rb_Html::image('/plugins/rb_ecommerceprocessor/authorizecim/processors/authorizecim/layouts/cvc-code-icon.png', 'CVC Code', Array('style' =>"height:20px", 'title' => 'CVC Code'));
+						echo Rb_Html::image('plugins/rb_ecommerceprocessor/authorizecim/processors/authorizecim/layouts/cvc-code-icon.png', 'CVC Code', Array('style' =>"height:20px", 'title' => 'CVC Code'));
 					?>
 	            </span>
 	        </div>

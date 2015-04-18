@@ -18,7 +18,7 @@ $data = $displayData['data'];
 	<div class="row-fluid">
 		<div class="text-center">
 			<?php
-				echo Rb_Html::image('/plugins/rb_ecommerceprocessor/payza/processors/payza/layouts/logo.png', ''); 
+				echo Rb_Html::image('plugins/rb_ecommerceprocessor/payza/processors/payza/layouts/logo.png', ''); 
 			?>	
 		</div>
 	</div>
