@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Bank Audi</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="access_code" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_BANKAUDI_PARAMS_BANKAUDI_ACCESS_CODE_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_BANKAUDI_PARAMS_BANKAUDI_ACCESS_CODE_DESC" 
+					class="required" />
+				
+			<field	name="merchant_id" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_BANKAUDI_PARAMS_BANKAUDI_MERCHANT_ID_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_BANKAUDI_PARAMS_BANKAUDI_MERCHANT_ID_DESC" 
+					class="required" />
+				
+			<field	name="secret_hash" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_BANKAUDI_PARAMS_BANKAUDI_SECRET_HASH_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_BANKAUDI_PARAMS_BANKAUDI_SECRET_HASH_DESC" 
+					class="required" />		
+		</fieldset>
+	</fields>
+</config>

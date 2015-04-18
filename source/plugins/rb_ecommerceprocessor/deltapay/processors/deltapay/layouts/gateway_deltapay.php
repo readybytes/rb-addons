@@ -1,5 +1,4 @@
 <?php
-
 /**
 * @copyright	Copyright (C) 2009 - 2012 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
@@ -17,7 +16,7 @@ $form = $displayData;
 	<div class="row-fluid">
 		<div class="text-center">
 			<?php
-				echo Rb_Html::image('plugins/rb_ecommerceprocessor/payfast/processors/payfast/layouts/logo.png', ''); 
+				echo Rb_Html::image('plugins/rb_ecommerceprocessor/deltapay/processors/deltapay/layouts/logo.png', ''); 
 			?>	
 		</div>
 	</div>

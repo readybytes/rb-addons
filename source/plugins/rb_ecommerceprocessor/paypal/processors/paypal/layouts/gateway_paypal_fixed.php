@@ -54,7 +54,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 			<div class="text-center">
 				<?php
 					//@TODO:: dont use hardcoded path
-					echo Rb_Html::image('/plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts/paypallogo.png', 'Paypal'); 
+					echo Rb_Html::image('plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts/paypallogo.png', 'Paypal'); 
 				?>	
 			</div>
 		</div>

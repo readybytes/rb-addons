@@ -17,17 +17,9 @@ $form = $displayData;
 	<div class="row-fluid">
 		<div class="text-center">
 			<?php
-				echo Rb_Html::image('plugins/rb_ecommerceprocessor/payfast/processors/payfast/layouts/logo.png', ''); 
+				echo Rb_Html::image('plugins/rb_ecommerceprocessor/bankaudi/processors/bankaudi/layouts/logo.png', ''); 
 			?>	
 		</div>
 	</div>
 </div>
-
-<?php $fieldSets = $form->getFieldsets(); ?>
-<?php foreach ($fieldSets as $name => $fieldSet) : ?>
-<fieldset class="form-horizontal">
-	<?php foreach ($form->getFieldset($name) as $field): ?>
-		<?php echo $field->input; ?>	
-	<?php endforeach;?>
-</fieldset>
-<?php endforeach;
+<?php 
