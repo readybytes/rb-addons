@@ -175,7 +175,7 @@ class Rb_EcommerceProcessorPayza extends Rb_EcommerceProcessor
 			$response->set('message', 'PLG_RB_ECOMMERCEPROCESSOR_PAYZA_TRANSACTION_PAYZA_PAYMENT_FAILED');
 		}
 		else {
-			$response->set('amount', 			$data['ap_totalamount ']);
+			$response->set('amount', 			$data['ap_totalamount']);
 			$response->set('payment_status', 	Rb_EcommerceResponse::PAYMENT_COMPLETE);
 			$response->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_PAYZA_TRANSACTION_PAYZA_PAYMENT_COMPLETED');
 		}
