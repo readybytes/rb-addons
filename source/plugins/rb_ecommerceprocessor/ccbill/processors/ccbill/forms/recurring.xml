@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+<fields name="payment_data">
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_ccbill_form">
+		<field 	name="clientAccnum"
+				id="rb_ecommerce_processor_ccbill_clientAccnum"
+				type="hidden" />
+				
+		<field 	name="clientSubacc"
+				id="rb_ecommerce_processor_ccbill_clientSubacc"
+				type="hidden" />
+				
+		<field 	name="formName"
+				id="rb_ecommerce_processor_ccbill_formName"
+				type="hidden" />
+				
+		<field 	name="formPrice"
+				id="rb_ecommerce_processor_ccbill_formPrice"
+				type="hidden" />
+				
+		<field 	name="formPeriod"
+				id="rb_ecommerce_processor_ccbill_formPeriod"
+				type="hidden" />
+				
+		<field 	name="currencyCode"
+				id="rb_ecommerce_processor_ccbill_currencyCode"
+				type="hidden" />
+				
+		<field 	name="formDigest"
+				id="rb_ecommerce_processor_ccbill_formDigest"
+				type="hidden" />
+				
+		<field 	name="formRecurringPrice"
+				id="rb_ecommerce_processor_ccbill_formRecurringPrice"
+				type="hidden" />
+		
+		<field 	name="formRecurringPeriod"
+				id="rb_ecommerce_processor_ccbill_formRecurringPeriod"
+				type="hidden" />
+				
+		<field 	name="formRebills"
+				id="rb_ecommerce_processor_ccbill_formRebills"
+				type="hidden" />
+		
+		<field 	name="invoice_number"
+				id="rb_ecommerce_processor_ccbill_invoice_number"
+				type="hidden" />
+	</fieldset>
+</fields>
+</form>
