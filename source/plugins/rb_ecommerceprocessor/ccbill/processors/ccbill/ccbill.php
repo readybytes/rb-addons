@@ -54,7 +54,7 @@ class Rb_EcommerceProcessorCCBill extends Rb_EcommerceProcessor
 		$form_price 					= number_format($payment_data->total, 2, ',', '');
 		
 		$form_data['saltKey'] 			= $config->salt_key;
-		$form_data['currencyCode'] 		= $config->currency_value;
+		$form_data['currencyCode'] 		= $payment_data->currency;
 		$form_data['clientAccnum'] 		= $config->client_account_number;
 		$form_data['clientSubacc'] 		= $config->sub_account;
 		$form_data['formName'] 			= $config->form_name;

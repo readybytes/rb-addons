@@ -20,8 +20,8 @@
 	</div>
 	
 	 <div class="hide rb-help-paycart rb-processor-help">
-			<b>NOTE</b>:-1. Please set webhook url on ccbill's end to:- <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=invoice&amp;task=notify&amp;</a><br>
-		     2. Set approval url to <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=invoice&amp;task=complete&amp;invoice_number=%%invoice_number%%</a><br>
+			<b>NOTE</b>:-1. Please set webhook url on ccbill's end to:- <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=cart&amp;task=notify&amp;processor=ccbill&amp;</a><br>
+		     2. Set approval url to <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=invoice&amp;task=complete&amp;processor=ccbill&amp;invoice_number=%%invoice_number%%</a><br>
 	
 	</div>
 	
@@ -61,20 +61,7 @@
         		 label="PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_SALT_KEY_LABEL" 
         		 description="PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_SALT_KEY_DESC" 
         		 />
-
-         <field  name="currency_value" 
-        		type="list" 
-        		default="" 
-				class="required"
-        		label="PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_VALUE_LABEL" 
-        		description="PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_VALUE_DESC" >
-		    		<option value="840" >PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_USD</option>
-				    <option value="826" >PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_GBP</option>		
-				    <option value="978" >PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_EUR</option>
-				    <option value="124" >PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_JPY</option>
-				    <option value="036" >PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_AUD</option>
-				    <option value="392" >PLG_RB_ECOMMERCEPROCESSOR_CCBILL_PARAMS_CCBILL_CURRENCY_CAD</option>
-        		</field>				
+		
 		</fieldset>
 	</fields>
 </config>

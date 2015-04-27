@@ -20,6 +20,13 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 			</div>
 		</div>
 </div>
+
+<?php $applicableCurrency = array('USD'=>'840','GBP'=>'826','EUR'=>'978','CAD' =>'124','AUD'=>'036','JPY'=>'392');?>
+<?php if(!array_key_exists($displayData['currencyCode'], $applicableCurrency )):
+    echo JText::_("PLG_RB_ECOMMERCEPROCESSOR_CCBILL_CURRENCY_NOT_SUPPORTED");
+    return ;
+endif;
+?>
 			
 		<input 	name="clientAccnum"
 				id="rb_ecommerce_processor_ccbill_clientAccnum"
@@ -50,7 +57,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 		<input 	name="currencyCode"
 				id="rb_ecommerce_processor_ccbill_currencyCode"
 				type="hidden"
-				value="<?php echo  $displayData['currencyCode']; ?>" />
+				value="<?php echo  $applicableCurrency[$displayData['currencyCode']]; ?>" />
 					
 		<input 	name="formDigest"
 				id="rb_ecommerce_processor_ccbill_formDigest"
