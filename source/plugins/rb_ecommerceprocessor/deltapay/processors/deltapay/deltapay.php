@@ -41,22 +41,9 @@ class Rb_EcommerceProcessorDeltapay  extends Rb_EcommerceProcessor
 	}
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
-	{
-		$form 		= JForm::getInstance('rb_ecommerce.processor.deltapay', dirname(__FILE__).'/forms/form.xml');
-	
+	{	
 		$object 	= $request->toObject();	
 		$guids 		= $this->_getGuids($object);
-    	
-		//if first response is not proper then do nothing
-    	if($guids['error_message'])
-    	{
-    		$response 					= new stdClass();
-    		$response->error_message	= $guids['error_message'];
-    		return $response;
-    	}
-		
-		$binddata['Guid1']  = $guids['guid1'];
-		$form->bind($binddata);	
 				
 		$response 					= new stdClass();
 		$response->data 			= new stdClass();
@@ -66,12 +53,18 @@ class Rb_EcommerceProcessorDeltapay  extends Rb_EcommerceProcessor
 		{
 			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
 				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+				$form					= 	array();
+				$form['currency']  		=   $object->payment_data->currency;
+				$form['Guid1']			=   (empty($guids))?'':$guids['guid1'];
 				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_deltapay', $form,  'plugins/rb_ecommerceprocessor/deltapay/processors/deltapay/layouts');
 				break;
 				
 			case Rb_EcommerceRequest::BUILD_TYPE_XML :
 			default:
-				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
+				$response->type 	= Rb_EcommerceRequest::BUILD_TYPE_XML ;
+				$binddata['Guid1']  = (empty($guids))?'':$guids['guid1'];
+				$form 				= JForm::getInstance('rb_ecommerce.processor.deltapay', dirname(__FILE__).'/forms/form.xml');
+				$form->bind($binddata);
 				$response->data->form	= $form;
 		}
 		
@@ -92,8 +85,7 @@ class Rb_EcommerceProcessorDeltapay  extends Rb_EcommerceProcessor
     	$invoice_number	= $payment_data->invoice_number;
     	
     	if($currencyCode != 'EUR'){
-    		$result['error_message'] = Rb_Text::_('PLG_RB_ECOMMERCEPROCESSOR_DELTAPAY_CURRENCY_NOT_SUPPORTED');
-    		return $result;
+    		return array();
     	}
     	
     	$currencyCode	= '978';
