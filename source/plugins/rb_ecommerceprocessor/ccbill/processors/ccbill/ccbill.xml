@@ -14,14 +14,16 @@
 	2. Create your own salt value and provide it to client support.<br><br>
 	
 	<div class="rb-help-payinvoice rb-processor-help">
-			<b>NOTE</b>:-1. Please set webhook url on ccbill's end to:- <a href =#>www.your_website.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=notify&amp;</a><br>
-		     2. Set approval url to <a href =#>www.your_website.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=complete&amp;invoice_number=%%invoice_number%%</a><br>
+			<b>NOTE</b>:-1. Please set webhook url on ccbill's end to:- <a href =#>www.your_website.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=notify&amp;processor=ccbill&amp;</a><br>
+ 			 2. Don't forget to add &amp; at the end of webhook url.<br>
+		     3. Set approval url to <a href =#>www.your_website.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=complete&amp;invoice_number=%%invoice_number%%</a><br>
 	
 	</div>
 	
 	 <div class="hide rb-help-paycart rb-processor-help">
-			<b>NOTE</b>:-1. Please set webhook url on ccbill's end to:- <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=cart&amp;task=notify&amp;processor=ccbill&amp;</a><br>
-		     2. Set approval url to <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=invoice&amp;task=complete&amp;processor=ccbill&amp;invoice_number=%%invoice_number%%</a><br>
+			<b>NOTE</b>:-1. Please set webhook url on ccbill's end to:- <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=cart&amp;task=notify&amp;processor=ccbill&amp;</a><br> 
+			 2. Don't forget to add &amp; at the end of webhook url.<br>
+		     3. Set approval url to <a href =#>www.your_website.com/index.php?option=com_paycart&amp;view=invoice&amp;task=complete&amp;processor=ccbill&amp;invoice_number=%%invoice_number%%</a><br>
 	
 	</div>
 	

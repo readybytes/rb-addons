@@ -12,6 +12,10 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 $form = $displayData;
 ?>
 	
+<?php if($form['currency'] != 'EUR'):?>
+	<div class="alert alert-error"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_DELTAPAY_CURRENCY_NOT_SUPPORTED')?></div>
+	<br>
+<?php endif;?>
 <div class="well ">
 	<div class="row-fluid">
 		<div class="text-center">
@@ -22,11 +26,5 @@ $form = $displayData;
 	</div>
 </div>
 
-<?php $fieldSets = $form->getFieldsets(); ?>
-<?php foreach ($fieldSets as $name => $fieldSet) : ?>
-<fieldset class="form-horizontal">
-	<?php foreach ($form->getFieldset($name) as $field): ?>
-		<?php echo $field->input; ?>	
-	<?php endforeach;?>
-</fieldset>
-<?php endforeach;
+<input name="Guid1" id="rb_ecommerce_processor_deltapay_guid1" type="hidden" value="<?php echo  $displayData['Guid1']; ?>" />
+<?php 
