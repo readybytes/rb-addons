@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>CCAvenue</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+	<help>
+	<![CDATA[
+	<ul>
+		<li>CCAvenue supports Fixed payments only.</li>
+		<li>Minimum Amount should be positive.</li>
+	</ul>
+     ]]>	
+	</help>
+	<fields name="processor_config">
+		<fieldset name="parameters">
+				
+				<field	name="merchant_id" 	
+						default="" 		
+						type="text" 	
+						size="50" 
+						label="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_MERCHANT_ID"  
+						description="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_MERCHANT_ID_DESC" 
+						/>
+						
+				<field	name="access_code" 	
+						default="" 		
+						type="text" 	
+						size="50" 
+						label="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_ACCESS_CODE"  
+						description="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_ACCESS_CODE_DESC" 
+						/>
+						
+				<field	name="encyption_key" 	
+						default="" 		
+						type="text" 	
+						size="50" 
+						label="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_ENCRYPTION_KEY"  
+						description="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_ENCRYPTION_KEY_DESC" 
+						/>
+						
+				
+			<field  name="sandbox" 
+       				type="radio" 
+       				default="0" 
+       				label="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_SANDBOX" 
+       				description="PLG_RB_ECOMMERCEPROCESSOR_CCAVENUE_SANDBOX_DESC"
+       				class="btn-group">
+	          		<option value="0">JNO</option>
+	          		<option value="1">JYES</option>
+       		</field>
+						
+	
+		        		
+        
+		</fieldset>
+	</fields>
+</config>
