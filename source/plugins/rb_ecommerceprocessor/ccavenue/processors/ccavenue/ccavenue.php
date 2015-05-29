@@ -29,10 +29,13 @@ class Rb_EcommerceProcessorCcavenue extends Rb_EcommerceProcessor
 	
 	public function get_invoice_number($response)
 		{
-			if(isset($response->data['merchant_param1'])){
-				return $response->data['merchant_param1'];
+			if(isset($response->data['invoice_number'])){
+				return $response->data['invoice_number'];
 			}
 			
+			if(isset($response->data['merchant_param1'])){
+					return $response->data['merchant_param1'];
+				}
 			return 0;
 		}
 	
@@ -53,7 +56,7 @@ class Rb_EcommerceProcessorCcavenue extends Rb_EcommerceProcessor
 		$data['order_id'] 			= $payment_data->invoice_number;
 		$data['currency'] 			= $payment_data->currency;
 		$data['amount'] 			= $payment_data->total;	
-		$data['redirect_url'] 		= !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number : $config->return_url.'&invoice_number='.$payment_data->invoice_number;
+		$data['redirect_url'] 		= !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number.'&notify=1': $config->return_url.'&invoice_number='.$payment_data->invoice_number.'&notify=1';
 		$data['cancel_url'] 		= !empty($url_data->cancel_url) ? $url_data->cancel_url.'&invoice_number='.$payment_data->invoice_number : $config->cancel_url.'&invoice_number='.$payment_data->invoice_number;
 
 		//RB_TODO:-  right now ccavenue supports only english language. In future we need to correct it.
@@ -172,13 +175,13 @@ class Rb_EcommerceProcessorCcavenue extends Rb_EcommerceProcessor
 			return $response;
 		}
 		
-		public function validateData($data)
+		public function validateData($res)
 		{
 			require_once 'Crypto.php';
 			//error_reporting(0);
 			
 			$workingKey			= $this->getConfig()->encyption_key;		//Working Key should be provided here.
-			$encResponse		= $data["encResp"];								//This is the response sent by the CCAvenue Server
+			$encResponse		= $res->data["encResp"];								//This is the response sent by the CCAvenue Server
 			$rcvdString			= decrypt($encResponse,$workingKey);				//Crypto Decryption used as per the specified working key.
 			$order_status		= "";
 			$decryptValues		= explode('&', $rcvdString);
