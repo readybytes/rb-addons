@@ -96,7 +96,7 @@ $year = date('Y');
 					</label>
 				</div>
 	          <div class="controls">
-	          		<input type="text" class="input-block-level required " name="payment_data[card_name]" id="rb-processor-pin-card-name" value=""></input>
+	          		<input type="text" class="input-block-level required" name="payment_data[card_name]" id="rb-processor-pin-card-name" value="" placeHolder="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_PIN_CARD_NAME_HELP')?>"></input>
 	          </div>
 	      	  <span for="rb-processor-pin-card-name" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_PIN_ERROR_VALIDATION_REQUIRED'); ?></span>    
 	          
@@ -149,7 +149,7 @@ $year = date('Y');
 				</label>
 			  </div>
 	          <div class="controls">
-	          	<input type="text" class="input-block-level required " name="payment_data[city]" id="rb-processor-pin-city" value="Lathlain"></input>
+	          	<input type="text" class="input-block-level required " name="payment_data[city]" id="rb-processor-pin-city" value=""></input>
 	          </div>
          
               <span for="rb-processor-pin-city" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_PIN_ERROR_VALIDATION_REQUIRED'); ?></span>
