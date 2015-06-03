@@ -123,7 +123,7 @@ $year = date('Y');
 					</label>
 				</div>
 	            <div class="controls">
-	  				<?php echo PaycartHtmlCountry::getList("payment_data[country]", 'AU', "rb-processor-pin-country", array('class' => 'input-block-level required'),'isocode2'); ?>
+	  				<?php echo PaycartHtmlCountry::getList("payment_data[country]", '', "rb-processor-pin-country", array('class' => 'input-block-level required'),'isocode2'); ?>
 	            </div>
 	         
 	         <span for="rb-processor-pin-country" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_PIN_ERROR_VALIDATION_REQUIRED'); ?></span>  
