@@ -57,7 +57,6 @@
 		<field 	name="country" 
 				id="rb_ecommerce_processor_pin_country"
 				type="rb_ecommerce.countries"
-				default="AUS"
 				label="PLG_RB_ECOMMERCEPROCESSOR_PIN_COUNTRY_LABEL"
 				description="PLG_RB_ECOMMERCEPROCESSOR_PIN_COUNTRY_DESC"/>
 		
