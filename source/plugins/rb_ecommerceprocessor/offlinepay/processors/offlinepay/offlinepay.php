@@ -84,6 +84,7 @@ class Rb_EcommerceProcessorOfflinepay extends Rb_EcommerceProcessor
 			$response->data  = $object->post_data;
 		}else {
 			$response->data	= $processor_data;
+			$response->data->amount =  $object->payment_data->total;
 		}
 		
 		return $response;
@@ -134,7 +135,7 @@ class Rb_EcommerceProcessorOfflinepay extends Rb_EcommerceProcessor
 		$response->set('txn_id', 			$offline_payment->txn_id)
 				 ->set('subscr_id', 		$offline_payment->txn_id)  
 				 ->set('parent_txn', 		0)
-				 ->set('amount', 	 		0)
+				 ->set('amount', 	 		$offline_payment->amount)
 				 ->set('payment_status', 	Rb_EcommerceResponse::PAYMENT_COMPLETE)	
 				 ->set('message', 			'PLG_RB_ECOMMERCEPROCESSOR_OFFLINEPAY_TRANSACTION_OFFLINEPAY_PAYMENT_COMPLETED')		 
 		 		 ->set('params', 			$offline_payment);
