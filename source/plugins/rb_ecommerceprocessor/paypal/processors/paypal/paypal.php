@@ -99,7 +99,7 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 		
 		$url_data 		= $object->url_data;
 		$payment_data 	= $object->payment_data;
-		
+		$language		= $payment_data->language;
 		// common parameters
 		$form_data['return'] 		= !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number : $config->return_url.'&invoice_number='.$payment_data->invoice_number;
 		$form_data['cancel_return'] = !empty($url_data->cancel_url) ? $url_data->cancel_url.'&invoice_number='.$payment_data->invoice_number : $config->cancel_url.'&invoice_number='.$payment_data->invoice_number;
@@ -111,6 +111,9 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 		$form_data['item_name'] 	= $payment_data->item_name;
 		$form_data['item_number'] 	= $payment_data->invoice_number;
 		$form_data['currency_code'] = $payment_data->currency;
+		
+		//to change the language on paypal's end.
+		$form_data['localcode']		= str_replace('-', '_', $language['code']);
 		
 		$form_path = dirname(__FILE__).'/forms/';
 		

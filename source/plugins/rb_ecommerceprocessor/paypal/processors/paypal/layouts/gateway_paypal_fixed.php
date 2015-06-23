@@ -112,6 +112,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				type="hidden"
 				value="<?php echo  $displayData['currency_code'] ; ?>"/>
 								
+		<input 	name="lc" 
+				id="rb_ecommerce_processor_paypal_lc"
+				type="hidden"
+				value="<?php echo  $displayData['localcode'] ; ?>"/>
+		
 		<input 	name="no_note" 
 				id="rb_ecommerce_processor_paypal_no_note"
 				type="hidden"
