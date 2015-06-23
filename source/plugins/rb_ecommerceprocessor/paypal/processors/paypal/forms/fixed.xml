@@ -50,6 +50,11 @@
 				id="rb_ecommerce_processor_paypal_currency_code"
 				type="hidden"
 				default=""/>
+
+		<field 	name="lc" 
+				id="rb_ecommerce_processor_paypal_localcode"
+				type="hidden"
+				default="en_GB"/>
 								
 		<field 	name="no_note" 
 				id="rb_ecommerce_processor_paypal_no_note"
