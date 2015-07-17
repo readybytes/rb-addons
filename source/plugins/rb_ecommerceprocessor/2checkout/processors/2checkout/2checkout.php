@@ -33,8 +33,8 @@ class Rb_EcommerceProcessor2checkout extends Rb_EcommerceProcessor
 	
 	public function get_invoice_number($co_response)
 	{
-		if(isset($co_response->data['merchant_order_id']) && !empty($co_response->data['merchant_order_id'])){
-			return $co_response->data['merchant_order_id'];
+		if(isset($co_response->data['vendor_order_id']) && !empty($co_response->data['vendor_order_id'])){
+			return $co_response->data['vendor_order_id'];
 		}
 		return false;
 	}
@@ -182,6 +182,26 @@ class Rb_EcommerceProcessor2checkout extends Rb_EcommerceProcessor
 			$response->set('payment_status', Rb_EcommerceResponse::PAYMENT_FAIL);	
 			return $response;
 		}
+
+		// if same notification came more than one time
+    	// check if transaction already exists
+    	// if yes then do nothing and return
+    	//$filter     = array();
+    	//$filter['invoice_id']          = Rb_EcommerceAPI::invoice_get_id_from_number($data['vendor_order_id']);
+    	//$filter['gateway_subscr_id']   = isset($data['invoice_id']) ? $data['invoice_id'] : 0;
+    	//$filter['gateway_parent_txn']  = isset($data['sale_id']) ? $data['sale_id'] : 0;
+    	//$filter['gateway_txn_id']      = 0;
+    	
+    	//$transactions = Rb_EcommerceAPI::transaction_get_records($filter);
+    	
+    	//if($transactions !== false){
+    	//	foreach($transactions as $record){
+    	//		$params = json_decode($record->params);
+    	//		if($params->message_id === $data['message_id'] && !isset($data['item_type_2'])){
+    	//			return false;
+    	//		}
+    	//	}
+    	//}
 		
 		// if the Notification is from INS of 2checkout
 		// then message type will be se	
