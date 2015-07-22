@@ -67,25 +67,9 @@ class Rb_EcommerceProcessorCcavenue extends Rb_EcommerceProcessor
 		$form_data['encRequest']  	= $this->initiatePaymentRequest($data);
 		
 		$form_data['access_code'] 	= $this->getConfig()->access_code;			//Shared by CCAVENUES
-				
-		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
 
-		switch ($build_type) 
-		{
-			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$form	=	Rb_HelperTemplate::renderLayout('gateway_ccavenue' , $form_data,  'plugins/rb_ecommerceprocessor/ccavenue/processors/ccavenue/layouts');
-				break;
-
-			case Rb_EcommerceRequest::BUILD_TYPE_XML :
-			default:
-				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-				$form = JForm::getInstance('rb_ecommerce.processor.ccavenue', $form_path."ccavenue.xml");
-
-	
-				// bind existing data
-				$form->bind($form_data);
-		}
+		$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$form						=	Rb_HelperTemplate::renderLayout('gateway_ccavenue' , $form_data,  'plugins/rb_ecommerceprocessor/ccavenue/processors/ccavenue/layouts');	
 		
 		$response 					= new stdClass();		
 		$response->data 			= new stdClass();

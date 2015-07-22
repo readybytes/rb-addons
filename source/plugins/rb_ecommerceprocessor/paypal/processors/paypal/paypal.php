@@ -160,31 +160,8 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 			
 		}		
 		
-		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
-
-		switch ($build_type) 
-		{
-			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$form	=	Rb_HelperTemplate::renderLayout('gateway_paypal_'.$form_file_name , $form_data,  'plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts');
-				break;
-
-			case Rb_EcommerceRequest::BUILD_TYPE_XML :
-			default:
-				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-				$form = JForm::getInstance('rb_ecommerce.processor.paypal', $form_path."$form_file_name.xml");
-
-				if ($form_data['is_trial_one']) {
-					$form->loadFile($form_path.'trial1.xml', false, '//config');
-				}
-
-				if ($form_data['is_trial_two']) {
-					$form->loadFile($form_path.'trial2.xml', false, '//config');
-				}
-
-				// bind existing data
-				$form->bind($form_data);
-		}
+		$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$form						=	Rb_HelperTemplate::renderLayout('gateway_paypal_'.$form_file_name , $form_data,  'plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts');
 		
 		$response 					= new stdClass();		
 		$response->data 			= new stdClass();

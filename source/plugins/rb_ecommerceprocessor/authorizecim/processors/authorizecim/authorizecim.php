@@ -108,30 +108,18 @@ class Rb_EcommerceProcessorAuthorizecim extends Rb_EcommerceProcessor
 	}	
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
-	{	
-			$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
-			
-			$response 					= new stdClass();
-			$response->type 			= 'form';
-			$response->error 			= false;
-			$response->data 			= new stdClass();
-			$response->data->post_url 	= false;
-			$response->data->form 		= $form;
-			
-			switch ($build_type) 
-			{
-				case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-					$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-					$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_authorizecim', null,  'plugins/rb_ecommerceprocessor/authorizecim/processors/authorizecim/layouts');
-					break;
-					
-				case Rb_EcommerceRequest::BUILD_TYPE_XML :
-				default:
-					$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-					$response->data->form	= JForm::getInstance('rb_ecommerce.processor.authorizecim', dirname(__FILE__).'/forms/form.xml');
-			}
-			
-			return $response;
+	{				
+		$response 					= new stdClass();
+		$response->type 			= 'form';
+		$response->error 			= false;
+		$response->data 			= new stdClass();
+		$response->data->post_url 	= false;
+		$response->data->form 		= $form;
+		
+		$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form		=	Rb_HelperTemplate::renderLayout('gateway_authorizecim', null,  'plugins/rb_ecommerceprocessor/authorizecim/processors/authorizecim/layouts');
+		
+		return $response;
 	}
 	
 	protected function getPostUrl()

@@ -84,11 +84,13 @@ $amount				=	@$displayData['payment_data']['amount'];
 				{
 					//$('[data-rb-processor-offline="payment-data-id"]').prop('readonly',false);
 					$('[data-rb-processor-offline="payment-data-id-div"]').show();
+					$('[data-rb-processor-offline="payment-data-id-div"]').find('[data-rb-processor-offline="payment-data-id"]').prop('required',true);
 	
 					// if selected value is cash then no need any cheque or dd number
 					if ($('[data-rb-processor-offline="payment-data-from"]').val() == 'cash') {
 						//$('[data-rb-processor-offline="payment-data-id"]').prop('readonly',true);
 						$('[data-rb-processor-offline="payment-data-id-div"]').hide();
+						$('[data-rb-processor-offline="payment-data-id-div"]').find('[data-rb-processor-offline="payment-data-id"]').removeAttr('required');
 					};					
 				} 
 

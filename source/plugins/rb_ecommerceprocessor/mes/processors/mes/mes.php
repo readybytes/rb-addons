@@ -57,18 +57,8 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 		$response->data->object_data						= $object;
 		$response->data->post_url 							= false;
 
-		switch ($object->build_type) 
-		{
-			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_mes', $form,  'plugins/rb_ecommerceprocessor/mes/processors/mes/layouts');
-				break;
-				
-			case Rb_EcommerceRequest::BUILD_TYPE_XML :
-			default:
-				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-				$response->data->form	= $form;
-		}
+		$response->type										=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form								=	Rb_HelperTemplate::renderLayout('gateway_mes', $form,  'plugins/rb_ecommerceprocessor/mes/processors/mes/layouts');
 		
 		return $response;
 	}

@@ -100,20 +100,10 @@ class Rb_EcommerceProcessor2checkout extends Rb_EcommerceProcessor
 		}		
 		
 		$form->bind($form_data);
-		$response = new stdClass();	
+		$response = new stdClass();
 		
-		switch ($object->build_type) 
-		{
-			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_2checkout', array('form' => $form, 'data' => $form_data),  'plugins/rb_ecommerceprocessor/2checkout/processors/2checkout/layouts');
-				break;
-				
-			case Rb_EcommerceRequest::BUILD_TYPE_XML :
-			default:
-				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-				$response->data->form	= $form;
-		}
+		$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form		=	Rb_HelperTemplate::renderLayout('gateway_2checkout', array('form' => $form, 'data' => $form_data),  'plugins/rb_ecommerceprocessor/2checkout/processors/2checkout/layouts');
 		
 		$response->data->post_url 	= $this->getPostUrl($config);
 		

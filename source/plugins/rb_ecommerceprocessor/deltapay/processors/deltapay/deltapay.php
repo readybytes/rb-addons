@@ -49,25 +49,12 @@ class Rb_EcommerceProcessorDeltapay  extends Rb_EcommerceProcessor
 		$response->data 			= new stdClass();
 		$response->data->post_url 	= 'https://www.deltapay.gr/entry.asp';
 		
-		switch ($object->build_type) 
-		{
-			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$form					= 	array();
-				$form['currency']  		=   $object->payment_data->currency;
-				$form['Guid1']			=   (empty($guids))?'':$guids['guid1'];
-				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_deltapay', $form,  'plugins/rb_ecommerceprocessor/deltapay/processors/deltapay/layouts');
-				break;
+		$response->type				= Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$form						= array();
+		$form['currency']  			= $object->payment_data->currency;
+		$form['Guid1']				= (empty($guids))?'':$guids['guid1'];
+		$response->data->form		= Rb_HelperTemplate::renderLayout('gateway_deltapay', $form,  'plugins/rb_ecommerceprocessor/deltapay/processors/deltapay/layouts');
 				
-			case Rb_EcommerceRequest::BUILD_TYPE_XML :
-			default:
-				$response->type 	= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-				$binddata['Guid1']  = (empty($guids))?'':$guids['guid1'];
-				$form 				= JForm::getInstance('rb_ecommerce.processor.deltapay', dirname(__FILE__).'/forms/form.xml');
-				$form->bind($binddata);
-				$response->data->form	= $form;
-		}
-		
 		return $response;	
 	}
 	

@@ -42,7 +42,6 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{
-		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
 		$response 									= new stdClass();
 		$response->type 							= 'form';
 		$response->data 							= new stdClass();
@@ -70,21 +69,9 @@ class Rb_EcommerceProcessorEbs extends Rb_EcommerceProcessor
 		$binddata['payment_data']['return_url']		= $return_url;	
 		$binddata['payment_data']['secure_hash']	= $secure_hash;	
 		
-		switch ($build_type) 
-			{
-				case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-					$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-					$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_ebs', $binddata,  'plugins/rb_ecommerceprocessor/ebs/processors/ebs/layouts');
-					break;
-					
-				case Rb_EcommerceRequest::BUILD_TYPE_XML :
-				default:
-					$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-					$form 			= JForm::getInstance('rb_ecommerce.processor.ebs', dirname(__FILE__).'/forms/form.xml');
-					$form->bind($binddata); 
-					$response->data->form	= $form;
-			}
-		
+		$response->type								=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form						=	Rb_HelperTemplate::renderLayout('gateway_ebs', $binddata,  'plugins/rb_ecommerceprocessor/ebs/processors/ebs/layouts');
+
 		return $response;
 	}
 	

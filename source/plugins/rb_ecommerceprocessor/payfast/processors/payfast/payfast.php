@@ -89,19 +89,10 @@ class Rb_EcommerceProcessorPayfast  extends Rb_EcommerceProcessor
         $response                   = new stdClass();
         $response->data             = new stdClass();
         $response->data->post_url   = $this->getPostUrl();        
-        
-    	switch ($object->build_type) 
-		{
-			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_payfast', $form,  'plugins/rb_ecommerceprocessor/payfast/processors/payfast/layouts');
-				break;
-				
-			case Rb_EcommerceRequest::BUILD_TYPE_XML :
-			default:
-				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-				$response->data->form	= $form;
-		}
+
+		$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_payfast', $form,  'plugins/rb_ecommerceprocessor/payfast/processors/payfast/layouts');
+
         return $response;   
     }
     

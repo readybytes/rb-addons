@@ -43,8 +43,6 @@ class Rb_EcommerceProcessorCCBill extends Rb_EcommerceProcessor
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{
-		
-		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
 		$object 						= $request->toObject();		
 		$config 						= $this->getConfig();
 		$payment_data 					= $object->payment_data;
@@ -108,20 +106,8 @@ class Rb_EcommerceProcessorCCBill extends Rb_EcommerceProcessor
 		$response->data 			= new stdClass();
 		$response->data->post_url 	= 'https://bill.ccbill.com/jpost/signup.cgi';
 		
-		switch ($build_type) 
-			{
-				case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-					$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-					$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_ccbill', $form_data,  'plugins/rb_ecommerceprocessor/ccbill/processors/ccbill/layouts');
-					break;
-					
-				case Rb_EcommerceRequest::BUILD_TYPE_XML :
-				default:
-					$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-					$form 			= JForm::getInstance('rb_ecommerce.processor.ccbill', dirname(__FILE__).'/forms/'.$form_data['type'].'.xml');
-					$form->bind($form_data); 
-					$response->data->form	= $form;
-			}
+		$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_ccbill', $form_data,  'plugins/rb_ecommerceprocessor/ccbill/processors/ccbill/layouts');
 		
 		return $response;
 	}
