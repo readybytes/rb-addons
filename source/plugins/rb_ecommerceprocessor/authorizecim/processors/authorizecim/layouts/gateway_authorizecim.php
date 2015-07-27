@@ -177,7 +177,7 @@ $year = date('Y');
 				  </label>
 				</div>
 		          <div class="controls">
-		  			<?php echo PaycartHtmlCountry::getList("payment_data[country]", '', "rb-processor-authorizecim-country", array('class' => 'input-block-level required')); ?>
+		  			<?php echo Rb_EcommerceHtmlCountries::getList("payment_data[country]", '', "rb-processor-authorizecim-country", array('class' => 'input-block-level required')); ?>
 		          </div>
 	         	<span for="rb-processor-authorizecim-country" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_ERROR_VALIDATION_REQUIRED'); ?></span>
         	</div>

@@ -49,7 +49,7 @@ if(defined('_JEXEC')===false) die();
 // ENDING :
 // Scoping code for easy and non-conflicting access to $.
 // Should be last line, write code above this line.
-})(paycart.jQuery);
+});
 </script>
 
 <?php
@@ -113,7 +113,7 @@ $year = date('Y');
 				  </label>
 				</div>
 		          <div class="controls">
-		  			<?php echo PaycartHtmlCountry::getList("country", '', "rb-processor-ebs-country", array('class' => 'input-block-level required')); ?>
+		  			<?php echo Rb_EcommerceHtmlCountries::getList("country", '', "rb-processor-ebs-country", array('class' => 'input-block-level required')); ?>
 		          </div>
 	         	<span for="rb-processor-ebs-country" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EBS_ERROR_VALIDATION_REQUIRED'); ?></span>
         	</div>
@@ -207,7 +207,7 @@ $year = date('Y');
 				  </label>
 				</div>
 		          <div class="controls">
-		  			<?php echo PaycartHtmlCountry::getList("ship_country", '', "rb-processor-ebs-ship-country", array('class' => 'input-block-level required')); ?>
+		  			<?php echo Rb_EcommerceHtmlCountries::getList("ship_country", '', "rb-processor-ebs-ship-country", array('class' => 'input-block-level required')); ?>
 		          </div>
 	         	<span for="rb-processor-ebs-ship-country" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_EBS_ERROR_VALIDATION_REQUIRED'); ?></span>
         	</div>
