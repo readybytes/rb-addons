@@ -44,10 +44,6 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 		$config 											= $this->getConfig();
 		$payment_data 										= $object->payment_data;
 		
-		$binddata['payment_data']['transaction_amount']		= number_format($payment_data->total, 2, '.', '');
-		$binddata['payment_data']['invoice_number']			= $payment_data->invoice_number;	
-		$form->bind($binddata); 
-		
 		$response 											= new stdClass();
 		$response->type 									= 'form';
 		$response->error 									= false;
@@ -55,8 +51,8 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 		$response->data->object_data						= $object;
 		$response->data->post_url 							= false;
 
-		$response->type										=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-		$response->data->form								=	Rb_HelperTemplate::renderLayout('gateway_mes', $form,  'plugins/rb_ecommerceprocessor/mes/processors/mes/layouts');
+		$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_mes', new stdClass(),  'plugins/rb_ecommerceprocessor/mes/processors/mes/layouts');
 		
 		return $response;
 	}

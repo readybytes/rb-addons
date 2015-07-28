@@ -82,8 +82,8 @@ class Rb_EcommerceProcessorBankaudi extends Rb_EcommerceProcessor
 		$response->data 			= new stdClass();
 		$response->data->post_url 	= $post_url;
 		
-		$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-		$response->data->form		=	Rb_HelperTemplate::renderLayout('gateway_bankaudi', $form,  'plugins/rb_ecommerceprocessor/bankaudi/processors/bankaudi/layouts');	
+		$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_bankaudi', new stdClass(),  'plugins/rb_ecommerceprocessor/bankaudi/processors/bankaudi/layouts');
 		
 		return $response;	
 	}
