@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Pin</name>
+   	<author></author>
+    <description>Pin Payments helps Australian companies sell to a global audience. No gateway or merchant account required.</description>
+   	<icon></icon>
+    <tags></tags>
+    <help>
+    	<![CDATA[
+  		<ol>
+  			<li>Accept credit card payments with Australia’s first all-in-one online payment system.</li>
+  			<li>PIN supports only these currencies - <b>AUD, USD, NZD, SGD, EUR, GBP, CAD, HKD</b> and <b>JPY</b>.
+  			<li>There is a minimum charge amount for each currency.Refer to the documentation on <a href="https://pin.net.au/docs/currency-support" target="__blank">supported currencies</a></li>
+  		</ol>
+		
+	]]>
+   	</help>
+   	 
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="public_key" 	
+				default="" 		
+				type="text" 	
+				size="50" 
+				label="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_PUBLIC_KEY_LABEL"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_PUBLIC_KEY_DESC"
+				required="true"
+				/> 			
+		<field	name="secret_key" 	
+				default="" 		
+				type="text" 	
+				size="50" 
+				label="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_SECRET_KEY"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_SECRET_KEY_DESC"
+				/>
+				
+		<field  name="sandbox" 
+        			type="radio" 
+        			default="0" 
+        			label="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_SANDBOX_LABEL" 
+        			description="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_SANDBOX_DESC" 
+					class="btn-group">
+		          	<option value="0">JNO</option>
+	         	 	<option value="1">JYES</option>
+       	</field>
+        
+		<field	name="sandbox_secret_key" 	
+				default="" 		
+				type="text" 	
+				size="50" 
+				label="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_SANDBOX_SECRET_KEY"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_PIN_PARAMS_SANDBOX_SECRET_KEY_DESC"
+				/>		
+		</fieldset>
+	</fields>
+</config>

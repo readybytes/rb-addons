@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
+    <name>plg_rb_ecommerceprocessor_2checkout</name>
+    <version>1.1.1</version>
+    <creationDate>June 2015</creationDate>
+    <author>Team Readybytes</author>
+    <authorEmail>support@readybytes.in</authorEmail>
+    <authorUrl>http://www.readybytes.net</authorUrl>
+    <copyright>2009-15 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_DESCRIPTION</description>
+	<files>
+		<filename plugin="2checkout">2checkout.php</filename>
+		<filename>index.html</filename>
+		<folder>processors</folder>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_2checkout.ini</language>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_2checkout.sys.ini</language>
+	</languages>
+	
+	<config>
+	</config>
+	
+	<alias>rb-2checkout</alias>
+	<version_number>1.1.1</version_number>
+	<version_name>2Checkout 1.1</version_name>
+</extension>

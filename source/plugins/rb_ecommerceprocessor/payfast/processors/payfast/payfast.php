@@ -88,9 +88,11 @@ class Rb_EcommerceProcessorPayfast  extends Rb_EcommerceProcessor
                 
         $response                   = new stdClass();
         $response->data             = new stdClass();
-        $response->data->post_url   = $this->getPostUrl();
-        $response->data->form       = $form;
-        
+        $response->data->post_url   = $this->getPostUrl();        
+
+		$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_payfast', $form,  'plugins/rb_ecommerceprocessor/payfast/processors/payfast/layouts');
+
         return $response;   
     }
     
@@ -214,39 +216,28 @@ class Rb_EcommerceProcessorPayfast  extends Rb_EcommerceProcessor
         if(md5($returnString) != $data['signature']) {
             return false;
         }
-    
-        $header      = "POST /eng/query/validate HTTP/1.0\r\n";
-        $header     .= "Content-Type: application/x-www-form-urlencoded\r\n";
-        $header     .= "Content-Length: " . strlen($returnString) . "\r\n\r\n";
-        
-        $fp          = fsockopen($this->getValidationUrl(), 443, $errno, $errstr, 10);
-        
-        if (!$fp) {
-            // HTTP ERROR
-            return false;
-        } else {
-            fputs($fp, $header . $returnString);
-            while(! feof($fp)) 
-            {
-                $res = fgets($fp, 1024);
-                if (strcmp($res, "VALID") == 0) {
-                    fclose($fp);
-                    return true;
-                }
-            }
-        }
-        
-        fclose($fp);
-        return false;
+               
+     	$link     	= new JURI($this->getValidationUrl()); 
+        $curl     	= new JHttpTransportCurl(new Rb_Registry());
+     	$response   = $curl->request('POST', $link, $returnString);     
+	    
+	    $lines = explode( "\r\n", $response->body );
+		$verifyResult = trim( $lines[0] );
+	 
+		if( strcasecmp( $verifyResult, 'VALID' ) != 0 ){
+			return false;
+		}
+		
+		return true;        
     }
 
     
     /* Get Validation URL */
     private function getValidationUrl()
     {
-        $url    = 'ssl://www.payfast.co.za';
+        $url    = 'https://www.payfast.co.za/eng/query/validate';
         if($this->getConfig()->sandbox) {
-            $url = 'ssl://sandbox.payfast.co.za';
+            $url = 'https://sandbox.payfast.co.za/eng/query/validate';
         }
         return $url;
     }

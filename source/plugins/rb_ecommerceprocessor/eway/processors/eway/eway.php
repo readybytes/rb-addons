@@ -35,24 +35,17 @@ class Rb_EcommerceProcessorEway extends Rb_EcommerceProcessor
 	}
 		
 	protected function _request_build(Rb_EcommerceRequest $request)
-	{
-		$form = JForm::getInstance('rb_ecommerce.processor.eway', dirname(__FILE__).'/forms/form.xml');
-
-		$object 								= $request->toObject();		
-		$user_data								= $object->user_data;
-		
-		$binddata['payment_data']['first_name'] = $user_data->name;
-		$binddata['payment_data']['email']		= $user_data->email;	
-		$form->bind($binddata); 
-		
-		$response 								= new stdClass();
-		$response->type 						= 'form';
-		$response->error 						= false;
-		$response->data 						= new stdClass();
-		$response->data->post_url 				= false;
-		$response->data->form 					= $form;
-		
-		return $response;
+	{	
+			$response 					= new stdClass();
+			$response->type 			= 'form';
+			$response->error 			= false;
+			$response->data 			= new stdClass();
+			$response->data->post_url 	= false;
+			
+			$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+			$response->data->form		=	Rb_HelperTemplate::renderLayout('gateway_eway', null,  'plugins/rb_ecommerceprocessor/eway/processors/eway/layouts');		
+			
+			return $response;
 	}
 	
 	protected function _request_payment(Rb_EcommerceRequest $request)

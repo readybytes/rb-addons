@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>2Checkout</name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+	<help>
+    	<![CDATA[
+    	<div class="rb-help-payinvoice rb-processor-help">		
+	       <ul>
+	    		<li>On your 2Checkout Account Homepage, click on <strong>[[ Account ]]</strong> link and then click on <strong>[[ Site Management ]]</strong> link. 
+	    			Set up the field <strong>[[ Approved URL ]]</strong> with the URL- <strong>"http://yoursite.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=complete&amp;processor=2checkout"</strong>. 
+			    	<br>Replace <strong>"yoursite.com"</strong> with your own domain.
+			    <br>Set the secret word according to you. 
+				   	If you are using https protocol for payments then set the field <strong>[[ Approved URL ]]</strong> accordingly.</li><br/>
+				<!-- <li>You need to set a notification url under Notification tab of your 2checkout account. The url is <strong>"http://yoursite.com/index.php?option=com_paycart&amp;view=cart&amp;task=notify&amp;"</strong><br/><br/>
+					<strong>Note : </strong> Please, do not forget to attach <strong>&amp;</strong> at the end of notify URL.
+				</li> -->
+			</ul>
+		</div>
+		
+		<div class="rb-help-paycart hide rb-processor-help">		
+	       <ul>
+	    		<li>On your 2Checkout Account Homepage, click on <strong>[[ Account ]]</strong> link and then click on <strong>[[ Site Management ]]</strong> link. 
+	    			Set up the field <strong>[[ Approved URL ]]</strong> with the URL- <strong>"http://yoursite.com/index.php?option=com_paycart&amp;view=cart&amp;task=complete&amp;processor=2checkout&amp;notify=1"</strong>. 
+			    	<br>Replace <strong>"yoursite.com"</strong> with your own domain.
+			    	<br>Set the secret word according to you. 
+				   	If you are using https protocol for payments then set the field <strong>[[ Approved URL ]]</strong> accordingly.</li><br/>
+				<!-- <li>You need to set a notification url under Notification tab of your 2checkout account. The url is <strong>"http://yoursite.com/index.php?option=com_paycart&amp;view=cart&amp;task=notify&amp;"</strong><br/><br/>
+					<strong>Note : </strong> Please, do not forget to attach <strong>&amp;</strong> at the end of notify URL.
+				</li> -->
+			</ul>
+		</div>
+		
+		<strong>Important</strong> 
+			<ul>
+				<li>Once the app get saved, do not change the <b>Paid On value</b>, for proper working. Create a new app if you want to change.</li>
+				<li>2checkout doesn't send notification in sandbox testing.</li>
+			</ul>
+		 ]]>
+   	 </help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+		<field	name="sid" 	
+				default="" 		
+				type="text" 	
+				label="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_SID_NUMBER_LABEL"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_SID_NUMBER_DESC" 
+				/>
+				
+		<field	name="secret_word" 	
+				default="" 		
+				type="text" 	
+				label="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_SECRET_WORD_LABEL"  
+				description="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_SECRET_WORD_DESC" 
+				/>
+				
+		<field	name="alternate_url" 	
+				type="radio" 
+        		default="0" 
+        		label="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_ALTERNATE_URL_LABEL" 
+        		description="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_ALTERNATE_URL_DESC"
+        		class="btn-group">
+		          <option value="0">JNO</option>
+		          <option value="1">JYES</option>
+        		</field>
+
+        <field  name="sandbox" 
+        		type="radio" 
+        		default="0" 
+        		label="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_SANDBOX_LABEL" 
+        		description="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_SANDBOX_DESC"
+        		class="btn-group">
+		          <option value="0">JNO</option>
+		          <option value="1">JYES</option>
+        		</field>		
+        		
+     	<field  name="activation" 
+        		type="list" 
+        		default="" 
+				class="required"
+        		label="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_PAID_ON_LABEL" 
+        		description="PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_PAID_ON_DESC">
+		    		<option value="OrderCreation" >PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_ON_SUCCESSFULL_ORDER_CREATION</option>
+				    <option value="FraudStatus" >PLG_RB_ECOMMERCEPROCESSOR_2CHECKOUT_PARAMS_2CHECKOUT_ON_FRAUD_STATUS_PASS</option>		
+        		</field>					
+		</fieldset>
+	</fields>
+</config>

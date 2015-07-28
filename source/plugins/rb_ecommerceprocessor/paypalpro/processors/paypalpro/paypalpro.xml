@@ -7,9 +7,17 @@
     <tags></tags>
 	<help>
     	<![CDATA[
-        	Set the IPN Notification Url in your paypal pro account also.<br/><br/>
-	  	    <b>Set Notify Url as</b><br/>
-		     http://yoursite.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=notify&amp;processor=paypalpro
+    		<div class="rb-help-payinvoice rb-processor-help">
+        		Set the IPN Notification Url in your paypal pro account also.<br/><br/>
+	  	  	  	<b>Set Notify Url as</b><br/>
+		   		http://yoursite.com/index.php?option=com_payinvoice&amp;view=invoice&amp;task=notify&amp;processor=paypalpro
+		    </div>
+		    
+		    <div class="hide rb-help-paycart rb-processor-help">
+		    	Set the IPN Notification Url in your paypal pro account also.<br/><br/>
+	  	    	<b>Set Notify Url as</b><br/>
+		    	http://yoursite.com/index.php?option=com_paycart&amp;view=cart&amp;task=notify&amp;processor=paypalpro
+		    </div>		    
 	  	 ]]>	
    	 </help>
 

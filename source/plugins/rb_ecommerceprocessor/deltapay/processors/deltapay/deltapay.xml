@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>DeltaPay </name>
+   	<author></author>
+    <description></description>
+   	<icon></icon>
+    <tags></tags>
+   	<help>
+	    <![CDATA[
+  		<b>DeltaPay supports transaction in Euro only.</b><br><br>
+  		<br> 
+		]]>
+	</help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="merchant_id" 	
+					default="" 		
+					type="text" 	
+					label="PLG_RB_ECOMMERCEPROCESSOR_DELTAPAY_PARAMS_MERCHANT_ID_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_DELTAPAY_PARAMS_MERCHANT_ID_DESC" 
+				class="required" />
+		</fieldset>
+	</fields>
+</config>

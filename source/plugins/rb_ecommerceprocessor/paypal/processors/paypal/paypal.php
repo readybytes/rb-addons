@@ -9,9 +9,7 @@
 */
 
 // no direct access
-if(!defined( '_JEXEC' )){
-	die( 'Restricted access' );
-}
+defined( '_JEXEC' ) or	die( 'Restricted access' );
 
 /** 
  * Paypal Processor 
@@ -101,7 +99,7 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 		
 		$url_data 		= $object->url_data;
 		$payment_data 	= $object->payment_data;
-		
+		$language		= $payment_data->language;
 		// common parameters
 		$form_data['return'] 		= !empty($url_data->return_url) ? $url_data->return_url.'&invoice_number='.$payment_data->invoice_number : $config->return_url.'&invoice_number='.$payment_data->invoice_number;
 		$form_data['cancel_return'] = !empty($url_data->cancel_url) ? $url_data->cancel_url.'&invoice_number='.$payment_data->invoice_number : $config->cancel_url.'&invoice_number='.$payment_data->invoice_number;
@@ -114,6 +112,9 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 		$form_data['item_number'] 	= $payment_data->invoice_number;
 		$form_data['currency_code'] = $payment_data->currency;
 		
+		//to change the language on paypal's end.
+		$form_data['localcode']		= str_replace('-', '_', $language['code']);
+		
 		$form_path = dirname(__FILE__).'/forms/';
 		
 		$form_file_name 			=	'fixed';
@@ -125,6 +126,8 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 			
 	   		$all_prices = $payment_data->price;
 	   		$regular_index = 0;
+	   		
+	   		$form_data['srt']		= $payment_data->recurrence_count;
 	   		// Trial 1
 	   		if(count($all_prices) >= 2){
 	   			$form_data['is_trial_one']	=	true;
@@ -132,6 +135,7 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 	   			$form_data['a1'] = number_format($all_prices[0], 2, '.', '');	   			
 	   			list($form_data['p1'], $form_data['t1']) = $this->__get_recurrence_time($payment_data->time[0]);
 	   			$regular_index = 1;
+	   			$form_data['srt']		= $payment_data->recurrence_count - 1 ;
 	   		}
 	   		
 	   		// trial 2
@@ -141,13 +145,13 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 	   			$form_data['a2'] = number_format($all_prices[1], 2, '.', '');
 	   			list($form_data['p2'], $form_data['t2']) = $this->__get_recurrence_time($payment_data->time[1]);
 	   			$regular_index = 2;
+	   			$form_data['srt']		= $payment_data->recurrence_count - 2 ;
 	   		}
 
 	   		// regular price
 	   		$form_data['a3'] = number_format($all_prices[$regular_index], 2, '.', '');
 	   		list($form_data['p3'], $form_data['t3']) = $this->__get_recurrence_time($payment_data->time[$regular_index]);
-
-	   		$form_data['srt']		= $payment_data->recurrence_count;       		
+  				
        		$form_data['cmd']		= '_xclick-subscriptions';
 		}
 		else {
@@ -156,31 +160,8 @@ class Rb_EcommerceProcessorPaypal extends Rb_EcommerceProcessor
 			
 		}		
 		
-		$build_type = $request->get('build_type', Rb_EcommerceRequest::BUILD_TYPE_XML);
-
-		switch ($build_type) 
-		{
-			case Rb_EcommerceRequest::BUILD_TYPE_HTML :
-				$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
-				$form	=	Rb_HelperTemplate::renderLayout('gateway_paypal_'.$form_file_name , $form_data,  'plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts');
-				break;
-
-			case Rb_EcommerceRequest::BUILD_TYPE_XML :
-			default:
-				$response->type 		= Rb_EcommerceRequest::BUILD_TYPE_XML ;
-				$form = JForm::getInstance('rb_ecommerce.processor.paypal', $form_path."$form_file_name.xml");
-
-				if ($form_data['is_trial_one']) {
-					$form->loadFile($form_path.'trial1.xml', false, '//config');
-				}
-
-				if ($form_data['is_trial_two']) {
-					$form->loadFile($form_path.'trial2.xml', false, '//config');
-				}
-
-				// bind existing data
-				$form->bind($form_data);
-		}
+		$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$form						=	Rb_HelperTemplate::renderLayout('gateway_paypal_'.$form_file_name , $form_data,  'plugins/rb_ecommerceprocessor/paypal/processors/paypal/layouts');
 		
 		$response 					= new stdClass();		
 		$response->data 			= new stdClass();

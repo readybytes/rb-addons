@@ -1,4 +1,11 @@
 <?php 
+/**
+* @copyright	Copyright (C) 2009 - 2012 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
+* @license		GNU/GPL, see LICENSE.php
+* @package 		Joomla.Plugin
+* @subpackage	Rb_EcommerceProcessor.Paypal
+* @contact		support@readybytes.in
+*/
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
  
@@ -175,6 +182,10 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				type="hidden"
 				value="1"/>		
 		
+		<input 	name="lc" 
+				id="rb_ecommerce_processor_paypal_lc"
+				type="hidden"
+				value="<?php echo  $displayData['localcode'] ; ?>"/>
 				
 		<!--	METHOD in which data to be post from paypal 0-get,1,2-post -->
 		<input 	name="rm" 

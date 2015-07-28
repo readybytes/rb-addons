@@ -42,16 +42,18 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{
-		$form = JForm::getInstance('rb_ecommerce.processor.authorizecim', dirname(__FILE__).'/forms/form.xml');
+			$response 					= new stdClass();
+			$response->type 			= 'form';
+			$response->error 			= false;
+			$response->data 			= new stdClass();
+			$response->data->post_url 	= false;
+			$response->data->form 		= $form;
 			
-		$response 					= new stdClass();
-		$response->type 			= 'form';
-		$response->error 			= false;
-		$response->data 			= new stdClass();
-		$response->data->post_url 	= false;
-		$response->data->form 		= $form;
-		
-		return $response;
+			
+			$response->type				=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+			$response->data->form		=	Rb_HelperTemplate::renderLayout('gateway_paypalpro', null,  'plugins/rb_ecommerceprocessor/paypalpro/processors/paypalpro/layouts');
+			
+			return $response;
 	}
 	
 	protected function _request_payment(Rb_EcommerceRequest $request)

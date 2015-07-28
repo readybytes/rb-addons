@@ -39,16 +39,10 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 	}
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
-	{			
-		$form = JForm::getInstance('rb_ecommerce.processor.mes', dirname(__FILE__).'/forms/form.xml');
-
+	{
 		$object 											= $request->toObject();		
 		$config 											= $this->getConfig();
 		$payment_data 										= $object->payment_data;
-		
-		$binddata['payment_data']['transaction_amount']		= number_format($payment_data->total, 2, '.', '');
-		$binddata['payment_data']['invoice_number']			= $payment_data->invoice_number;	
-		$form->bind($binddata); 
 		
 		$response 											= new stdClass();
 		$response->type 									= 'form';
@@ -56,7 +50,9 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 		$response->data 									= new stdClass();
 		$response->data->object_data						= $object;
 		$response->data->post_url 							= false;
-		$response->data->form 								= $form;
+
+		$response->type			=	Rb_EcommerceRequest::BUILD_TYPE_HTML ;
+		$response->data->form	=	Rb_HelperTemplate::renderLayout('gateway_mes', new stdClass(),  'plugins/rb_ecommerceprocessor/mes/processors/mes/layouts');
 		
 		return $response;
 	}
@@ -124,9 +120,7 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 			$transaction->setAvsRequest($post_data->cardholder_street_address, $post_data->cardholder_zip);
 		}
 		
-		if(!empty($post_data->invoice_number)){
-			$transaction->setRequestField('invoice_number', $post_data->invoice_number);
-		}
+		$transaction->setRequestField('invoice_number', $payment_data->invoice_number);
 		
 		if(!empty($post_data->cvv2)){
 			$transaction->setRequestField('cvv2', $post_data->cvv2);
@@ -137,7 +131,7 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 			$transaction->setEcommInd('3');
 		}
 		
-		$transaction->setRequestField('transaction_amount', $post_data->transaction_amount);
+		$transaction->setRequestField('transaction_amount', $payment_data->total);
 		
 		$transaction->setHost( HOSTURI );
 		$transaction->execute();
@@ -249,7 +243,7 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
     	$response->set('parent_txn', 		0);
 		$response->set('amount', 	 		0);
 		$response->set('payment_status', 	Rb_EcommerceResponse::FAIL);
-		$response->set('message', 			$mes_response->ResponseFields['auth_response_text']);
+		$response->set('message', 			isset($mes_response->ResponseFields['auth_response_text']) ? $mes_response->ResponseFields['auth_response_text'] : $mes_response->ErrorMessage);
 		$response->set('params', 			$mes_response->ResponseFields);
 		
 		return $response;

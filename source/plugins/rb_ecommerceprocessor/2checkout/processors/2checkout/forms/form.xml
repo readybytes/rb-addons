@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_2checkout_form">
+				
+			<field 	name="sid"
+					id="rb_ecommerce_processor_2checkout_sid"
+					type="hidden"
+					default="" />
+					
+			<field 	name="invoice_number"
+					id="rb_ecommerce_processor_2checkout_invoice_number"
+					type="hidden"
+					default="" />
+					
+			<field 	name="payment_key"
+					id="rb_ecommerce_processor_2checkout_payment_key"
+					type="hidden"
+					default="" />
+					
+			<field 	name="merchant_order_id"
+					id="rb_ecommerce_processor_2checkout_merchant_order_id"
+					type="hidden"
+					default="" />
+					
+			<field 	name="x_invoice_num"
+					id="rb_ecommerce_processor_2checkout_x_invoice_num"
+					type="hidden"
+					default="" />
+					
+			<field 	name="fixed"
+					id="rb_ecommerce_processor_2checkout_fixed"
+					type="hidden"
+					default="" />
+					
+					
+			<field 	name="total"
+					id="rb_ecommerce_processor_2checkout_total"
+					type="hidden"
+					default="" />
+					
+			<field 	name="currency"
+					id="rb_ecommerce_processor_2checkout_currency"
+					type="hidden"
+					default="" />
+					
+			<field 	name="cust_id"
+					id="rb_ecommerce_processor_2checkout_cust_id"
+					type="hidden"
+					default="" />
+					
+			<field 	name="return_url"
+					id="rb_ecommerce_processor_2checkout_return_url"
+					type="hidden"
+					default="" />
+					
+			<field 	name="cart_order_id"
+					id="rb_ecommerce_processor_2checkout_cart_order_id"
+					type="hidden"
+					default="" />
+					
+					
+			<field 	name="username"
+					id="rb_ecommerce_processor_2checkout_username"
+					type="hidden"
+					default="" />
+					
+			<field 	name="name"
+					id="rb_ecommerce_processor_2checkout_name"
+					type="hidden"
+					default="" />
+					
+			<field 	name="cart_brand_name"
+					id="rb_ecommerce_processor_2checkout_cart_brand_name"
+					type="hidden"
+					default="" />
+					
+			<field 	name="cart_version_name"
+					id="rb_ecommerce_processor_2checkout_cart_version_name"
+					type="hidden"
+					default="" />		
+	</fieldset>
+</form>

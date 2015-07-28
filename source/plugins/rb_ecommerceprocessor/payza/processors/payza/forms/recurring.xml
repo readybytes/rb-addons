@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset addfieldpath="/plugins/system/rbsl/rb/rb/html/fields" name="plg_rb_ecommerceprocessor_paza_form_recurring">
+		<field 	name="ap_merchant"
+				id="rb_ecommerce_processor_payza_ap_merchant"
+				type="hidden"
+				default="" />
+		
+		<field 	name="ap_itemname"
+				id="rb_ecommerce_processor_payza_ap_itemname"
+				type="hidden"
+				default="" />
+		
+		<field 	name="ap_currency"
+				id="rb_ecommerce_processor_payza_ap_currency"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_returnurl"
+				id="rb_ecommerce_processor_payza_ap_returnurl"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_cancelurl"
+				id="rb_ecommerce_processor_payza_ap_cancelurl"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_purchasetype"
+				id="rb_ecommerce_processor_payza_ap_purchasetype"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_amount"
+				id="rb_ecommerce_processor_payza_ap_amount"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_timeunit"
+				id="rb_ecommerce_processor_payza_ap_timeunit"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_periodlength"
+				id="rb_ecommerce_processor_payza_ap_periodlength"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_periodcount"
+				id="rb_ecommerce_processor_payza_ap_periodcount"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_trialamount"
+				id="rb_ecommerce_processor_payza_ap_trialamount"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_trialtimeunit"
+				id="rb_ecommerce_processor_payza_ap_trialtimeunit"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_trialperiodlength"
+				id="rb_ecommerce_processor_payza_ap_trialperiodlength"
+				type="hidden"
+				default="" />
+				
+		<field 	name="ap_description"
+				id="rb_ecommerce_processor_payza_ap_description"
+				type="hidden"
+				default="" />
+				
+		<field 	name="apc_1"
+				id="rb_ecommerce_processor_payza_apc_1"
+				type="hidden"
+				default="" />
+				
+		<field 	name="apc_2"
+				id="rb_ecommerce_processor_payza_apc_2"
+				type="hidden"
+				default="" />
+					
+	</fieldset>
+</form>
