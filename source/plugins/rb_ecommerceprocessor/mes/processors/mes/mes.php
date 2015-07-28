@@ -39,9 +39,7 @@ class Rb_EcommerceProcessorMes extends Rb_EcommerceProcessor
 	}
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
-	{			
-		$form = JForm::getInstance('rb_ecommerce.processor.mes', dirname(__FILE__).'/forms/form.xml');
-
+	{
 		$object 											= $request->toObject();		
 		$config 											= $this->getConfig();
 		$payment_data 										= $object->payment_data;

@@ -42,8 +42,6 @@ class Rb_EcommerceProcessorBankaudi extends Rb_EcommerceProcessor
 	
 	protected function _request_build(Rb_EcommerceRequest $request)
 	{
-		$form = JForm::getInstance('rb_ecommerce.processor.bankaudi', dirname(__FILE__).'/forms/form.xml');
-
 		$object 					= $request->toObject();		
 		$user_data					= $object->user_data;
 		$payment_data				= $object->payment_data;
