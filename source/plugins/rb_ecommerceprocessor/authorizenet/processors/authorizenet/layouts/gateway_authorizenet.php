@@ -90,7 +90,7 @@ $year = date('Y');
 		            <span class="add-on">
 		            	<?php 
 			            	//@TODO:: dont use hardcoded path
-							echo Rb_Html::image('/plugins/rb_ecommerceprocessor/authorizeaim/processors/authorizeaim/layouts/cvc-code-icon.png', 'CVC Code', Array('style' =>"height:20px", 'title' => 'CVC Code'));
+							echo Rb_Html::image('plugins/rb_ecommerceprocessor/authorizenet/processors/authorizenet/layouts/cvc-code-icon.png', 'CVC Code', Array('style' =>"height:20px", 'title' => 'CVC Code'));
 						?>
 		            </span>
 		        </div>
@@ -175,6 +175,30 @@ $year = date('Y');
 		         
 		        <span for="rb-processor-authorizeaim-address" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_VALIDATION_REQUIRED'); ?></span>  
 	        </div>
+
+			<div class="control-group" >
+             	<div class="control-label">
+		          	<label for="rb-processor-authorizeaim-country" title="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_COUNTRY_DESC');?>">
+					  	<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_COUNTRY_LABEL')?>
+				  	</label>
+				</div>
+		        <div class="controls">
+		  			<?php echo Rb_EcommerceHtmlCountries::getList("payment_data[country]", '', "rb-processor-authorizeaim-country", array('class' => 'input-block-level required')); ?>
+		        </div>
+	         	<span for="rb-processor-authorizeaim-country" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_VALIDATION_REQUIRED'); ?></span>
+        	</div>
+
+			<div class="control-group" >
+             	<div class="control-label">
+		          	<label for="rb-processor-authorizeaim-state" title="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_STATE_DESC');?>">
+					      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_STATE_LABEL')?></span>
+					</label>
+				</div>
+			    <div class="controls">
+			    	<input type="text" class="input-block-level" id="rb-processor-authorizeaim-state" name="payment_data[state]" value=""></input>
+			    </div>
+		        <span for="rb-processor-authorizeaim-state" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_VALIDATION_REQUIRED'); ?></span>    
+	        </div>
 	        
 	        <div class="control-group" >
 	             	<div class="control-label">
@@ -189,42 +213,16 @@ $year = date('Y');
 	        </div>
 	        
 	        <div class="control-group" >
-	             	<div class="control-label">
-			          	<label for="rb-processor-authorizeaim-state" title="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_STATE_DESC');?>">
-						      <span class="required-label"><?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_STATE_LABEL')?></span>
-						</label>
-					</div>
-		          <div class="controls">
-		          	<input type="text" class="input-block-level" id="rb-processor-authorizeaim-state" name="payment_data[state]" value=""></input>
-		          </div>
-		        <span for="rb-processor-authorizeaim-state" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_VALIDATION_REQUIRED'); ?></span>  
-		         
-	        </div>
-	        
-	        <div class="control-group" >
 	             <div class="control-label">
 		          	<label for="rb-processor-authorizeaim-zip" title="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_ZIP_DESC');?>">
 					   <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_ZIP_LABEL')?>
 					</label>
 				 </div>
-		          <div class="controls">
-		          	  <input type="text" class="input-block-level" id="rb-processor-authorizeaim-zip" name="payment_data[zip]" value=""></input>
-		          </div>
-		           <span for="rb-processor-authorizeaim-zip" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_VALIDATION_REQUIRED'); ?></span>  
-	        </div>
-	        
-             <div class="control-group" >
-             	<div class="control-label">
-		          <label for="rb-processor-authorizeaim-country" title="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_COUNTRY_DESC');?>">
-					  <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_COUNTRY_LABEL')?>
-				  </label>
-				</div>
-		          <div class="controls">
-		  			<?php echo Rb_EcommerceHtmlCountries::getList("payment_data[country]", '', "rb-processor-authorizeaim-country", array('class' => 'input-block-level required')); ?>
-		          </div>
-	         	<span for="rb-processor-authorizeaim-country" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_VALIDATION_REQUIRED'); ?></span>
-        	</div>       
-	        
+		         <div class="controls">
+		         	<input type="text" class="input-block-level" id="rb-processor-authorizeaim-zip" name="payment_data[zip]" value=""></input>
+		         </div>
+		         <span for="rb-processor-authorizeaim-zip" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_VALIDATION_REQUIRED'); ?></span>  
+	        </div>	        
  		</fieldset>
     </div>
 </div>
