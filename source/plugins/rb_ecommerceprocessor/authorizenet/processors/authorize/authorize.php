@@ -17,7 +17,7 @@ if(!defined( '_JEXEC' )){
  * Authorize CIM Processor 
  * @author Neelam Soni
  */
-class Rb_EcommerceProcessorAuthorizenet extends Rb_EcommerceProcessor
+class Rb_EcommerceProcessorAuthorize extends Rb_EcommerceProcessor
 {
 	protected $_location = __FILE__;
 	
@@ -55,7 +55,7 @@ class Rb_EcommerceProcessorAuthorizenet extends Rb_EcommerceProcessor
 		
 		$response->data 			= new stdClass();
 		$response->data->post_url 	= false;		
-		$response->data->form		= Rb_HelperTemplate::renderLayout('gateway_authorizenet', null,  'plugins/rb_ecommerceprocessor/authorizenet/processors/authorizenet/layouts');
+		$response->data->form		= Rb_HelperTemplate::renderLayout('gateway_authorizenet', null,  'plugins/rb_ecommerceprocessor/authorizenet/processors/authorize/layouts');
 		
 		return $response;
 	}

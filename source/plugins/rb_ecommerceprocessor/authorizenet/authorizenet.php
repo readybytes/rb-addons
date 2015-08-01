@@ -23,11 +23,11 @@ class  plgRb_ecommerceprocessorAuthorizenet extends RB_Plugin
 	{
 		parent::__construct($subject, $config);
 		
-		$fileName = __DIR__.'/processors/authorizenet/authorizenet.php';
-		Rb_HelperLoader::addAutoLoadFile($fileName, 'Rb_EcommerceProcessorAuthorizenet');
+		$fileName = __DIR__.'/processors/authorize/authorize.php';
+		Rb_HelperLoader::addAutoLoadFile($fileName, 'Rb_EcommerceProcessorAuthorize');
 		
 		$helper = Rb_EcommerceFactory::getHelper();
-		$helper->processor->push('authorizenet', array('location' => $fileName, 'class' => 'Rb_EcommerceProcessorAuthorizenet'));
+		$helper->processor->push('authorizenet', array('location' => $fileName, 'class' => 'Rb_EcommerceProcessorAuthorize'));
 		
 		// load language file also
 		$this->loadLanguage();
