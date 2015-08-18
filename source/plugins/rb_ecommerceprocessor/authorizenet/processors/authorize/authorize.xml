@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>Authorize NET</name>
+	<help>
+    	<![CDATA[
+		<b>Note : </b>Amount must be no more than than $99,999.99.
+		]]>
+   	 </help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="api_login_id" 	
+					default=""
+					type="text"
+					size="50"
+					label="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_PARAMS_AUTHORIZENET_API_LOGIN_ID_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_PARAMS_AUTHORIZENET_API_LOGIN_ID_DESC"/>
+				
+			<field	name="transaction_key" 	
+					default="" 		
+					type="text"
+					size="50"			 
+					label="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_PARAMS_AUTHORIZENET_TRANSACTION_KEY_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_PARAMS_AUTHORIZENET_TRANSACTION_KEY_DESC"/>
+			  		
+	        <field  name="sandbox" 
+	     			type="radio" 
+	     			default="0" 
+	     			label="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_PARAMS_AUTHORIZENET_SANDBOX_LABEL" 
+	     			description="PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_PARAMS_AUTHORIZENET_SANDBOX_DESC"
+	     			class="btn-group">
+	         		<option value="0">JNO</option>
+	         		<option value="1">JYES</option>
+	         </field>
+		</fieldset>
+	</fields>
+</config>
