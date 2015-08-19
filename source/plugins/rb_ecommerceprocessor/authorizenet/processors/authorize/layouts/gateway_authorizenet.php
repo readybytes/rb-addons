@@ -94,7 +94,7 @@ $year = date('Y');
 						?>
 		            </span>
 		        </div>
-		        <span for="rb-processor-authorizeaim-cvc-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZEAIM_ERROR_CVC_NOT_VALID'); ?></span>
+		        <span for="rb-processor-authorizeaim-cvc-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_CVC_NOT_VALID'); ?></span>
 			            
 			</div>
    		</fieldset>
