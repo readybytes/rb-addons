@@ -37,7 +37,7 @@ $year = date('Y');
 	 	    <div class="control-group">
 	 	    	<div class="control-label">
 				    <label class="required" for="rb-processor-authorizeaim-card-expiry-month" title="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_EXPIRATION_DATE_DESC');?>">
-				      <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_EXPIRATION_MONTH_LABEL').'/'.JText::_("PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_EXPIRATION_YEAR_LABEL");?>
+				      <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_EXPIRATION_MONTH_LABEL').' / '.JText::_("PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_EXPIRATION_YEAR_LABEL");?>
 				     </label>
 				</div>
 				
@@ -90,11 +90,11 @@ $year = date('Y');
 		            <span class="add-on">
 		            	<?php 
 			            	//@TODO:: dont use hardcoded path
-							echo Rb_Html::image('plugins/rb_ecommerceprocessor/authorizenet/processors/authorizenet/layouts/cvc-code-icon.png', 'CVC Code', Array('style' =>"height:20px", 'title' => 'CVC Code'));
+							echo Rb_Html::image('plugins/rb_ecommerceprocessor/authorizenet/processors/authorize/layouts/cvc-code-icon.png', 'CVC Code', Array('style' =>"height:20px", 'title' => 'CVC Code'));
 						?>
 		            </span>
 		        </div>
-		        <span for="rb-processor-authorizeaim-cvc-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZEAIM_ERROR_CVC_NOT_VALID'); ?></span>
+		        <span for="rb-processor-authorizeaim-cvc-number" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_ERROR_CVC_NOT_VALID'); ?></span>
 			            
 			</div>
    		</fieldset>

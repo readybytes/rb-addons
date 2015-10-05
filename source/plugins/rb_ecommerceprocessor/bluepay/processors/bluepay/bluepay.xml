@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>BLUEPAY</name>
+	<help>
+    	<![CDATA[
+		If using TEST mode, odd dollar amounts will return 	an approval and even dollar amounts will return a decline.
+		]]>
+   	 </help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="account_id" 	
+					default=""
+					type="text"
+					size="50"
+					label="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_ACCOUNT_ID_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_ACCOUNT_ID_DESC"/>
+				
+			<field	name="secret_key" 	
+					default="" 		
+					type="text"
+					size="50"			 
+					label="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_SECRET_KEY_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_SECRET_KEY_DESC"/>
+			  		
+	        <field  name="sandbox" 
+	     			type="radio" 
+	     			default="LIVE" 
+	     			label="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_SANDBOX_LABEL" 
+	     			description="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_SANDBOX_DESC"
+	     			class="btn-group">
+	         		<option value="LIVE">JNO</option>
+	         		<option value="TEST">JYES</option>
+	         </field>
+		</fieldset>
+	</fields>
+</config>
