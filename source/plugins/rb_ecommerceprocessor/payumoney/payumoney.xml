@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="rb_ecommerceprocessor" method="upgrade">
+    <name>PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY</name>
+    <version>1.0.0</version>
+    <creationDate>Sep 2015</creationDate>
+    <author>Team ReadyBytes</author>
+    <authorEmail>support@readybytes.in</authorEmail>
+    <authorUrl>http://www.readybytes.net/paycart.html</authorUrl>
+    <copyright>2009-15 Ready Bytes Software Labs Pvt. Ltd.</copyright>
+    <license>GNU General Public License v2</license>
+    <description>PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_DESCRIPTION</description>
+	<files>
+		<filename plugin="payumoney">payumoney.php</filename>
+		<folder>processors</folder>
+		<filename>index.html</filename>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_payumoney.ini</language>
+		<language tag="en-GB">en-GB.plg_rb_ecommerceprocessor_payumoney.sys.ini</language>
+	</languages>
+
+	<config>
+	</config>
+
+<alias>rb-payumoney-net</alias>
+<version_number>1.0.0</version_number>
+<version_name>PayUMoney 1.0.0</version_name>
+</extension>
+

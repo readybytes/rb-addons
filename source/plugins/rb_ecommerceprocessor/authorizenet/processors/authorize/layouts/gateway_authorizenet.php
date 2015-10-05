@@ -104,7 +104,7 @@ $year = date('Y');
 	        <div class="control-group">
 	        	<div class="control-label">
 		          	<label for="rb-processor-authorizeaim-first_name" title="<?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_FIRST_NAME_DESC');?>">
-					     <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZECIM_FORM_AUTHORIZECIM_FIRST_NAME_LABEL')?>
+					     <?php echo JText::_('PLG_RB_ECOMMERCEPROCESSOR_AUTHORIZENET_FORM_AUTHORIZENET_FIRST_NAME_LABEL')?>
 					</label>
 				</div>
 		        <div class="controls">

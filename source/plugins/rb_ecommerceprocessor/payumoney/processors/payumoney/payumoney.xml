@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<name>PayU Money</name>
+	<help>
+    	<![CDATA[
+			<b>Only supported currencies for each country:</b><br><br>
+			India -<br>
+			Indian Ruppee (INR)<br>
+			<br>
+			<b>Amount must be greater than zero for test and live accounts.<br><br>
+			Please note that PayUMoney payment gateway supports manual refund. So,you need to first refund the transactions through your PayUMoney Merchant Account and then create a refund transaction here also.</b>		
+		]]>
+   	 </help>
+
+	<fields name="processor_config">
+		<fieldset name="parameters">
+			<field	name="merchant_id" 	
+					default=""
+					type="text"
+					size="50"
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_MERCHANT_ID_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_MERCHANT_ID_DESC"/>
+					
+			<field	name="merchant_key" 	
+					default=""
+					type="text"
+					size="50"
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_MERCHANT_KEY_LABEL"
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_MERCHANT_KEY_DESC"/>
+				
+			<field	name="merchant_salt" 	
+					default="" 		
+					type="text"
+					size="50"			 
+					label="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_MERCHANT_SALT_LABEL"  
+					description="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_MERCHANT_SALT_DESC"/>
+			  		
+	        <field  name="sandbox" 
+	     			type="radio" 
+	     			default="0" 
+	     			label="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_SANDBOX_LABEL" 
+	     			description="PLG_RB_ECOMMERCEPROCESSOR_PAYUMONEY_PARAMS_PAYUMONEY_SANDBOX_DESC"
+	     			class="btn-group">
+	         		<option value="0">JNO</option>
+	         		<option value="1">JYES</option>
+	         </field>
+		</fieldset>
+	</fields>
+</config>
