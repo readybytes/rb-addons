@@ -63,8 +63,8 @@ class Rb_EcommerceProcessorPayumoney extends Rb_EcommerceProcessor
 							  $txnid.'|'.
 							  number_format($payment_data->total , 2).'|'.
 							  $productinfo.'|'.
-							  $user_data->name.'|'.
-							  $user_data->email.'|'.
+							  ($user_data->name?$user_data->name:'guest').'|'.
+							  ($user_data->email?$user_data->email:'guest').'|'.
 							  $user_data->id.'||||||||||'.
 							  $config->merchant_salt;
 
@@ -74,8 +74,8 @@ class Rb_EcommerceProcessorPayumoney extends Rb_EcommerceProcessor
 		$form_data['txnid']				= $txnid;
 		$form_data['amount']			= number_format($payment_data->total , 2);
 		$form_data['productinfo']		= $productinfo;
-		$form_data['firstname']			= $user_data->name;
-		$form_data['email']				= $user_data->email;
+		$form_data['firstname']			= $user_data->name?$user_data->name:'guest'; //Todo::In case of guest checkout, user data should be initialized.
+		$form_data['email']				= $user_data->email?$user_data->email:'guest'; //Todo::In case of guest checkout, user data should be initialized.
 		$form_data['phone']				= $user_data->phone;
 		$form_data['udf1']				= $user_data->id;
 		$form_data['surl']				= $post_data->return_url.'&invoice_number='.$payment_data->invoice_number.'&notify=1';
