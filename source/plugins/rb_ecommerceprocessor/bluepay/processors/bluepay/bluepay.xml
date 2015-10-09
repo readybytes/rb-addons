@@ -3,7 +3,12 @@
 	<name>BLUEPAY</name>
 	<help>
     	<![CDATA[
-		If using TEST mode, odd dollar amounts will return 	an approval and even dollar amounts will return a decline.
+		<b>Test Outcomes:</b><br/>
+
+			To test both possible outcomes (i.e. Approved, Declined), the transaction status responses are based on the values you assign to the AMOUNT field when you are in TEST Mode:
+			<br/><br/>
+			Odd dollar amounts (e.g. $1.00, $9.00, $25.00) return an APPROVED message<br/>
+			Even dollar amounts (e.g. $2.00, $16.00, $32.15) return a DECLINE message
 		]]>
    	 </help>
 
@@ -25,12 +30,12 @@
 			  		
 	        <field  name="sandbox" 
 	     			type="radio" 
-	     			default="LIVE" 
+	     			default="1" 
 	     			label="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_SANDBOX_LABEL" 
 	     			description="PLG_RB_ECOMMERCEPROCESSOR_BLUEPAY_PARAMS_SANDBOX_DESC"
 	     			class="btn-group">
-	         		<option value="LIVE">JNO</option>
-	         		<option value="TEST">JYES</option>
+	         		<option value="0" >JNO</option>
+	         		<option value="1">JYES</option>
 	         </field>
 		</fieldset>
 	</fields>
