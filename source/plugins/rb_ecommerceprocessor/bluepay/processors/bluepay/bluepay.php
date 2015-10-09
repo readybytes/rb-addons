@@ -35,7 +35,10 @@ class Rb_EcommerceProcessorBluepay extends Rb_EcommerceProcessor
 		// API credentials only need to be defined once
 		(!defined("BLUEPAY_ACCOUNT_ID")) 	? define("BLUEPAY_ACCOUNT_ID", 	$this->getConfig()->account_id) : '';    // Add your API LOGIN ID
 		(!defined("BLUEPAY_SECRET_KEY")) 	? define("BLUEPAY_SECRET_KEY", 	$this->getConfig()->secret_key): ''; // Add your API transaction key
-		(!defined("BLUEPAY_SANDBOX")) 		? define("BLUEPAY_SANDBOX", 	$this->getConfig()->sandbox): '';       // Set to false to test against production
+		
+		$isSandbox = ($this->getConfig()->sandbox)?'TEST':'LIVE';
+		
+		(!defined("BLUEPAY_SANDBOX")) 		? define("BLUEPAY_SANDBOX", 	$isSandbox): '';       // Set to false to test against production
 		
 		$type = $request->get('type');
 		$func = '_request_'.$type;
@@ -122,7 +125,7 @@ protected function _request_payment(Rb_EcommerceRequest $request)
 									
 //		$payment->auth(number_format($payment_data->total , 2)); // Card authorization
 									 
-		$payment->sale(number_format($payment_data->total , 2)); 
+		$payment->sale(number_format($payment_data->total , 2, '.', '')); 
 		 
 		// Makes the API request with BluePAy
 		$payment->process();
@@ -294,7 +297,8 @@ protected function _request_payment(Rb_EcommerceRequest $request)
 		
 		foreach ($params as $param){
 				$data = explode("=", $param);
-				$notification[$data[0]] = $data[1];
+				$data[0] = trim($data[0],'?');
+				$notification[$data[0]] = urldecode($data[1]);
 		}
 		return $notification;
 	}
