@@ -1,11 +1,11 @@
 <?php
 
 /**
-* @copyright	Copyright (C) 2009 - 2012 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
+* @copyright	Copyright (C) 2009 - 2016 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
 * @package 		Joomla.Plugin
 * @subpackage	Rb_EcommerceProcessor.Paypalpro
-* @contact		team@readybytes.in
+* @contact		support+payinvoice@readybytes.in
 */
 
 // no direct access
@@ -83,7 +83,9 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 		$country			= urlencode($post_data->country);				// US or other valid country code
 		$currencyID 		= urlencode($payment_data->currency);							// or other currency ('GBP', 'EUR', 'JPY', 'CAD', 'AUD')
 		$ipAddress  		= $user_data->ip_address;
-		$custom				= $payment_data->invoice_number; //$invoice->getKey().'-'.$payment->getKey();
+		$custom				= $payment_data->invoice_number;
+		$bn				= urlencode($post_data->bn);
+		 //$invoice->getKey().'-'.$payment->getKey();
 
 		// IMP : first decode the url, so that in case we have got any urlencoded url, i can be urldecoded
 		// 		 and then encode the url again
@@ -93,7 +95,7 @@ class Rb_EcommerceProcessorPaypalpro extends Rb_EcommerceProcessor
 		$nvpStr  			=	"&PAYMENTACTION=$paymentType&IPADDRESS=$ipAddress";
 		$nvpStr 		   .=	"&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=$padDateMonth$expDateYear";
 		$nvpStr 		   .=	"&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$lastName&STREET=$address&CITY=$city";
-		$nvpStr 		   .=	"&STATE=$state&ZIP=$zip&NOTIFYURL=$notify_url&COUNTRYCODE=$country&CURRENCYCODE=$currencyID&CUSTOM=$custom";
+		$nvpStr 		   .=	"&STATE=$state&ZIP=$zip&NOTIFYURL=$notify_url&COUNTRYCODE=$country&CURRENCYCODE=$currencyID&CUSTOM=$custom&bn=$bn";
 		
 		
 		$response = new stdClass();
