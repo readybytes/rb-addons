@@ -1,10 +1,10 @@
 <?php 
 /**
-* @copyright	Copyright (C) 2009 - 2012 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
+* @copyright	Copyright (C) 2009 - 2016 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
 * @package 		Joomla.Plugin
 * @subpackage	Rb_EcommerceProcessor.Paypal
-* @contact		support@readybytes.in
+* @contact		support+payinvoice@readybytes.in
 */
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
@@ -121,5 +121,5 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				id="rb_ecommerce_processor_paypal_no_note"
 				type="hidden"
 				value="<?php echo  $displayData['no_note'];?>"/>
-				
+		<input type="hidden" name="bn" 	value="ReadyBytes_SP" >
 

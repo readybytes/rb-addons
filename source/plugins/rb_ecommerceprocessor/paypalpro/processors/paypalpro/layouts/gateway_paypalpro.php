@@ -1,10 +1,10 @@
 <?php
 /**
- * @copyright	Copyright (C) 2009 - 2012 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
+ * @copyright	Copyright (C) 2009 - 2016 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
  * @license		GNU/GPL, see LICENSE.php
  * @package		PayPlans
  * @subpackage	Frontend
- * @contact 	payplans@readybytes.in
+ * @contact 	support+payinvoice@readybytes.in
 
 
  */
@@ -209,7 +209,7 @@ $year = date('Y');
 	          
 	          <span for="rb-processor-paypalpro-zip" class="rb-error hide"><?php echo  JText::_('PLG_RB_ECOMMERCEPROCESSOR_PAYPALPRO_ERROR_VALIDATION_REQUIRED'); ?></span>  
         </div>
-    
+		<input type="hidden" name="payment_data[bn]" value="ReadyBytes_SP" >
 	</div>
 </div>
 <?php 
